@@ -79,32 +79,53 @@ if(isset($_POST['login_pressed'])){
       </div>
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
-          <i class="fas fa-location-arrow prefix grey-text"></i>
-          <input type="text" id="orangeForm-name" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="orangeForm-name">TSRDS Operation Area</label>
+          <select class="browser-default custom-select">
+            <option selected>TSRDS Operation Area</option>
+            <option value="1">Jamshedpur</option>
+            <option value="2">Wesbook</option>
+            <option value="3">Nuamundi</option>
+          </select>
         </div>
+
         <div class="md-form mb-5">
-          <i class="fas fa-map-marked-alt prefix grey-text"></i>
-          <input type="text" id="orangeForm-email" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="orangeForm-email">State</label>
+           <select class="browser-default custom-select">
+            <option selected>State</option>
+            <option value="1">Jharkhand</option>
+            <option value="2">Odisha</option>
+          </select>
         </div>
 
         <div class="md-form mb-4">
-          <i class="fas fa-map-signs prefix grey-text"></i>
-          <input type="text" id="orangeForm-pass" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="orangeForm-pass">District</label>
+         <select class="browser-default custom-select">
+            <option selected>District</option>
+            <option value="1">District 1</option>
+            <option value="2">District 2</option>
+            <option value="1">District 3</option>
+            <option value="2">District 4</option>
+            <option value="1">District 5</option>
+            <option value="2">District 6</option>
+          </select>
         </div>
         <div class="md-form mb-4">
-          <i class="fas fa-map-pin prefix grey-text"></i>
           <input type="text" id="orangeForm-pass" class="form-control validate">
           <label data-error="wrong" data-success="right" for="orangeForm-pass">Block</label>
         </div>
+        <div class="md-form mb-4">
+          <input type="text" id="orangeForm-pass" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="orangeForm-pass">GP</label>
+        </div>
 
+        <div class="md-form mb-4">
+          <input type="text" id="orangeForm-pass" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="orangeForm-pass">Village</label>
+        </div>
+        <div class="md-form mb-4">
+          <input disabled="disabled" type="text" id="orangeForm-pass" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="orangeForm-pass">Date - <?php echo date("d/m/Y") ?></label>
+        </div>
         <div class="md-form mb-4">
           <p id="location"> Hello </p>
         </div>
-
-
       </div>
       <div class="modal-footer d-flex justify-content-center">
         <button class="btn btn-deep-orange">Save</button>

@@ -97,6 +97,22 @@ if(isset($_POST['reg_pressed'])){
     <!-- Name -->
     <input type="text" name="res" class="form-control mb-4" placeholder="Name">
 
+    <select name="age" class="form-control mb-4" placeholder="age">
+      <option>20</option>
+      <option>21</option>
+      <option>22</option>
+      <option>23</option>
+      <option>24</option>
+      <option>25</option>
+      <option>26</option>
+      <option>27</option>
+      <option>28</option>
+      <option>29</option>
+      <option>30</option>
+      <option>31</option>
+
+    </select>
+
      <input type="number" name="res_mobile"  class="form-control mb-4" placeholder="Mobile No">
     <!-- Email -->
     <!--input type="email" id="defaultSubscriptionFormEmail" class="form-control mb-4" placeholder="E-mail"-->
