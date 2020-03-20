@@ -33,6 +33,7 @@ if(isset($_POST['login_pressed'])){
 if(isset($_POST['reg_pressed'])){
   $respondent_name = $_POST['res'];
   $respondent_mobile = $_POST['res_mobile'];
+  $age = $_POST['age'];
   $check_unq = "SELECT * FROM respondent WHERE res_id='$respondent_mobile'";
   $res_unq = mysqli_query($link, $check_unq);
     if(mysqli_num_rows($res_unq)>0)
@@ -43,7 +44,7 @@ if(isset($_POST['reg_pressed'])){
     }
 
     else{
-          $query_reg = "INSERT INTO respondent(`name`, `res_id`) VALUES('$respondent_name', '$respondent_mobile')";
+          $query_reg = "INSERT INTO respondent(`name`, `res_id`, `age`) VALUES('$respondent_name', '$respondent_mobile', '$age')";
   mysqli_query($link, $query_reg);
   redirect('../nav/?res='.$respondent_mobile);
     }
@@ -110,6 +111,16 @@ if(isset($_POST['reg_pressed'])){
       <option>29</option>
       <option>30</option>
       <option>31</option>
+      <option>32</option>
+      <option>33</option>
+      <option>34</option>
+      <option>35</option>
+      <option>36</option>
+      <option>37</option>
+      <option>38</option>
+      <option>39</option>
+      <option>40</option>
+      <option>41</option>
 
     </select>
 

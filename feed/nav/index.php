@@ -10,6 +10,32 @@ if(isset($_POST['login_pressed'])){
   }
 }
 
+if(isset($_POST['location_submit'])){
+  $op_area =  $_POST['op_area'];
+  $state =  $_POST['state'];
+  $district =  $_POST['district'];
+  $block =  $_POST['block'];
+  $gp =  $_POST['gp'];
+  $village = $_POST['village'];
+  $date = $_POST['date'];
+
+  if(isset($_GET['res'])){
+    $res_id = $_GET['res'];
+    $query_mob = "SELECT * FROM respondent WHERE res_id='$res_id'";
+    $res_mob = mysqli_query($link, $query_mob);
+    $row_mob = mysqli_fetch_assoc($res_mob);
+    $fam_id = $row_mob['family_id'];
+  }
+
+  $query_check_loc_details = "SELECT * FROM family WHERE family_id='$fam_id'";
+  $res_loc = mysqli_query($link, $query_check_loc_details);
+  $count_loc = mysqli_num_rows($res_loc);
+  echo $count_loc;
+
+  if($count_loc==0){
+    $in_loc = "INSERT INTO family() VALUES() WHERE family_id='$fam_id'";
+  }
+}
 ?>
 
 <!DOCTYPE html>
@@ -38,7 +64,7 @@ if(isset($_POST['login_pressed'])){
 </head>
 <body onload="getLocation()">
 
-  <?php include '../inc/header.php'?>
+  <!--?php include '../inc/header.php'?-->
 
   <!-- Start your project here-->  
   <div style="height: 100vh">
@@ -52,7 +78,6 @@ if(isset($_POST['login_pressed'])){
               <?php 
                 if(isset($_GET['res'])){
                   $mob = $_GET['res'];
-
                   $query_choose = "SELECT * FROM respondent WHERE res_id='$mob'";
                   $res_choose = mysqli_query($link, $query_choose);
                   $row_choose = mysqli_fetch_assoc($res_choose);
@@ -66,7 +91,7 @@ if(isset($_POST['login_pressed'])){
             </h1></center>
           <br><br><br>
           <!-- MODAL FOR LOCATION -->
-          <form action="" MEHTOD="POST">
+          <form action="" method="POST">
           <div class="modal fade" id="modalfamilyleader" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -79,56 +104,58 @@ if(isset($_POST['login_pressed'])){
       </div>
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
-          <select class="browser-default custom-select">
+          <select name="op_area" class="browser-default custom-select">
             <option selected>TSRDS Operation Area</option>
-            <option value="1">Jamshedpur</option>
-            <option value="2">Wesbook</option>
-            <option value="3">Nuamundi</option>
+            <option value="Jamshedpur">Jamshedpur</option>
+            <option value="Wesbook">Wesbook</option>
+            <option value="Nuamundi">Nuamundi</option>
           </select>
         </div>
 
         <div class="md-form mb-5">
-           <select class="browser-default custom-select">
+           <select name="state" class="browser-default custom-select">
             <option selected>State</option>
-            <option value="1">Jharkhand</option>
-            <option value="2">Odisha</option>
+            <option value="Jharkhand">Jharkhand</option>
+            <option value="Odisha">Odisha</option>
           </select>
         </div>
 
         <div class="md-form mb-4">
-         <select class="browser-default custom-select">
+         <select name="district" class="browser-default custom-select">
             <option selected>District</option>
-            <option value="1">District 1</option>
-            <option value="2">District 2</option>
-            <option value="1">District 3</option>
-            <option value="2">District 4</option>
-            <option value="1">District 5</option>
-            <option value="2">District 6</option>
+            <option value="District 1">District 1</option>
+            <option value="District 2">District 2</option>
+            <option value="District 3">District 3</option>
+            <option value="District 4">District 4</option>
+            <option value="District 5">District 5</option>
+            <option value="District 6">District 6</option>
           </select>
         </div>
+        
         <div class="md-form mb-4">
-          <input type="text" id="orangeForm-pass" class="form-control validate">
+          <input name="block" type="text" id="orangeForm-pass" class="form-control validate">
           <label data-error="wrong" data-success="right" for="orangeForm-pass">Block</label>
         </div>
         <div class="md-form mb-4">
-          <input type="text" id="orangeForm-pass" class="form-control validate">
+          <input name="gp" type="text" id="orangeForm-pass" class="form-control validate">
           <label data-error="wrong" data-success="right" for="orangeForm-pass">GP</label>
         </div>
 
         <div class="md-form mb-4">
-          <input type="text" id="orangeForm-pass" class="form-control validate">
+          <input name="village" type="text" id="orangeForm-pass" class="form-control validate">
           <label data-error="wrong" data-success="right" for="orangeForm-pass">Village</label>
         </div>
         <div class="md-form mb-4">
           <input disabled="disabled" type="text" id="orangeForm-pass" class="form-control validate">
           <label data-error="wrong" data-success="right" for="orangeForm-pass">Date - <?php echo date("d/m/Y") ?></label>
+          <input type="hidden" name="date" vale="<?php echo date('D/M/Y') ?>">
         </div>
         <div class="md-form mb-4">
           <p id="location"> Hello </p>
         </div>
       </div>
       <div class="modal-footer d-flex justify-content-center">
-        <button class="btn btn-deep-orange">Save</button>
+        <input type="submit" name="location_submit" class="btn btn-deep-orange"></button>
       </div>
     </div>
   </div>
@@ -154,12 +181,7 @@ if(isset($_POST['login_pressed'])){
           <input type="text" id="orangeForm-name" class="form-control validate">
           <label data-error="wrong" data-success="right" for="orangeForm-name">Name</label>
         </div>
-        <div class="md-form mb-5">
-          <i class="fas fa-street-view prefix grey-text"></i>
-          <input type="text" id="orangeForm-email" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="orangeForm-email">Caste</label>
-        </div>
-
+       
 
         <div class="md-form mb-4">
           <i class="fas fas fa-birthday-cake prefix grey-text"></i>
@@ -191,7 +213,7 @@ if(isset($_POST['login_pressed'])){
 
       </div>
       <div class="modal-footer d-flex justify-content-center">
-        <button class="btn btn-deep-orange">Save</button>
+        <input type="submit" class="btn btn-deep-orange"></button>
       </div>
     </div>
   </div>
