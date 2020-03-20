@@ -1,7 +1,7 @@
 <?php 
 session_start();
 include '../inc/dbconnection.php';
-
+$error="";
 function redirect($url)
 {
     if (!headers_sent())
@@ -33,9 +33,22 @@ if(isset($_POST['login_pressed'])){
 if(isset($_POST['reg_pressed'])){
   $respondent_name = $_POST['res'];
   $respondent_mobile = $_POST['res_mobile'];
-  $query_reg = "INSERT INTO respondent(`name`, `res_id`) VALUES('$respondent_name', '$respondent_mobile')";
+  $check_unq = "SELECT * FROM respondent WHERE res_id='$respondent_mobile'";
+  $res_unq = mysqli_query($link, $check_unq);
+    if(mysqli_num_rows($res_unq)>0)
+    {
+      $error = '<div class="alert alert-danger" role="alert">
+  The benificiary is already present.
+</div>';
+    }
+
+    else{
+          $query_reg = "INSERT INTO respondent(`name`, `res_id`) VALUES('$respondent_name', '$respondent_mobile')";
   mysqli_query($link, $query_reg);
   redirect('../nav/?res='.$respondent_mobile);
+    }
+
+
 }
 ?>
 
@@ -67,6 +80,7 @@ if(isset($_POST['reg_pressed'])){
 
   <?php include '../inc/header.php' ?>
   <!-- Start your project here-->  
+  <?php echo $error; ?>
   <div style="height: 100vh">
     <div class="container">
       <div class="row">
