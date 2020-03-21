@@ -17,7 +17,6 @@ if(isset($_GET['res'])){
   $res_loc = mysqli_query($link, $query_check_loc_details);
   $count_loc = mysqli_num_rows($res_loc);
 
-
 if(isset($_POST['login_pressed'])){
   $username = $_POST['username'];
   $password =  $_POST['password'];
@@ -26,6 +25,17 @@ if(isset($_POST['login_pressed'])){
   }
 }
 
+if(isset($_POST['income_save'])){
+  $occupation_inc = $_POST['occupation_inc'];
+  $category_inc = $_POST['category_inc'];
+  $days_engaged_inc = $_POST['days_inc'];
+  $fam_inv_inc = $_POST['fam_inv_inc'];
+  $annual_inc = $_POST['annual_inc'];
+
+  $query_income = "INSERT INTO income_details(`family_id`, `type`, `members_involved`, `annual_income`, `engagement_days`, `primary_secondary`) VALUES('$fam_id', '$occupation_inc', '$fam_inv_inc', '$annual_inc', '$days_engaged_inc', '$category_inc')";
+
+    $res_income = mysqli_query($link, $query_income);
+}
 if(isset($_POST['member_add'])){
   $mem_name = $_POST['mem_name'];
   $age_mem = $_POST['age_mem'];
@@ -180,6 +190,75 @@ if(isset($_POST['location_submit'])){
 </form>
 <!-- MODAL END FOR LOCATION -->
 
+
+
+<!-- MODAL START FOR LAND HODLING -->
+  
+  <form action="" method="POST">
+          <div class="modal fade" id="modallandholding" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Land Holding</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <select name="op_area" class="browser-default custom-select">
+            <option disabled="disabled" selected>Land Owned</option>
+            <option value="big">Big (More than 10 acre)</option>
+            <option value="medium">Medium (5 to 10 acre)</option>
+            <option value="small">Small (2.5 to 5 acre)</option>
+            <option value="marginal">Marginal (0 to 2.5 acre)</option>
+            <option value="landless">Landless</option>
+          </select>
+        </div>
+
+        
+        <div class="md-form mb-4">
+          <input name="block" type="number" id="orangeForm-pass" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="orangeForm-pass">Irrigated land</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <Select  multiple name="irrigation_source" id="orangeForm-pass4" class="form-control validate">
+            <option value = "Pond">Pond</option>
+            <option value = "Well">Well</option>
+            <option value = "Borewell">Borewell</option>
+            <option value = "Canal">Canal</option>
+            <option value = "Lift irrigation">Lift Irrigation</option>
+            <option value = "Other">Any Other</option>
+          </Select>
+        </div>
+
+        <div class="md-form mb-4">
+          <input name="village" type="text" id="orangeForm-pass" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="orangeForm-pass">Village</label>
+        </div>
+        <div class="md-form mb-4">
+          <input disabled="disabled" type="text" id="orangeForm-pass" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="orangeForm-pass">Date - <?php echo date("d/m/Y") ?></label>
+          <input type="hidden" name="date" vale="<?php echo date('D/M/Y') ?>">
+        </div>
+        <div class="md-form mb-4">
+          <p id="location"> Hello </p>
+        </div>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <input type="submit" name="location_submit" class="btn btn-deep-orange"></button>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+
+
+<!-- MODAL END FOT LAND HOLDING -->
+
+
 <!-- MODAL START FOR FAMILY MEMBER -->
 <form action="" method="POST">
 <div class="modal fade" id="modalfamilymember" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -249,60 +328,55 @@ if(isset($_POST['location_submit'])){
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Family Member Details</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Income Details</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
-          <i class="fas fa-user prefix grey-text"></i>
-          <input type="text" id="orangeForm-name" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="orangeForm-name">Name</label>
+          
+          <select name="occupation_inc" id="orangeForm-name" class="form-control validate">
+            <option value="def" selected disabled="disabled">Occupation</option>
+            <option value="Small Business">Small Business</option>
+            <option name="Micro enterprise">Micro enterprise</option>
+            <option value="Agriculture and Allied">Agriculture and Allied</option>
+            <option value="Wage Labour">Wage Labour</option>
+            <option value="Skill / Art">Skill / Art</option>
+            <option value="Any Other">Any Other</option>
+          </select>
+
+         
         </div>
         <div class="md-form mb-5">
-          <i class="fas fa-street-view prefix grey-text"></i>
-          <input type="text" id="orangeForm-email" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="orangeForm-email">Caste</label>
-        </div>
-
-
-        <div class="md-form mb-4">
-          <i class="fas fas fa-birthday-cake prefix grey-text"></i>
-          <input type="text" id="orangeForm-pass" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="orangeForm-pass">Age</label>
-        </div>
-        <div class="md-form mb-4">
-         
-          <select id="orangeForm-pass" class="form-control validate">
-            <option> Male
-            </option>
-            <option> Female
-            </option>
+          <select name="category_inc" type="text" id="orangeForm-name" class="form-control validate" placeholder="Occupation">
+            <option value="def" selected disabled="disabled">Category</option>
+            <option value="primary">Primary</option>
+            <option value="secondary">Secondary</option>
           </select>
-        
         </div>
 
-        <div class="md-form mb-4">
-          <i class="fas fa-book prefix grey-text"></i>
-          <input type="text" id="orangeForm-pass" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="orangeForm-pass">Educational Status</label>
-        </div>
-        <div class="md-form mb-4">
-          <i class="fas fa-paint-brush prefix grey-text"></i>
-          <input type="text" id="orangeForm-pass" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="orangeForm-pass">Any Skills</label>
+
+        <div class="md-form mb-5">
+          <i class="fas fa-calendar prefix grey-text"></i>
+          <input name="days_inc" type="number" id="orangeForm-email1" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="orangeForm-email1">No. of days Engaged</label>
         </div>
 
-          <div class="md-form mb-4">
-          <i class="fas fa-mobile prefix grey-text"></i>
-          <input type="text" id="orangeForm-pass" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="orangeForm-pass">Mobile No.</label>
+        <div class="md-form mb-5">
+          <i class="fas fa-users prefix grey-text"></i>
+          <input name="fam_inv_inc" type="number" id="orangeForm-email2" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="orangeForm-email2">No. of family members involved</label>
         </div>
 
+        <div class="md-form mb-5">
+          <i class="fas fa-rupee-sign prefix grey-text"></i>
+          <input name="annual_inc" type="number" id="orangeForm-email3" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="orangeForm-email3">Annual Income</label>
+        </div>
       </div>
       <div class="modal-footer d-flex justify-content-center">
-        <button class="btn btn-deep-orange">Save</button>
+        <input name="income_save" type="submit" class="btn btn-deep-orange">
       </div>
     </div>
   </div>
@@ -424,23 +498,55 @@ if(isset($_POST['location_submit'])){
             <br>
             <br>
             <button data-toggle="modal" data-target="#modaloccupation" type="button" class="btn btn-success btn-lg btn-block">
-              <i class="fas fa-map-mark"></i> &nbsp; Occupation</button>
-            <br>
-             <button data-toggle="modal" data-target="#modalfamilymember" type="button" class="btn btn-success btn-lg btn-block">
-              <i class="fas fa-cash"></i> &nbsp; Income Details</button>
-            <br>
+              <i class="fa fa-money-bill-alt"></i> &nbsp; Income Details</button>
+           <br>
+           <?php 
+            $query_income = "SELECT * FROM income_details WHERE family_id='$fam_id'";
+            $res_income = mysqli_query($link, $query_income);
+            $count_income = mysqli_num_rows($res_income);
+            if($count_income==0){
+              echo "ADD INCOME DETAILS.";
+            }
+            else{
+              echo '<table class="table">';
+              echo '<th>Occupation</th>  <th>Type</th> <th>Days Engaged</th> <th>Annual Income</th>';
+              while($row_income = mysqli_fetch_assoc($res_income)){
+                echo "<tr>";
+                  echo "<td>";
+                    echo $row_income['type'];
+                  echo "</td>";
 
-             <button data-toggle="modal" data-target="#modalfamilymember" type="button" class="btn btn-success btn-lg btn-block">
-              <i class="fas fa-use"></i> &nbsp; Land Holding</button>
+                   echo "<td>";
+                    echo $row_income['primary_secondary'];
+                  echo "</td>";
+
+                  echo "<td>";
+                    echo $row_income['engagement_days'];
+                  echo "</td>";
+
+                    echo "<td>";
+                    echo $row_income['annual_income'];
+                  echo "</td>";
+                echo "</tr>";
+              }
+
+              echo '</table>';
+            }
+           ?>
+           <br>
+           <br>
+
+             <button data-toggle="modal" data-target="#modallandholding" type="button" class="btn btn-success btn-lg btn-block">
+              <i class="fas fa-tractor"></i> &nbsp; Land Holding</button>
              <br>
                <button data-toggle="modal" data-target="#modalfamilymember" type="button" class="btn btn-success btn-lg btn-block">
-                <i class="fas fa-use"></i> &nbsp; Crop Cultivation Details</button>
+                <i class="fas fa-seedling"></i> &nbsp; Crop Cultivation Details</button>
                <br>
                  <button data-toggle="modal" data-target="#modalfamilymember" type="button" class="btn btn-success btn-lg btn-block">
-                  <i class="fas fa-use"></i> &nbsp; Enterprise Business Details</button>
+                  <i class="fas fa-business-time"></i> &nbsp; Enterprise Business Details</button>
             <br>
               <button data-toggle="modal" data-target="#modalfamilymember" type="button" class="btn btn-success btn-lg btn-block">
-                <i class="fas fa-use"></i> &nbsp; daily Wage/Labour Details</button>
+                <i class="fas fa-sign-language"></i> &nbsp; daily Wage/Labour Details</button>
           <br>
 
 
