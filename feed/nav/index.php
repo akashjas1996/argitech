@@ -30,14 +30,13 @@ if(isset($_POST['location_submit'])){
   $query_check_loc_details = "SELECT * FROM family WHERE family_id='$fam_id'";
   $res_loc = mysqli_query($link, $query_check_loc_details);
   $count_loc = mysqli_num_rows($res_loc);
-  echo $count_loc;
 
   if($count_loc==0){
-    $in_loc = "INSERT INTO family() VALUES() WHERE family_id='$fam_id'";
+    $in_loc = "INSERT INTO family(`family_id`, `TSRDS_op_area`, `gp`, `block`, `dist`, `state`, `village`, `date`) VALUES('$fam_id', '$op_area', '$gp', '$block', '$district', '$state','$village', '$date')";
+    $res_loc = mysqli_query($link, $in_loc);
   }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
