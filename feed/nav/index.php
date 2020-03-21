@@ -2,12 +2,42 @@
 session_start();
 
 include '../inc/dbconnection.php';
+
+if(isset($_GET['res'])){
+    $res_id = $_GET['res'];
+    $query_mob = "SELECT * FROM respondent WHERE res_id='$res_id'";
+    $res_mob = mysqli_query($link, $query_mob);
+    $row_mob = mysqli_fetch_assoc($res_mob);
+    $fam_id = $row_mob['family_id'];
+  }
+
+
+
+  $query_check_loc_details = "SELECT * FROM family WHERE family_id='$fam_id'";
+  $res_loc = mysqli_query($link, $query_check_loc_details);
+  $count_loc = mysqli_num_rows($res_loc);
+
+
 if(isset($_POST['login_pressed'])){
   $username = $_POST['username'];
   $password =  $_POST['password'];
   if($username=='admin' && $password =="tata123"){
     $_SESSION['userid'] = "admin_tata";
   }
+}
+
+if(isset($_POST['member_add'])){
+  $mem_name = $_POST['mem_name'];
+  $age_mem = $_POST['age_mem'];
+  $gender = $_POST['gender'];
+  $edu_status = $_POST['edu_status'];
+  $skills = $_POST['skills'];
+  $mob_no = $_POST['mob_no'];
+
+  $query_member_add = "INSERT INTO family_member(`family_id`, `name`, `age`, `sex`, `ed_status`, `skill`, `mobile`) VALUES('$fam_id', '$mem_name', '$age_mem', '$gender', '$edu_status', '$skills', '$mob_no')";
+
+  $res_member_add = mysqli_query($link, $query_member_add);
+
 }
 
 if(isset($_POST['location_submit'])){
@@ -18,18 +48,6 @@ if(isset($_POST['location_submit'])){
   $gp =  $_POST['gp'];
   $village = $_POST['village'];
   $date = $_POST['date'];
-
-  if(isset($_GET['res'])){
-    $res_id = $_GET['res'];
-    $query_mob = "SELECT * FROM respondent WHERE res_id='$res_id'";
-    $res_mob = mysqli_query($link, $query_mob);
-    $row_mob = mysqli_fetch_assoc($res_mob);
-    $fam_id = $row_mob['family_id'];
-  }
-
-  $query_check_loc_details = "SELECT * FROM family WHERE family_id='$fam_id'";
-  $res_loc = mysqli_query($link, $query_check_loc_details);
-  $count_loc = mysqli_num_rows($res_loc);
 
   if($count_loc==0){
     $in_loc = "INSERT INTO family(`family_id`, `TSRDS_op_area`, `gp`, `block`, `dist`, `state`, `village`, `date`) VALUES('$fam_id', '$op_area', '$gp', '$block', '$district', '$state','$village', '$date')";
@@ -177,42 +195,46 @@ if(isset($_POST['location_submit'])){
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <i class="fas fa-user prefix grey-text"></i>
-          <input type="text" id="orangeForm-name" class="form-control validate">
+          <input name="mem_name" type="text" id="orangeForm-name" class="form-control validate">
           <label data-error="wrong" data-success="right" for="orangeForm-name">Name</label>
         </div>
        
 
         <div class="md-form mb-4">
           <i class="fas fas fa-birthday-cake prefix grey-text"></i>
-          <input type="text" id="orangeForm-pass" class="form-control validate">
+          <input name="age_mem" type="number" id="orangeForm-pass" class="form-control validate">
           <label data-error="wrong" data-success="right" for="orangeForm-pass">Age</label>
         </div>
         <div class="md-form mb-4">
-          <i class="fas fa-venus-mars prefix grey-text"></i>
-          <input type="text" id="orangeForm-pass" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="orangeForm-pass">Gender</label>
+        
+        
+          <select style="width: 100%" name="gender">
+            <option disabled="disabled">Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
         </div>
 
         <div class="md-form mb-4">
           <i class="fas fa-book prefix grey-text"></i>
-          <input type="text" id="orangeForm-pass" class="form-control validate">
+          <input name="edu_status" type="text" id="orangeForm-pass" class="form-control validate">
           <label data-error="wrong" data-success="right" for="orangeForm-pass">Educational Status</label>
         </div>
         <div class="md-form mb-4">
           <i class="fas fa-paint-brush prefix grey-text"></i>
-          <input type="text" id="orangeForm-pass" class="form-control validate">
+          <input name="skills" type="text" id="orangeForm-pass" class="form-control validate">
           <label data-error="wrong" data-success="right" for="orangeForm-pass">Any Skills</label>
         </div>
 
           <div class="md-form mb-4">
           <i class="fas fa-mobile prefix grey-text"></i>
-          <input type="text" id="orangeForm-pass" class="form-control validate">
+          <input name="mob_no" type="number" id="orangeForm-pass" class="form-control validate">
           <label data-error="wrong" data-success="right" for="orangeForm-pass">Mobile No.</label>
         </div>
 
       </div>
       <div class="modal-footer d-flex justify-content-center">
-        <input type="submit" class="btn btn-deep-orange"></button>
+        <input name="member_add" type="submit" class="btn btn-deep-orange"></button>
       </div>
     </div>
   </div>
@@ -251,9 +273,14 @@ if(isset($_POST['location_submit'])){
           <label data-error="wrong" data-success="right" for="orangeForm-pass">Age</label>
         </div>
         <div class="md-form mb-4">
-          <i class="fas fa-venus-mars prefix grey-text"></i>
-          <input type="text" id="orangeForm-pass" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="orangeForm-pass">Gender</label>
+         
+          <select id="orangeForm-pass" class="form-control validate">
+            <option> Male
+            </option>
+            <option> Female
+            </option>
+          </select>
+        
         </div>
 
         <div class="md-form mb-4">
@@ -292,10 +319,130 @@ if(isset($_POST['location_submit'])){
 
           <button data-toggle="modal" data-target="#modalfamilyleader" type="button" class="btn btn-success btn-lg btn-block"><i class="fas fa-map-marker"></i> &nbsp; Location</button>
           <br>
-            <button data-toggle="modal" data-target="#modalfamilymember" type="button" class="btn btn-success btn-lg btn-block"><i class="fas fa-users"></i> &nbsp; Family</button>
-            <br>
-            <button data-toggle="modal" data-target="#modaloccupation" type="button" class="btn btn-success btn-lg btn-block"><i class="fas fa-map-marker"></i> &nbsp; Occupation</button>
+            <?php 
+              if($count_loc==0){
+                echo "ADD LOCATION DETAILS";
+              }
+              else{
+                $query_loc_data = "SELECT * FROM family WHERE family_id='$fam_id'";
+                $res_loc_data = mysqli_query($link, $query_loc_data);
+                $row_loc_data = mysqli_fetch_assoc($res_loc_data);
+                echo '
+                <table class="table">
+                  <tr>
+                    <td>
+                    Unit:
+                    </td>
+                    <td>';
+                    echo $row_loc_data['TSRDS_op_area'];
+                    echo '</td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                    State:
+                    </td>
+                    <td>';
+                    echo $row_loc_data['state'];
+                    echo '</td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                    District:
+                    </td>
+                    <td>';
+                    echo $row_loc_data['dist'];
+                    echo '</td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                    Block:
+                    </td>
+                    <td>';
+                    echo $row_loc_data['block'];
+                    echo '</td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                    GP:
+                    </td>
+                    <td>';
+                    echo $row_loc_data['gp'];
+                    echo '</td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                    Village:
+                    </td>
+                    <td>';
+                    echo $row_loc_data['village'];
+                    echo '</td>
+                  </tr>
+                </table>
+                ';
+              }
+             ?>
           <br>
+            <button data-toggle="modal" data-target="#modalfamilymember" type="button" class="btn btn-success btn-lg btn-block"><i class="fas fa-users"></i> &nbsp; Add Family Member</button>
+            <br>
+            <?php 
+            $query_member = "SELECT * FROM family_member WHERE family_id='$fam_id'";
+            $res_member = mysqli_query($link, $query_member);
+            $count_members = mysqli_num_rows($res_member);
+            if($count_members==0){
+              echo "No Family Members Added";
+            }
+
+            else{
+              echo '<table class="table">
+                <tr>  <th>Name</th> <th>Age</th>  <th>Education</th> <th>Skills</th> </tr>';
+              while($row_members = mysqli_fetch_assoc($res_member)){
+                echo '
+                <tr>
+                    <td>';
+                    echo $row_members['name'];
+                    echo '</td>
+                    <td>';
+                    echo $row_members['age'];
+                    echo '</td>
+                    <td>';
+                    echo $row_members['age'];
+                    echo '</td>
+                    <td>';
+                    echo $row_members['ed_status'];
+                    echo '</td>
+                    </tr>';
+              }
+              echo '</table>';
+
+            }
+            ?>
+            <br>
+            <br>
+            <button data-toggle="modal" data-target="#modaloccupation" type="button" class="btn btn-success btn-lg btn-block">
+              <i class="fas fa-map-mark"></i> &nbsp; Occupation</button>
+            <br>
+             <button data-toggle="modal" data-target="#modalfamilymember" type="button" class="btn btn-success btn-lg btn-block">
+              <i class="fas fa-cash"></i> &nbsp; Income Details</button>
+            <br>
+
+             <button data-toggle="modal" data-target="#modalfamilymember" type="button" class="btn btn-success btn-lg btn-block">
+              <i class="fas fa-use"></i> &nbsp; Land Holding</button>
+             <br>
+               <button data-toggle="modal" data-target="#modalfamilymember" type="button" class="btn btn-success btn-lg btn-block">
+                <i class="fas fa-use"></i> &nbsp; Crop Cultivation Details</button>
+               <br>
+                 <button data-toggle="modal" data-target="#modalfamilymember" type="button" class="btn btn-success btn-lg btn-block">
+                  <i class="fas fa-use"></i> &nbsp; Enterprise Business Details</button>
+            <br>
+              <button data-toggle="modal" data-target="#modalfamilymember" type="button" class="btn btn-success btn-lg btn-block">
+                <i class="fas fa-use"></i> &nbsp; daily Wage/Labour Details</button>
+          <br>
+
 
 
 <!-- Default form login -->
