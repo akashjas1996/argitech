@@ -48,7 +48,10 @@ if(isset($_POST['reg_pressed'])){
 
           echo $query_reg;
   mysqli_query($link, $query_reg);
-  redirect('../nav/?res='.$respondent_mobile);
+
+  echo $query_reg;
+  
+  // redirect('../nav/?res='.$respondent_mobile);
     }
 
 
