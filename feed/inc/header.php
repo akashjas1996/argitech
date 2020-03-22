@@ -1,6 +1,6 @@
 <!--Navbar -->
 <nav class="mb-1 navbar navbar-expand-lg navbar-dark green accent-9">
-  <a class="navbar-brand" href="#">Registration</a>
+  <a class="navbar-brand" href="../reg/">Registration</a>
   <a class="navbar-brand" href="../ben/">Beneficiary List</a>
   <a class="navbar-brand" href="#">Agritech</a>
   <a class="navbar-brand" href="#">Agritech</a>
