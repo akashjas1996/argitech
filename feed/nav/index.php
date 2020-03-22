@@ -58,7 +58,7 @@ if(isset($_POST['crop_submit'])){
  echo   $crop_net_income ;
 
 $query_crop_cultivation = "
-INSERT INTO `agri_tech`.`crop_cultivation`
+INSERT INTO `crop_cultivation`
 (`family_id`,
 `cat`,
 `name`,
