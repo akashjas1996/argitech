@@ -209,6 +209,92 @@ if(isset($_POST['location_submit'])){
 </form>
 <!-- MODAL END FOR LOCATION -->
 
+<!-- MODAL START FOR CROP CULTIVATION -->
+          <form action="" method="POST">
+          <div class="modal fade" id="modalcropCultivation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Crop Cultivation Details</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+
+        <div class="md-form mb-5">
+          <select name="op_area" class="browser-default custom-select">
+            <option disabled="disabled" selected>Crop Category</option>
+            <option value="Kharif">Kharif</option>
+            <option value="Rabi">Rabi</option>
+            <option value="Rabi">Zaid</option>
+          </select>
+        </div>
+
+
+         <div class="md-form mb-4">
+          <input name="crop_name" type="text" id="orangeForm-pass_crop_name" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="orangeForm-pass_crop_name">Crop Name</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input name="crop_name" type="number" id="orangeForm-pass_cul_area" class="form-control">
+          <label data-error="wrong" data-success="right" for="orangeForm-pass_cul_area">Cultivated Area</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input step="0.1" name="crop_name" type="number" id="orangeForm-pass_yield" class="form-control">
+          <label data-error="wrong" data-success="right" for="orangeForm-pass_yield">Yield Qtl/acre</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input onchange="cal_total_income()" name="crop_name" type="number" id="total_production" class="form-control">
+          <label data-error="wrong" data-success="right" for="total_production">Total Production</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input onchange="cal_total_income()" step="0.1" name="crop_name" type="number" id="market_rate" class="form-control">
+          <label data-error="wrong" data-success="right" for="market_rate">Market Rate (₹/Qtl)</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input name="crop_name" type="number" id="total_income_field" class="form-control">
+          <label data-error="wrong" data-success="right" for="total_income_field">Total Income</label>
+        </div>
+
+         <div class="md-form mb-4">
+          <input name="crop_name" type="number" id="orangeForm-pass_income" class="form-control">
+          <label data-error="wrong" data-success="right" for="orangeForm-pass_income">Cost of cultivation</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input name="crop_name" type="number" id="orangeForm-pass_expend" class="form-control">
+          <label data-error="wrong" data-success="right" for="orangeForm-pass_expend">Total Expediture</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input name="crop_name" type="number" id="orangeForm-pass_netincome" class="form-control">
+          <label data-error="wrong" data-success="right" for="orangeForm-pass_netincome">Net Income</label>
+        </div>
+
+
+       
+        
+      
+       
+     
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <input type="submit" name="location_submit" class="btn btn-deep-orange"></button>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+
+<!-- MODAL END FOR CROP CULTIVATION -->
+
 
 
 <!-- MODAL START FOR LAND HODLING -->
@@ -595,7 +681,7 @@ if(isset($_POST['location_submit'])){
              ?>
              <br>
              <br>
-               <button data-toggle="modal" data-target="#modalfamilymember" type="button" class="btn btn-success btn-lg btn-block">
+               <button data-toggle="modal" data-target="#modalcropCultivation" type="button" class="btn btn-success btn-lg btn-block">
                 <i class="fas fa-seedling"></i> &nbsp; Crop Cultivation Details</button>
                <br>
                  <button data-toggle="modal" data-target="#modalfamilymember" type="button" class="btn btn-success btn-lg btn-block">
@@ -642,6 +728,14 @@ function getLocation() {
 function showPosition(position) {
   x.innerHTML = "Latitude: " + position.coords.latitude +
   "<br>Longitude: " + position.coords.longitude;
+}
+
+function cal_total_income(){
+  console.log("Hello");
+  production = document.getElementById('total_production').value;
+  rate = document.getElementById('market_rate').value;
+  document.getElementById('total_income_field').value=production*rate;
+  console.log(rate);
 }
 </script>
 
