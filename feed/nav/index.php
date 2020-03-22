@@ -83,7 +83,6 @@ VALUES
 '$crop_total_expenditure',
 '$crop_net_income')";
 
-echo $query_crop_cultivation;
 
 
  $res_crop_cultivation = mysqli_query($link, $query_crop_cultivation);
