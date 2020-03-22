@@ -2,6 +2,7 @@
 session_start();
 
 include '../inc/dbconnection.php';
+include '../inc/header.php';
 
 if(isset($_GET['res'])){
     $res_id = $_GET['res'];
@@ -10,8 +11,6 @@ if(isset($_GET['res'])){
     $row_mob = mysqli_fetch_assoc($res_mob);
     $fam_id = $row_mob['family_id'];
   }
-
-
 
   $query_check_loc_details = "SELECT * FROM family WHERE family_id='$fam_id'";
   $res_loc = mysqli_query($link, $query_check_loc_details);
@@ -23,6 +22,28 @@ if(isset($_POST['login_pressed'])){
   if($username=='admin' && $password =="tata123"){
     $_SESSION['userid'] = "admin_tata";
   }
+}
+
+if(isset($_POST['land_holding']) && isset($_POST['owned_land'])){
+  $owned_land = $_POST['owned_land'];
+  $irrigated_land = $_POST['irrigated_land'];
+  $total_land = $_POST['total_land'];
+
+  if(isset($_POST['irrigation_source']))
+    $irrigation_source = $_POST['irrigation_source'];
+
+  if(isset($_POST['irrigation_source'])){
+     foreach($_POST['irrigation_source'] as $irra_source) { 
+                $query_irr_source = "INSERT INTO irrigation_source(`family_id`, `irrigation_source`) VALUES('$fam_id', '$irra_source')";
+
+                echo $query_irr_source;
+                $res_irr_source = mysqli_query($link, $query_irr_source);
+        } 
+  }
+ 
+
+  $query_land = "INSERT INTO land_holding(`family_id`, `land_owned`, `land_category`,`irrigated_land`) VALUES('$fam_id', '$total_land', '$owned_land', '$irrigated_land')";
+  $res_land = mysqli_query($link, $query_land);
 }
 
 if(isset($_POST['income_save'])){
@@ -207,8 +228,8 @@ if(isset($_POST['location_submit'])){
       </div>
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
-          <select name="op_area" class="browser-default custom-select">
-            <option disabled="disabled" selected>Land Owned</option>
+          <select name="owned_land" class="browser-default custom-select">
+            <option value="Land_owned" disabled="disabled" selected>Land Owned</option>
             <option value="big">Big (More than 10 acre)</option>
             <option value="medium">Medium (5 to 10 acre)</option>
             <option value="small">Small (2.5 to 5 acre)</option>
@@ -216,15 +237,19 @@ if(isset($_POST['location_submit'])){
             <option value="landless">Landless</option>
           </select>
         </div>
-
         
-        <div class="md-form mb-4">
-          <input name="block" type="number" id="orangeForm-pass" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="orangeForm-pass">Irrigated land</label>
+         <div class="md-form mb-4">
+          <input name="total_land" type="number" id="orangeForm-pass_irr" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="orangeForm-pass_irr">Total land</label>
         </div>
 
         <div class="md-form mb-4">
-          <Select  multiple name="irrigation_source" id="orangeForm-pass4" class="form-control validate">
+          <input name="irrigated_land" type="number" id="orangeForm-pass_irr1" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="orangeForm-pass_irr1">Irrigated land</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <Select  multiple size=5 name="irrigation_source[]" id="orangeForm-pass4" class="form-control validate">
             <option value = "Pond">Pond</option>
             <option value = "Well">Well</option>
             <option value = "Borewell">Borewell</option>
@@ -235,20 +260,14 @@ if(isset($_POST['location_submit'])){
         </div>
 
         <div class="md-form mb-4">
-          <input name="village" type="text" id="orangeForm-pass" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="orangeForm-pass">Village</label>
+          <input disabled="disabled" name="irrigated_percentage" type="text" id="orangeForm-pass12" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="orangeForm-pass12">Perentage of Irrigated land</label>
         </div>
-        <div class="md-form mb-4">
-          <input disabled="disabled" type="text" id="orangeForm-pass" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="orangeForm-pass">Date - <?php echo date("d/m/Y") ?></label>
-          <input type="hidden" name="date" vale="<?php echo date('D/M/Y') ?>">
-        </div>
-        <div class="md-form mb-4">
-          <p id="location"> Hello </p>
-        </div>
+       
+      
       </div>
       <div class="modal-footer d-flex justify-content-center">
-        <input type="submit" name="location_submit" class="btn btn-deep-orange"></button>
+        <input name="land_holding" type="submit" name="irrigation_submit" class="btn btn-deep-orange"></button>
       </div>
     </div>
   </div>
@@ -538,6 +557,45 @@ if(isset($_POST['location_submit'])){
 
              <button data-toggle="modal" data-target="#modallandholding" type="button" class="btn btn-success btn-lg btn-block">
               <i class="fas fa-tractor"></i> &nbsp; Land Holding</button>
+             <br>
+             <?php 
+             $query_check_land = "SELECT * FROM land_holding WHERE family_id='$fam_id'";
+             $res_check_land = mysqli_query($link, $query_check_land);
+             $count_check_land = mysqli_num_rows($res_check_land);
+             if($count_check_land==0){
+              echo "ENTER LAND DETAILS";
+             }
+             else{
+              echo '<table class="table">';
+              echo "<th> Type of Land Holding </th> <th> Total Land Holding </th> <th>Irrigated Land Holding</th>";
+              while($row_check_land = mysqli_fetch_assoc($res_check_land)){
+                echo "<tr>";
+                echo "<td>";
+                  echo $row_check_land['land_category'];
+                echo "</td>";
+
+                 echo "<td>";
+                 echo $row_check_land['land_owned'];
+                echo "</td>";
+
+                 echo "<td>";
+                 echo $row_check_land['irrigated_land'];
+                echo "</td>";
+
+                echo "</tr>";
+              }
+              echo '</table>';
+
+              echo '<p><u> Irrigation Sources Present : </u></p>';
+              $query_fetch_irr_src = "SELECT * FROM irrigation_source WHERE family_id='$fam_id'";
+              $res_fetch_irr_src = mysqli_query($link, $query_fetch_irr_src);
+              while($row_fetch_irr_src = mysqli_fetch_assoc($res_fetch_irr_src)){
+                echo $row_fetch_irr_src['irrigation_source'];
+                echo ', ';
+              }
+             }
+             ?>
+             <br>
              <br>
                <button data-toggle="modal" data-target="#modalfamilymember" type="button" class="btn btn-success btn-lg btn-block">
                 <i class="fas fa-seedling"></i> &nbsp; Crop Cultivation Details</button>
