@@ -45,13 +45,9 @@ if(isset($_POST['reg_pressed'])){
 
     else{
           $query_reg = "INSERT INTO respondent(`name`, `res_id`, `age`) VALUES('$respondent_name', '$respondent_mobile', '$age')";
-
-          echo $query_reg;
   mysqli_query($link, $query_reg);
 
-  echo $query_reg;
-  
-  // redirect('../nav/?res='.$respondent_mobile);
+  redirect('../nav/?res='.$respondent_mobile);
     }
 
 
