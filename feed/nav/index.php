@@ -504,7 +504,7 @@ if(isset($_POST['location_submit'])){
                     echo $row_members['ed_status'];
                     echo '</td>
                     <td>';
-                    echo $row_members['ed_status'];
+                    echo $row_members['skill'];
                     echo '</td>
                     </tr>';
               }
