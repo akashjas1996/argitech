@@ -24,6 +24,72 @@ if(isset($_POST['login_pressed'])){
   }
 }
 
+if(isset($_POST['crop_submit'])){
+  $crop_category = $_POST['crop_category'];
+  $crop_name = $_POST['crop_name'];
+  $crop_cultivated_area = $_POST['crop_cultivated_area'];
+  $crop_yield = $_POST['crop_yield'];
+  $crop_total_production = $_POST['crop_production'];
+  $crop_market_rate = $_POST['crop_market_rate'];
+  $crop_total_income = $_POST['crop_tot_income'];
+  $crop_cultivation_cost = $_POST['crop_cultivation_cost'];
+  $crop_total_expenditure = $_POST['crop_total_expenditure'];
+  $crop_net_income = $_POST['crop_net_income'];
+
+
+ echo $crop_category ;
+ echo '<br>';
+ echo   $crop_name ;
+ echo '<br>';
+ echo   $crop_cultivated_area ;
+ echo '<br>';
+ echo   $crop_yield ;
+ echo '<br>';
+ echo   $crop_total_production ;
+ echo '<br>';
+ echo   $crop_market_rate ;
+ echo '<br>';
+ echo   $crop_total_income ;
+ echo '<br>';
+ echo   $crop_cultivation_cost ;
+ echo '<br>';
+ echo   $crop_total_expenditure ;
+ echo '<br>';
+ echo   $crop_net_income ;
+
+$query_crop_cultivation = "
+INSERT INTO `agri_tech`.`crop_cultivation`
+(`family_id`,
+`cat`,
+`name`,
+`cultivated_area`,
+`yield`,
+`ttl_prod`,
+`market_rate`,
+`total_income`,
+`cultivation_cost`,
+`ttl_expenditure`,
+`net_income`)
+VALUES
+('$fam_id',
+'$crop_category',
+'$crop_name',
+'$crop_cultivated_area',
+'$crop_yield',
+'$crop_total_production',
+'$crop_market_rate',
+'$crop_total_income',
+'$crop_cultivation_cost',
+'$crop_total_expenditure',
+'$crop_net_income')";
+
+echo $query_crop_cultivation;
+
+
+ $res_crop_cultivation = mysqli_query($link, $query_crop_cultivation);
+
+}
+
 if(isset($_POST['land_holding']) && isset($_POST['owned_land'])){
   $owned_land = $_POST['owned_land'];
   $irrigated_land = $_POST['irrigated_land'];
@@ -224,7 +290,7 @@ if(isset($_POST['location_submit'])){
       <div class="modal-body mx-3">
 
         <div class="md-form mb-5">
-          <select name="op_area" class="browser-default custom-select">
+          <select name="crop_category" class="browser-default custom-select">
             <option disabled="disabled" selected>Crop Category</option>
             <option value="Kharif">Kharif</option>
             <option value="Rabi">Rabi</option>
@@ -239,54 +305,47 @@ if(isset($_POST['location_submit'])){
         </div>
 
         <div class="md-form mb-4">
-          <input name="crop_name" type="number" id="orangeForm-pass_cul_area" class="form-control">
-          <label data-error="wrong" data-success="right" for="orangeForm-pass_cul_area">Cultivated Area</label>
+          <input onchange="cal_total_expenditure()" name="crop_cultivated_area" type="number" id="orangeForm-pass_cul_area" class="form-control">
+          <label data-error="wrong" data-success="right" for="orangeForm-pass_cul_area">Cultivated Area (acre)</label>
         </div>
 
         <div class="md-form mb-4">
-          <input step="0.1" name="crop_name" type="number" id="orangeForm-pass_yield" class="form-control">
+          <input step="0.1" name="crop_yield" type="number" id="orangeForm-pass_yield" class="form-control">
           <label data-error="wrong" data-success="right" for="orangeForm-pass_yield">Yield Qtl/acre</label>
         </div>
 
         <div class="md-form mb-4">
-          <input onchange="cal_total_income()" name="crop_name" type="number" id="total_production" class="form-control">
+          <input onchange="cal_total_income()" name="crop_production" type="number" id="total_production" class="form-control">
           <label data-error="wrong" data-success="right" for="total_production">Total Production</label>
         </div>
 
         <div class="md-form mb-4">
-          <input onchange="cal_total_income()" step="0.1" name="crop_name" type="number" id="market_rate" class="form-control">
+          <input onchange="cal_total_income()" step="0.1" name="crop_market_rate" type="number" id="market_rate" class="form-control">
           <label data-error="wrong" data-success="right" for="market_rate">Market Rate (₹/Qtl)</label>
         </div>
 
         <div class="md-form mb-4">
-          <input name="crop_name" type="number" id="total_income_field" class="form-control">
+          <input name="crop_tot_income" type="number" id="total_income_field" class="form-control">
           <label data-error="wrong" data-success="right" for="total_income_field">Total Income</label>
         </div>
 
          <div class="md-form mb-4">
-          <input name="crop_name" type="number" id="orangeForm-pass_income" class="form-control">
-          <label data-error="wrong" data-success="right" for="orangeForm-pass_income">Cost of cultivation</label>
+          <input onchange="cal_total_expenditure(); cal_net_total()" name="crop_cultivation_cost" type="number" id="orangeForm-pass_cost" class="form-control">
+          <label data-error="wrong" data-success="right" for="orangeForm-pass_cost">Cost of cultivation (₹/acre)</label>
         </div>
 
         <div class="md-form mb-4">
-          <input name="crop_name" type="number" id="orangeForm-pass_expend" class="form-control">
-          <label data-error="wrong" data-success="right" for="orangeForm-pass_expend">Total Expediture</label>
+          <input onchange="cal_net_total()" name="crop_total_expenditure" type="number" id="total_expenditure_field" class="form-control">
+          <label data-error="wrong" data-success="right" for="total_expenditure_field">Total Expediture</label>
         </div>
 
         <div class="md-form mb-4">
-          <input name="crop_name" type="number" id="orangeForm-pass_netincome" class="form-control">
+          <input name="crop_net_income" type="number" id="orangeForm-pass_netincome" class="form-control">
           <label data-error="wrong" data-success="right" for="orangeForm-pass_netincome">Net Income</label>
         </div>
-
-
-       
-        
-      
-       
-     
       </div>
       <div class="modal-footer d-flex justify-content-center">
-        <input type="submit" name="location_submit" class="btn btn-deep-orange"></button>
+        <input type="submit" name="crop_submit" class="btn btn-deep-orange"></button>
       </div>
     </div>
   </div>
@@ -294,8 +353,6 @@ if(isset($_POST['location_submit'])){
 </form>
 
 <!-- MODAL END FOR CROP CULTIVATION -->
-
-
 
 <!-- MODAL START FOR LAND HODLING -->
   
@@ -683,15 +740,53 @@ if(isset($_POST['location_submit'])){
              <br>
                <button data-toggle="modal" data-target="#modalcropCultivation" type="button" class="btn btn-success btn-lg btn-block">
                 <i class="fas fa-seedling"></i> &nbsp; Crop Cultivation Details</button>
-               <br>
+            <br>
+              <?php 
+                $query_fetch_cult = "SELECT * FROM crop_cultivation WHERE family_id='$fam_id'";
+                $res_fetch_cult = mysqli_query($link, $query_fetch_cult);
+                $count_cult_fetch = mysqli_num_rows($res_fetch_cult);
+                if($count_cult_fetch==0){
+                  echo "Enter Crop Details.";
+                }
+                else{
+                  echo '<table class="table">';
+                  echo '<tr>';
+                  echo '<th> Category </th> <th> Name </th> <th> Cultivated Area </th> <th> Yield </th> <th> Net Income </th>';
+                  echo '</tr>';
+                  while($row_Cult_fetch = mysqli_fetch_assoc($res_fetch_cult)){
+                    echo '<tr>';
+                    echo '<td>';
+                      echo $row_Cult_fetch['cat'];
+                    echo '</td>';
+                    
+                    echo '<td>';
+                      echo $row_Cult_fetch['name'];
+                    echo '</td>';
+                    
+                    echo '<td>';
+                      echo $row_Cult_fetch['cultivated_area'];
+                    echo '</td>';
+
+                    echo '<td>';
+                      echo $row_Cult_fetch['yield'];
+                    echo '</td>';
+                    
+                    echo '<td>';
+                      echo $row_Cult_fetch['net_income'];
+                    echo '</td>';
+                    echo '</tr>';
+                  }
+                  echo '</table>';
+                }
+              ?>
+            <br>
+            <br>
                  <button data-toggle="modal" data-target="#modalfamilymember" type="button" class="btn btn-success btn-lg btn-block">
                   <i class="fas fa-business-time"></i> &nbsp; Enterprise Business Details</button>
             <br>
               <button data-toggle="modal" data-target="#modalfamilymember" type="button" class="btn btn-success btn-lg btn-block">
                 <i class="fas fa-sign-language"></i> &nbsp; daily Wage/Labour Details</button>
           <br>
-
-
 
 <!-- Default form login -->
         </div>
@@ -715,7 +810,6 @@ if(isset($_POST['location_submit'])){
 
   <script>
 
-
 var x = document.getElementById("location");
 function getLocation() {
   if (navigator.geolocation) {
@@ -731,11 +825,26 @@ function showPosition(position) {
 }
 
 function cal_total_income(){
-  console.log("Hello");
   production = document.getElementById('total_production').value;
   rate = document.getElementById('market_rate').value;
   document.getElementById('total_income_field').value=production*rate;
-  console.log(rate);
+}
+
+function cal_total_expenditure(){
+  area = document.getElementById('orangeForm-pass_cul_area').value;
+  cost = document.getElementById('orangeForm-pass_cost').value;
+  document.getElementById('total_expenditure_field').value=area*cost;
+
+  cal_net_total();
+}
+
+function cal_net_total(){
+  console.log("Hello World");
+  expenditure = document.getElementById('total_expenditure_field').value;
+  income = document.getElementById('total_income_field').value;
+  console.log(expenditure);
+  console.log(income);
+  document.getElementById('orangeForm-pass_netincome').value=income-expenditure;
 }
 </script>
 
