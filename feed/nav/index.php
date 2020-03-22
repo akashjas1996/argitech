@@ -35,8 +35,6 @@ if(isset($_POST['land_holding']) && isset($_POST['owned_land'])){
   if(isset($_POST['irrigation_source'])){
      foreach($_POST['irrigation_source'] as $irra_source) { 
                 $query_irr_source = "INSERT INTO irrigation_source(`family_id`, `irrigation_source`) VALUES('$fam_id', '$irra_source')";
-
-                echo $query_irr_source;
                 $res_irr_source = mysqli_query($link, $query_irr_source);
         } 
   }
