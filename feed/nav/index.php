@@ -267,36 +267,40 @@ if(isset($_POST['location_submit'])){
         </button>
       </div>
       <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <select name="caste_gen" class="browser-default custom-select">
-            <option disabled="disabled" selected>Caste</option>
-            <option value="SC">SC</option>
-            <option value="ST">ST</option>
-            <option value="OBC">OBC</option>
-            <option value="General">General</option>
-            <option value="Other">Other</option>
-          </select>
-        </div>
 
-        <div class="md-form mb-5">
-           <select name="house_gen" class="browser-default custom-select">
-            <option disabled="disabled" selected>House Type</option>
-            <option value="Kutcha House">Kutcha House</option>
-            <option value="Pucca House">Pucca House</option>
-          </select>
+         <div class="md-form mb-4">
+          <input name="mem_dailywage" type="number" id="orangeForm-pass" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="orangeForm-pass">No. of familty Members doing wage labour</label>
         </div>
 
         <div class="md-form mb-4">
-         <select name="toilet_gen" class="browser-default custom-select">
-            <option disabled="disabled" selected>Toilet available</option>
-            <option value="Yes">Yes</option>
-            <option value="No">No</option>
-          </select>
+          <input name="days_dailywage" type="number" id="orangeForm-passdailywage1" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="orangeForm-passdailywage1">No. of days involved</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input name="place_dailywage" type="text" id="orangeForm-passdailywage2" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="orangeForm-passdailywage2">Place of work</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input name="days_dailywage" type="number" id="orangeForm-passdailywage3" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="orangeForm-passdailywage3">Distance (in KM)</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input name="wage_dailywage" type="number" id="orangeForm-passdailywage4" class="form-control">
+          <label data-error="wrong" data-success="right" for="orangeForm-passdailywage4">Wage</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input name="income_dailywage" type="number" id="orangeForm-passdailywage5" class="form-control">
+          <label data-error="wrong" data-success="right" for="orangeForm-passdailywage5">Annual Income</label>
         </div>
 
       </div>
       <div class="modal-footer d-flex justify-content-center">
-        <input type="submit" name="geninfo_submit" class="btn btn-deep-orange"></button>
+        <input type="submit" name="dailywage_submit" class="btn btn-deep-orange"></button>
       </div>
     </div>
   </div>
