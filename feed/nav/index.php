@@ -37,26 +37,6 @@ if(isset($_POST['crop_submit'])){
   $crop_net_income = $_POST['crop_net_income'];
 
 
- echo $crop_category ;
- echo '<br>';
- echo   $crop_name ;
- echo '<br>';
- echo   $crop_cultivated_area ;
- echo '<br>';
- echo   $crop_yield ;
- echo '<br>';
- echo   $crop_total_production ;
- echo '<br>';
- echo   $crop_market_rate ;
- echo '<br>';
- echo   $crop_total_income ;
- echo '<br>';
- echo   $crop_cultivation_cost ;
- echo '<br>';
- echo   $crop_total_expenditure ;
- echo '<br>';
- echo   $crop_net_income ;
-
 $query_crop_cultivation = "
 INSERT INTO `crop_cultivation`
 (`family_id`,
