@@ -379,12 +379,12 @@ if(isset($_POST['location_submit'])){
         </div>
         
          <div class="md-form mb-4">
-          <input name="total_land" type="number" id="orangeForm-pass_irr" class="form-control validate">
+          <input onchange="cal_irr_land()" name="total_land" type="number" id="total_land_count" class="form-control validate">
           <label data-error="wrong" data-success="right" for="orangeForm-pass_irr">Total land</label>
         </div>
 
         <div class="md-form mb-4">
-          <input name="irrigated_land" type="number" id="orangeForm-pass_irr1" class="form-control validate">
+          <input onchange="cal_irr_land()" name="irrigated_land" type="number" id="irrigated_land_count" class="form-control validate">
           <label data-error="wrong" data-success="right" for="orangeForm-pass_irr1">Irrigated land</label>
         </div>
 
@@ -400,8 +400,8 @@ if(isset($_POST['location_submit'])){
         </div>
 
         <div class="md-form mb-4">
-          <input disabled="disabled" name="irrigated_percentage" type="text" id="orangeForm-pass12" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="orangeForm-pass12">Perentage of Irrigated land</label>
+          <input id="irrigated_land_percentage" disabled="disabled" name="irrigated_percentage" type="text"  class="form-control validate" placeholder="Percentage of Irrigated land">
+          <!-- <label data-error="wrong" data-success="right" for="irrigated_land_percentage"></label> -->
         </div>
        
       
@@ -443,9 +443,9 @@ if(isset($_POST['location_submit'])){
           <input name="age_mem" type="number" id="orangeForm-pass" class="form-control validate">
           <label data-error="wrong" data-success="right" for="orangeForm-pass">Age</label>
         </div>
+
+
         <div class="md-form mb-4">
-        
-        
           <select style="width: 100%" name="gender">
             <option disabled="disabled">Gender</option>
             <option value="male">Male</option>
@@ -454,10 +454,16 @@ if(isset($_POST['location_submit'])){
         </div>
 
         <div class="md-form mb-4">
-          <i class="fas fa-book prefix grey-text"></i>
-          <input name="edu_status" type="text" id="orangeForm-pass" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="orangeForm-pass">Educational Status</label>
+          <select style="width: 100%" name="edu_status">
+            <option disabled="disabled">Educational Status</option>
+            <option value="Primary">Primary</option>
+            <option value="Secondary">Secondary</option>
+            <option value="Under Graduated">Under Graduated</option>
+            <option value="Graduated">Graduated</option>
+          </select>
         </div>
+
+
         <div class="md-form mb-4">
           <i class="fas fa-paint-brush prefix grey-text"></i>
           <input name="skills" type="text" id="orangeForm-pass" class="form-control validate">
@@ -707,7 +713,7 @@ if(isset($_POST['location_submit'])){
              }
              else{
               echo '<table class="table">';
-              echo "<th> Type of Land Holding </th> <th> Total Land Holding </th> <th>Irrigated Land Holding</th>";
+              echo "<th> Farmer Type </th> <th> Total Land Holding </th> <th>Irrigated Land Holding</th>";
               while($row_check_land = mysqli_fetch_assoc($res_check_land)){
                 echo "<tr>";
                 echo "<td>";
@@ -844,6 +850,17 @@ function cal_net_total(){
   console.log(expenditure);
   console.log(income);
   document.getElementById('orangeForm-pass_netincome').value=income-expenditure;
+}
+
+
+function cal_irr_land(){
+  console.log("Irrigated Land Percentage");
+  tot_land = document.getElementById('total_land_count').value;
+  irrigated_land = document.getElementById('irrigated_land_count').value;
+  console.log(tot_land);
+  console.log(irrigated_land);
+  percentage_irr_land = (irrigated_land/tot_land*100);
+  document.getElementById('irrigated_land_percentage').value=percentage_irr_land+'%';
 }
 </script>
 
