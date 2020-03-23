@@ -69,6 +69,27 @@ VALUES
 
 }
 
+if(isset($_POST['geninfo_submit'])){
+  $caste_gen = $_POST['caste_gen'];
+  $house_gen = $_POST['house_gen'];
+  $toilet_gen = $_POST['toilet_gen'];
+
+  $query_gen_info = "
+  UPDATE `family`
+SET
+`house_type` = '$house_gen',
+`toilet` = '$toilet_gen',
+`caste` = '$caste_gen'
+WHERE `family_id` = '$fam_id';
+";
+
+echo $query_gen_info;
+
+$res_geninfo = mysqli_query($link, $query_gen_info);
+
+
+}
+
 if(isset($_POST['land_holding']) && isset($_POST['owned_land'])){
   $owned_land = $_POST['owned_land'];
   $irrigated_land = $_POST['irrigated_land'];
@@ -181,6 +202,107 @@ if(isset($_POST['location_submit'])){
               ?>
             </h1></center>
           <br><br><br>
+
+
+          <!-- MODAL START FOR GENERAL INFO -->
+          <form action="" method="POST">
+          <div class="modal fade" id="modalgeninfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">General Info</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <select name="caste_gen" class="browser-default custom-select">
+            <option disabled="disabled" selected>Caste</option>
+            <option value="SC">SC</option>
+            <option value="ST">ST</option>
+            <option value="OBC">OBC</option>
+            <option value="General">General</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div class="md-form mb-5">
+           <select name="house_gen" class="browser-default custom-select">
+            <option disabled="disabled" selected>House Type</option>
+            <option value="Kutcha House">Kutcha House</option>
+            <option value="Pucca House">Pucca House</option>
+          </select>
+        </div>
+
+        <div class="md-form mb-4">
+         <select name="toilet_gen" class="browser-default custom-select">
+            <option disabled="disabled" selected>Toilet available</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <input type="submit" name="geninfo_submit" class="btn btn-deep-orange"></button>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+<!-- MODAL END FOR GENERAL INFO -->
+
+<!-- MODAL START FOR DAILY WAGE -->
+          <form action="" method="POST">
+          <div class="modal fade" id="modaldailyWage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Daily Wage</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <select name="caste_gen" class="browser-default custom-select">
+            <option disabled="disabled" selected>Caste</option>
+            <option value="SC">SC</option>
+            <option value="ST">ST</option>
+            <option value="OBC">OBC</option>
+            <option value="General">General</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div class="md-form mb-5">
+           <select name="house_gen" class="browser-default custom-select">
+            <option disabled="disabled" selected>House Type</option>
+            <option value="Kutcha House">Kutcha House</option>
+            <option value="Pucca House">Pucca House</option>
+          </select>
+        </div>
+
+        <div class="md-form mb-4">
+         <select name="toilet_gen" class="browser-default custom-select">
+            <option disabled="disabled" selected>Toilet available</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <input type="submit" name="geninfo_submit" class="btn btn-deep-orange"></button>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+<!-- MODAL END FOR DAILY WAGE -->
           <!-- MODAL FOR LOCATION -->
           <form action="" method="POST">
           <div class="modal fade" id="modalfamilyleader" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -284,19 +406,21 @@ if(isset($_POST['location_submit'])){
         </div>
 
         <div class="md-form mb-4">
-          <input onchange="cal_total_expenditure()" name="crop_cultivated_area" type="number" id="orangeForm-pass_cul_area" class="form-control">
-          <label data-error="wrong" data-success="right" for="orangeForm-pass_cul_area">Cultivated Area (acre)</label>
+          <input step='0.1' onchange="cal_total_expenditure()" name="crop_cultivated_area" type="number" id="orangeForm-pass_cul_area" class="form-control">
+          <label for="orangeForm-pass_cul_area">Cultivated Area (acre)</label>
         </div>
 
         <div class="md-form mb-4">
-          <input step="0.1" name="crop_yield" type="number" id="orangeForm-pass_yield" class="form-control">
+          <input onchange="cal_total_income(), cal_yield()" name="crop_production" type="number" id="total_production" class="form-control">
+          <label data-error="wrong" data-success="right" for="total_production">Total Production</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input readonly="readonly" step="0.1" name="crop_yield" type="number" id="orangeForm-pass_yield" class="form-control">
           <label data-error="wrong" data-success="right" for="orangeForm-pass_yield">Yield Qtl/acre</label>
         </div>
 
-        <div class="md-form mb-4">
-          <input onchange="cal_total_income()" name="crop_production" type="number" id="total_production" class="form-control">
-          <label data-error="wrong" data-success="right" for="total_production">Total Production</label>
-        </div>
+        
 
         <div class="md-form mb-4">
           <input onchange="cal_total_income()" step="0.1" name="crop_market_rate" type="number" id="market_rate" class="form-control">
@@ -309,17 +433,18 @@ if(isset($_POST['location_submit'])){
         </div>
 
          <div class="md-form mb-4">
-          <input onchange="cal_total_expenditure(); cal_net_total()" name="crop_cultivation_cost" type="number" id="orangeForm-pass_cost" class="form-control">
-          <label data-error="wrong" data-success="right" for="orangeForm-pass_cost">Cost of cultivation (₹/acre)</label>
-        </div>
-
-        <div class="md-form mb-4">
-          <input onchange="cal_net_total()" name="crop_total_expenditure" type="number" id="total_expenditure_field" class="form-control">
+          <input onchange="cal_net_total(), cal_costofcult()" name="crop_total_expenditure" type="number" id="total_expenditure_field" class="form-control">
           <label data-error="wrong" data-success="right" for="total_expenditure_field">Total Expediture</label>
         </div>
 
+         <div class="md-form mb-4">
+          <input readonly="readonly" onchange="cal_total_expenditure(); cal_net_total()" name="crop_cultivation_cost" type="number" id="orangeForm-pass_cost" class="form-control">
+          <label data-error="wrong" data-success="right" for="orangeForm-pass_cost">Cost of cultivation (₹/acre)</label>
+        </div>
+
+
         <div class="md-form mb-4">
-          <input name="crop_net_income" type="number" id="orangeForm-pass_netincome" class="form-control">
+          <input readonly="readonly" name="crop_net_income" type="number" id="orangeForm-pass_netincome" class="form-control">
           <label data-error="wrong" data-success="right" for="orangeForm-pass_netincome">Net Income</label>
         </div>
       </div>
@@ -534,7 +659,52 @@ if(isset($_POST['location_submit'])){
 <!--   <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalRegisterForm">Launch
     Modal Register Form</a> -->
 </div>
+          
+          <button data-toggle="modal" data-target="#modalgeninfo" type="button" class="btn btn-success btn-lg btn-block"><i class="fas fa-address-book"></i> &nbsp; General Info</button>
+          <?php 
+            $query_loc_data = "SELECT * FROM family WHERE family_id='$fam_id'";
+                $res_loc_data = mysqli_query($link, $query_loc_data);
+                $row_loc_data = mysqli_fetch_assoc($res_loc_data);
+                if($count_loc==0){
+                echo "ADD LOCATION DETAILS";
+              }
+              else{
+                echo '<table class="table">';
+                echo '<tr>';
+                echo '<td>';
+                  echo 'Caste:';
+                echo '</td>';
+                echo '<td>';
+                  echo $row_loc_data['caste'];
+                echo '</td>';
+                echo '</tr>';
 
+                echo '<tr>';
+                echo '<td>';
+                  echo 'House Type:';
+                echo '</td>';
+                echo '<td>';
+                  echo $row_loc_data['house_type'];
+                echo '</td>';
+                echo '</tr>';
+
+                echo '<tr>';
+                echo '<td>';
+                  echo 'Toilet:';
+                echo '</td>';
+                echo '<td>';
+                  echo $row_loc_data['toilet'];
+                echo '</td>';
+                echo '</tr>';
+
+
+                echo '</table>';
+              }
+
+
+                ?>
+
+          <br>
 
           <button data-toggle="modal" data-target="#modalfamilyleader" type="button" class="btn btn-success btn-lg btn-block"><i class="fas fa-map-marker"></i> &nbsp; Location</button>
           <br>
@@ -543,9 +713,7 @@ if(isset($_POST['location_submit'])){
                 echo "ADD LOCATION DETAILS";
               }
               else{
-                $query_loc_data = "SELECT * FROM family WHERE family_id='$fam_id'";
-                $res_loc_data = mysqli_query($link, $query_loc_data);
-                $row_loc_data = mysqli_fetch_assoc($res_loc_data);
+                
                 echo '
                 <table class="table">
                   <tr>
@@ -769,7 +937,7 @@ if(isset($_POST['location_submit'])){
                  <button data-toggle="modal" data-target="#modalfamilymember" type="button" class="btn btn-success btn-lg btn-block">
                   <i class="fas fa-business-time"></i> &nbsp; Enterprise Business Details</button>
             <br>
-              <button data-toggle="modal" data-target="#modalfamilymember" type="button" class="btn btn-success btn-lg btn-block">
+              <button data-toggle="modal" data-target="#modaldailyWage" type="button" class="btn btn-success btn-lg btn-block">
                 <i class="fas fa-sign-language"></i> &nbsp; daily Wage/Labour Details</button>
           <br>
 
@@ -841,6 +1009,20 @@ function cal_irr_land(){
   console.log(irrigated_land);
   percentage_irr_land = (irrigated_land/tot_land*100);
   document.getElementById('irrigated_land_percentage').value=percentage_irr_land+'%';
+}
+
+function cal_yield(){
+  total_production = document.getElementById('total_production').value;
+  cultivated_area = document.getElementById('orangeForm-pass_cul_area').value;
+  yeild = total_production/cultivated_area;
+  document.getElementById('orangeForm-pass_yield').value=yeild;
+}
+
+function cal_costofcult(){
+  total_expense = document.getElementById('total_expenditure_field').value;
+  total_land = document.getElementById('orangeForm-pass_cul_area').value;
+  document.getElementById('orangeForm-pass_cost').value=total_expense/total_land;
+
 }
 </script>
 
