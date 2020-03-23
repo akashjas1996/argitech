@@ -83,7 +83,6 @@ SET
 WHERE `family_id` = '$fam_id';
 ";
 
-echo $query_gen_info;
 
 $res_geninfo = mysqli_query($link, $query_gen_info);
 
