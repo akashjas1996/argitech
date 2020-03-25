@@ -185,13 +185,15 @@ if(isset($_POST['geninfo_submit'])){
   $caste_gen = $_POST['caste_gen'];
   $house_gen = $_POST['house_gen'];
   $toilet_gen = $_POST['toilet_gen'];
+  $year_gen = $_POST['year_BLS'];
 
   $query_gen_info = "
   UPDATE `family`
 SET
 `house_type` = '$house_gen',
 `toilet` = '$toilet_gen',
-`caste` = '$caste_gen'
+`caste` = '$caste_gen',
+`year_of_BLS` = '$year_gen'
 WHERE `family_id` = '$fam_id';
 ";
 
@@ -457,7 +459,7 @@ if(isset($_POST['location_submit'])){
         </button>
       </div>
       <div class="modal-body mx-3">
-        <div class="md-form mb-5">
+        <div class="md-form mb-4">
           <select name="caste_gen" class="browser-default custom-select">
             <option disabled="disabled" selected>Caste</option>
             <option value="SC">SC</option>
@@ -468,7 +470,7 @@ if(isset($_POST['location_submit'])){
           </select>
         </div>
 
-        <div class="md-form mb-5">
+        <div class="md-form mb-4">
            <select name="house_gen" class="browser-default custom-select">
             <option disabled="disabled" selected>House Type</option>
             <option value="Kutcha House">Kutcha House</option>
@@ -481,6 +483,15 @@ if(isset($_POST['location_submit'])){
             <option disabled="disabled" selected>Toilet available</option>
             <option value="Yes">Yes</option>
             <option value="No">No</option>
+          </select>
+        </div>
+
+         <div class="md-form mb-4">
+         <select name="year_BLS" class="browser-default custom-select">
+            <option disabled="disabled" selected>Year of BLS</option>
+            <option value="2019-20">2019-20</option>
+            <option value="2020-21">2020-21</option>
+            <option value="2020-21">2021-22</option>
           </select>
         </div>
 
@@ -1551,7 +1562,5 @@ function cal_income_enterprise(){
 
 }
 </script>
-
-
 </body>
 </html>
