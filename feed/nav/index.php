@@ -268,12 +268,12 @@ if(isset($_POST['location_submit'])){
       <div class="modal-body mx-3">
 
          <div class="md-form mb-4">
-          <input name="mem_dailywage" type="number" id="orangeForm-pass" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="orangeForm-pass">No. of familty Members doing wage labour</label>
+          <input onchange="cal_wage()" name="mem_dailywage" type="number" id="orangeForm-passdays" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="orangeForm-passdays">No. of family Members doing wage labour</label>
         </div>
 
         <div class="md-form mb-4">
-          <input name="days_dailywage" type="number" id="orangeForm-passdailywage1" class="form-control validate">
+          <input onchange="cal_wage()" name="days_dailywage" type="number" id="orangeForm-passdailywage1" class="form-control validate">
           <label data-error="wrong" data-success="right" for="orangeForm-passdailywage1">No. of days involved</label>
         </div>
 
@@ -288,7 +288,7 @@ if(isset($_POST['location_submit'])){
         </div>
 
         <div class="md-form mb-4">
-          <input name="wage_dailywage" type="number" id="orangeForm-passdailywage4" class="form-control">
+          <input onchange="cal_wage()" name="wage_dailywage" type="number" id="orangeForm-passdailywage4" class="form-control">
           <label data-error="wrong" data-success="right" for="orangeForm-passdailywage4">Wage</label>
         </div>
 
@@ -1026,6 +1026,13 @@ function cal_costofcult(){
   total_land = document.getElementById('orangeForm-pass_cul_area').value;
   document.getElementById('orangeForm-pass_cost').value=total_expense/total_land;
 
+}
+
+function cal_wage(){
+  a = document.getElementById('orangeForm-passdays').value;
+  b = document.getElementById('orangeForm-passdailywage1').value;
+  c = document.getElementById('orangeForm-passdailywage4').value;
+  document.getElementById('orangeForm-passdailywage5').value=a*b*c;
 }
 </script>
 
