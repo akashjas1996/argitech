@@ -24,6 +24,67 @@ if(isset($_POST['login_pressed'])){
   }
 }
 
+if(isset($_POST['allied_submit'])){
+  $allied_type = $_POST['name_allied'];
+  $allied_area = $_POST['area_allied'];
+  $allied_prod = $_POST['production_allied'];
+  $allied_ann_income = $_POST['ann_income_allied'];
+  $allied_exp = $_POST['ann_exp_allied'];
+  $allied_net_income = $_POST['net_inc_allied'];
+
+  $query_allied = "
+  INSERT INTO `allied`
+(`family_id`,
+`type`,
+`area`,
+`production`,
+`ann_income`,
+`ann_exp`,
+`net_annual`)
+VALUES
+('$fam_id',
+'$allied_type',
+'$allied_area',
+'$allied_prod',
+'$allied_ann_income',
+'$allied_exp',
+'$allied_net_income');";
+$res_allied = mysqli_query($link, $query_allied);
+}
+
+if(isset($_POST['livestock_submit'])){
+  $livestock_name = $_POST['name_livestock'];
+  $livestock_num = $_POST['number_livestock'];
+  $livestock_qty = $_POST['qty_livestock'];
+  $livestock_sp = $_POST['rate_livestock'];
+  $livestock_annualIncome = $_POST['ann_income_livestock'];
+  $livestock_cost = $_POST['rearing_cost_livestock'];
+  $livestock_net_income = $_POST['net_income_livestock'];
+
+
+ $query_livestock= "INSERT INTO `livestock`
+(`family_id`,
+`name`,
+`number`,
+`qty`,
+`rate`,
+`annual_income`,
+`cost`,
+`net_income`)
+VALUES
+('$fam_id',
+'$livestock_name',
+'$livestock_num',
+'$livestock_qty',
+'$livestock_sp',
+'$livestock_annualIncome',
+'$livestock_cost',
+'$livestock_net_income')";
+$res_livestock = mysqli_query($link, $query_livestock);
+
+
+}
+
 if(isset($_POST['enterprise_submit'])){
   $enterprise_name = $_POST['name_ent_enterprise'];
   $enterpreneur_name = $_POST['name_person_enterprise'];
@@ -252,6 +313,135 @@ if(isset($_POST['location_submit'])){
               ?>
             </h1></center>
           <br><br><br>
+
+
+          <!-- MODAL START FOR LIVESTOCK -->
+          <form action="" method="POST">
+          <div class="modal fade" id="modallivestock" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Livestock Details</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <select name="name_livestock" class="browser-default custom-select">
+            <option selected>Name of the Livestock</option>
+            <option value="Cow">Cow</option>
+            <option value="Ox">Ox</option>
+            <option value="Buffallow">Buffallow</option>
+            <option value="Goat">Goat</option>
+            <option value="Sheep">Sheep</option>
+            <option value="Pig">Pig</option>
+            <option value="Hen">Hen</option>
+            <option value="Duck">Duck</option>
+          </select>
+        </div>
+
+        <div class="md-form mb-4">
+          <input name="number_livestock" type="number" id="orangeForm-pass" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="orangeForm-pass">Numbers</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input name="qty_livestock" type="number" id="orangeForm-qty_livestock" class="form-control">
+          <label for="orangeForm-qty_livestock">Quantity (in lts.)</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input name="rate_livestock" type="number" id="orangeForm-sp_livestock" class="form-control">
+          <label for="orangeForm-sp_livestock">Selling price</label>
+        </div>
+
+         <div class="md-form mb-4">
+          <input name="ann_income_livestock" type="number" id="orangeForm-income_livestock" class="form-control">
+          <label for="orangeForm-income_livestock">Annual Income</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input name="rearing_cost_livestock" type="number" id="orangeForm-cost_livestock" class="form-control">
+          <label for="orangeForm-cost_livestock">Cost of rearing</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input name="net_income_livestock" type="number" id="orangeForm-netincome_livestock" class="form-control">
+          <label for="orangeForm-netincome_livestock">Net Annual Income</label>
+        </div>
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <input type="submit" name="livestock_submit" class="btn btn-deep-orange"></button>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+
+          <!-- MODAL END FOR LIVESTOCK -->
+
+          <!-- MODAL START FOR ALLIED -->
+          <form action="" method="POST">
+          <div class="modal fade" id="modalallied" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Allied Activities</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <select name="name_allied" class="browser-default custom-select">
+            <option disabled="disabled" selected>Allied Activity</option>
+            <option value="Cow">Horticulture(Fruits)</option>
+            <option value="Ox">Floriculture</option>
+            <option value="Buffallow">Sericulture</option>
+            <option value="Goat">Apiculture</option>
+            <option value="Sheep">Pisciculture</option>
+          </select>
+        </div>
+
+        <div class="md-form mb-4">
+          <input step="0.1" name="area_allied" type="number" id="orangeForm-passcultarea" class="form-control">
+          <label for="orangeForm-passcultarea">Area Under Cultivation (in acre)</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input name="production_allied" type="number" id="orangeForm-prod_allied" class="form-control">
+          <label for="orangeForm-prod_allied">Production (in Qtl.)</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input name="ann_income_allied" type="number" id="orangeForm-sp_ann_income_allied" class="form-control">
+          <label for="orangeForm-sp_ann_income_allied">Annual Income</label>
+        </div>
+
+         <div class="md-form mb-4">
+          <input name="ann_exp_allied" type="number" id="orangeForm-annualexp_allied" class="form-control">
+          <label for="orangeForm-annualexp_allied">Annual Expenditure</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input name="net_inc_allied" type="number" id="orangeForm-netannual_allied" class="form-control">
+          <label for="orangeForm-netannual_allied">Net Annual</label>
+        </div>
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <input type="submit" name="allied_submit" class="btn btn-deep-orange"></button>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+
+          <!-- MODAL END FOR ALLIED -->
 
 
           <!-- MODAL START FOR GENERAL INFO -->
@@ -1060,7 +1250,7 @@ if(isset($_POST['location_submit'])){
                 }
               ?>
             <br>
-            <br>
+
               <button data-toggle="modal" data-target="#modaldailyWage" type="button" class="btn btn-success btn-lg btn-block">
                 <i class="fas fa-sign-language"></i> &nbsp; daily Wage/Labour Details</button>
                 <?php
@@ -1107,6 +1297,50 @@ if(isset($_POST['location_submit'])){
                 }
                 ?>
           <br>
+          <br>
+           <button data-toggle="modal" data-target="#modalenterprise" type="button" class="btn btn-success btn-lg btn-block">
+                <i class="fas fa-sign-language"></i> &nbsp; Enterprise Business Details</button>
+                <?php
+                $query_fetch_ent = "SELECT * FROM enterprise WHERE family_id='$fam_id'";
+                $res_fetch_ent = mysqli_query($link, $query_fetch_ent);
+                $count_ent_fetch = mysqli_num_rows($res_fetch_ent);
+                if($count_ent_fetch==0){
+                  echo "Enter Enterprise Details.";
+                }
+
+                else{
+                  echo '<table class="table">';
+                  echo '<tr>';
+                  echo '<th> ENTERPRISE NAME </th> <th> ENTERPRENEUR NAME </th> <th> Persons Employed </th>  <th> Annual Income </th> <th> Net Income </th>';
+                  echo '</tr>';
+                  while($row_ent_fetch = mysqli_fetch_assoc($res_fetch_ent)){
+                    echo '<tr>';
+                    echo '<td>';
+                      echo $row_ent_fetch['enterprise_name'];
+                    echo '</td>';
+
+                    echo '<td>';
+                      echo $row_ent_fetch['enterpreneur_name'];
+                    echo '</td>';
+                    
+                    echo '<td>';
+                      echo $row_ent_fetch['person_employed'];
+                    echo '</td>';
+
+                    echo '<td>';
+                      echo $row_ent_fetch['annual_income'];
+                    echo '</td>';
+
+                    echo '<td>';
+                      echo $row_ent_fetch['net_income'];
+                    echo '</td>';
+                    echo '</tr>';
+                  }
+                  echo '</table>';
+                }
+                ?>
+          <br>
+
 
            <button data-toggle="modal" data-target="#modalenterprise" type="button" class="btn btn-success btn-lg btn-block">
                 <i class="fas fa-sign-language"></i> &nbsp; Enterprise Business Details</button>
@@ -1150,7 +1384,114 @@ if(isset($_POST['location_submit'])){
                 }
                 ?>
           <br>
-          <br>
+
+          <button data-toggle="modal" data-target="#modallivestock" type="button" class="btn btn-success btn-lg btn-block">
+                <i class="fas fa-coffee"></i> &nbsp; Livestock Details</button>
+                <br>
+                <?php
+                $query_fetch_livestock = "SELECT * FROM livestock WHERE family_id='$fam_id'";
+                $res_fetch_livestock = mysqli_query($link, $query_fetch_livestock);
+                $count_livestock_fetch = mysqli_num_rows($res_fetch_livestock);
+                if($count_livestock_fetch==0){
+                  echo "Enter Livestock Details.";
+                }
+
+                else{
+                  echo '<table class="table">';
+                  echo '<tr>';
+                  echo '<th> Livestock </th> <th> Count </th> <th> Qty (in lts.) </th>  <th> Selling price </th> <th> Net Income </th>';
+                  echo '</tr>';
+                  while($row_livestock_fetch = mysqli_fetch_assoc($res_fetch_livestock)){
+                    echo '<tr>';
+                    echo '<td>';
+                      echo $row_livestock_fetch['name'];
+                    echo '</td>';
+
+                    echo '<td>';
+                      echo $row_livestock_fetch['number'];
+                    echo '</td>';
+                    
+                    echo '<td>';
+                      echo $row_livestock_fetch['qty'];
+                    echo '</td>';
+
+                    echo '<td>';
+                      echo $row_livestock_fetch['rate'];
+                    echo '</td>';
+
+                      echo '<td>';
+                      echo $row_livestock_fetch['net_income'];
+                    echo '</td>';
+
+
+                    echo '</tr>';
+                  }
+                  echo '</table>';
+                }
+                ?>
+                <br>
+
+                 <button data-toggle="modal" data-target="#modalallied" type="button" class="btn btn-success btn-lg btn-block">
+                <i class="fas fa-apple-alt"></i> &nbsp; Allied Activity Details</button>
+                <br>
+                <?php
+                $query_fetch_allied = "SELECT * FROM allied WHERE family_id='$fam_id'";
+                $res_fetch_allied = mysqli_query($link, $query_fetch_allied);
+                $count_allied_fetch = mysqli_num_rows($res_fetch_allied);
+                if($count_allied_fetch==0){
+                  echo "Enter Allied Activity Details.";
+                }
+
+                else{
+                  echo '<table class="table">';
+                  echo '<tr>';
+                  echo '<th> Activity </th> <th> Area (in acre) </th> <th> Production </th>  <th> Annual Income </th> <th> Annual Expenditure </th> <th> Net Annual Income </th>';
+                  echo '</tr>';
+                  while($row_allied_fetch = mysqli_fetch_assoc($res_fetch_allied)){
+                    echo '<tr>';
+                    echo '<td>';
+                      echo $row_allied_fetch['type'];
+                    echo '</td>';
+
+                    echo '<td>';
+                      echo $row_allied_fetch['area'];
+                    echo '</td>';
+                    
+                    echo '<td>';
+                      echo $row_allied_fetch['production'];
+                    echo '</td>';
+
+                    echo '<td>';
+                      echo $row_allied_fetch['ann_income'];
+                    echo '</td>';
+
+                    echo '<td>';
+                      echo $row_allied_fetch['ann_exp'];
+                    echo '</td>';
+
+                    echo '<td>';
+                      echo $row_allied_fetch['net_annual'];
+                    echo '</td>';
+
+                    // echo '<td>';
+                    //   echo $row_livestock_fetch['annual_income'];
+                    // echo '</td>';
+
+                    //   echo '<td>';
+                    //   echo $row_livestock_fetch['cost'];
+                    // echo '</td>';
+
+                      echo '<td>';
+                      echo $row_livestock_fetch['net_income'];
+                    echo '</td>';
+
+
+                    echo '</tr>';
+                  }
+                  echo '</table>';
+                }
+                ?>
+                <br><br><br>
 
 <!-- Default form login -->
         </div>
@@ -1219,6 +1560,7 @@ function cal_irr_land(){
   console.log(tot_land);
   console.log(irrigated_land);
   percentage_irr_land = (irrigated_land/tot_land*100);
+  percentage_irr_land = parseFloat(percentage_irr_land).toFixed(2);
   document.getElementById('irrigated_land_percentage').value=percentage_irr_land+'%';
 }
 
@@ -1226,6 +1568,7 @@ function cal_yield(){
   total_production = document.getElementById('total_production').value;
   cultivated_area = document.getElementById('orangeForm-pass_cul_area').value;
   yeild = total_production/cultivated_area;
+  yeild = parseFloat(yeild).toFixed(2);
   document.getElementById('orangeForm-pass_yield').value=yeild;
 }
 
