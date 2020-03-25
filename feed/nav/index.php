@@ -1299,7 +1299,7 @@ if(isset($_POST['location_submit'])){
           <br>
           <br>
            <button data-toggle="modal" data-target="#modalenterprise" type="button" class="btn btn-success btn-lg btn-block">
-                <i class="fas fa-sign-language"></i> &nbsp; Enterprise Business Details</button>
+                <i class="fas fa-sign-language"></i> &nbsp; Enterprise Business Details</button> <br>
                 <?php
                 $query_fetch_ent = "SELECT * FROM enterprise WHERE family_id='$fam_id'";
                 $res_fetch_ent = mysqli_query($link, $query_fetch_ent);
@@ -1343,7 +1343,7 @@ if(isset($_POST['location_submit'])){
 
 
            <button data-toggle="modal" data-target="#modalenterprise" type="button" class="btn btn-success btn-lg btn-block">
-                <i class="fas fa-sign-language"></i> &nbsp; Enterprise Business Details</button>
+                <i class="fas fa-sign-language"></i> &nbsp; Enterprise Business Details</button><br>
                 <?php
                 $query_fetch_ent = "SELECT * FROM enterprise WHERE family_id='$fam_id'";
                 $res_fetch_ent = mysqli_query($link, $query_fetch_ent);
