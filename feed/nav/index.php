@@ -24,6 +24,57 @@ if(isset($_POST['login_pressed'])){
   }
 }
 
+if(isset($_POST['enterprise_submit'])){
+  $enterprise_name = $_POST['name_ent_enterprise'];
+  $enterpreneur_name = $_POST['name_person_enterprise'];
+  $person_employed = $_POST['person_enterprise'];
+  $annual_exp = $_POST['ann_exp_enterprise'];
+  $annual_income = $_POST['annual_income_enterprise'];
+  $net_income = $_POST['net_income_enterprise'];
+  $reg_status = $_POST['reg_status_enterprise'];
+
+  $query_enterprise = "
+  INSERT INTO `enterprise`
+(
+`family_id`,
+`enterprise_name`,
+`enterpreneur_name`,
+`annual_exp`,
+`annual_income`,
+`net_income`,
+`reg_status`,
+`person_employed`)
+VALUES
+('$fam_id',
+'$enterprise_name',
+'$enterpreneur_name',
+'$annual_exp',
+'$annual_income',
+'$net_income',
+'$reg_status',
+'$person_employed');";
+echo $query_enterprise;
+$res_enterprise = mysqli_query($link, $query_enterprise);
+}
+
+
+if(isset($_POST['dailywage_submit']) && isset($_POST['mem_dailywage']) && isset($_POST['days_dailywage']) && isset($_POST['place_dailywage']) && isset($_POST['wage_dailywage']) && isset($_POST['income_dailywage'])){
+  $no_of_mem = $_POST['mem_dailywage'];
+  $days_dailywage = $_POST['days_dailywage'];
+  $place = $_POST['place_dailywage'];
+  $distance = $_POST['distance_dailywage'];
+  $wage = $_POST['wage_dailywage'];
+  $annual_income_wage = $_POST['income_dailywage'];
+
+  $clear_dailywage = "DELETE FROM daily_wage WHERE family_id='$fam_id'";
+  $res_clear_dailywage = mysqli_query($link, $clear_dailywage);
+
+  $query_dailywage = "INSERT INTO daily_wage(`family_id`, `members_count`, `days_involved`, `place`, `distance`, `wage`, `annual_income`) VALUES('$fam_id', '$no_of_mem', '$days_dailywage', '$place', '$distance', '$wage', '$annual_income_wage')";
+
+  $res_dailywage = mysqli_query($link, $query_dailywage);
+
+}
+
 if(isset($_POST['crop_submit'])){
   $crop_category = $_POST['crop_category'];
   $crop_name = $_POST['crop_name'];
@@ -283,7 +334,7 @@ if(isset($_POST['location_submit'])){
         </div>
 
         <div class="md-form mb-4">
-          <input name="days_dailywage" type="number" id="orangeForm-passdailywage3" class="form-control validate">
+          <input name="distance_dailywage" type="number" id="orangeForm-passdailywage3" class="form-control validate">
           <label data-error="wrong" data-success="right" for="orangeForm-passdailywage3">Distance (in KM)</label>
         </div>
 
@@ -306,6 +357,79 @@ if(isset($_POST['location_submit'])){
 </div>
 </form>
 <!-- MODAL END FOR DAILY WAGE -->
+
+<!-- MODAL START FOR ENTERPRISE -->
+          <form action="" method="POST">
+          <div class="modal fade" id="modalenterprise" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Enterprise / Modal Enterprise</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+
+         <div class="md-form mb-4">
+          <input name="name_ent_enterprise" type="text" id="orangeForm-passdays" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="orangeForm-passdays">Micro Enterprice Name</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input name="name_person_enterprise" type="text" id="orangeForm-passdailywage1" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="orangeForm-passdailywage1">Name of the Enterpreneur</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input name="person_enterprise" type="number" id="orangeForm-passdailywage2" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="orangeForm-passdailywage2">No. of person employed</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input name="ann_exp_enterprise" type="number" id="orangeForm-passdailywage3" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="orangeForm-passdailywage3">Annual Expediture</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input name="annual_income_enterprise" type="number" id="orangeForm-passdailywage4" class="form-control">
+          <label data-error="wrong" data-success="right" for="orangeForm-passdailywage4">Annual Income</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input name="net_income_enterprise" type="number" id="orangeForm-passdailywage5" class="form-control">
+          <label data-error="wrong" data-success="right" for="orangeForm-passdailywage5">Net Income</label>
+        </div>
+
+         <div class="md-form mb-4">
+         <select name="reg_status_enterprise" class="browser-default custom-select">
+            <option disabled="disabled" selected>Registration</option>
+            <option value="Yes">Registered</option>
+            <option value="No">Non-Registered</option>
+          </select>
+        </div>
+
+        <div class="md-form mb-4">
+         <select name="group_enterprise" class="browser-default custom-select">
+            <option disabled="disabled" selected>Part of any group</option>
+            <option value="SHG">SHG</option>
+            <option value="Farmer's Group">Farmer's Group</option>
+            <option value="Co-operative">Co-operative</option>
+            <option value="FPO">FPO</option>
+            <option value="None">None</option>
+          </select>
+        </div>
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <input type="submit" name="enterprise_submit" class="btn btn-deep-orange"></button>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+<!-- MODAL END FOR ENTERPRISE -->
           <!-- MODAL FOR LOCATION -->
           <form action="" method="POST">
           <div class="modal fade" id="modalfamilyleader" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -937,11 +1061,95 @@ if(isset($_POST['location_submit'])){
               ?>
             <br>
             <br>
-                 <button data-toggle="modal" data-target="#modalfamilymember" type="button" class="btn btn-success btn-lg btn-block">
-                  <i class="fas fa-business-time"></i> &nbsp; Enterprise Business Details</button>
-            <br>
               <button data-toggle="modal" data-target="#modaldailyWage" type="button" class="btn btn-success btn-lg btn-block">
                 <i class="fas fa-sign-language"></i> &nbsp; daily Wage/Labour Details</button>
+                <?php
+                $query_fetch_dailywage = "SELECT * FROM daily_wage WHERE family_id='$fam_id'";
+                $res_fetch_dailywage = mysqli_query($link, $query_fetch_dailywage);
+                $count_dailywage_fetch = mysqli_num_rows($res_fetch_cult);
+                if($count_dailywage_fetch==0){
+                  echo "Enter Crop Details.";
+                }
+
+                else{
+                  echo '<table class="table">';
+                  echo '<tr>';
+                  echo '<th> Members Involved </th> <th> Days Involved </th> <th> Place </th> <th> Distance </th> <th> Wage </th> <th> Annual Income </th>';
+                  echo '</tr>';
+                  while($row_dailywage_fetch = mysqli_fetch_assoc($res_fetch_dailywage)){
+                    echo '<tr>';
+                    echo '<td>';
+                      echo $row_dailywage_fetch['members_count'];
+                    echo '</td>';
+
+                    echo '<td>';
+                      echo $row_dailywage_fetch['days_involved'];
+                    echo '</td>';
+                    
+                    echo '<td>';
+                      echo $row_dailywage_fetch['place'];
+                    echo '</td>';
+
+                    echo '<td>';
+                      echo $row_dailywage_fetch['distance'];
+                    echo '</td>';
+
+                    echo '<td>';
+                      echo $row_dailywage_fetch['wage'];
+                    echo '</td>';
+
+                    echo '<td>';
+                      echo $row_dailywage_fetch['annual_income'];
+                    echo '</td>';
+                    echo '</tr>';
+                  }
+                  echo '</table>';
+                }
+                ?>
+          <br>
+
+           <button data-toggle="modal" data-target="#modalenterprise" type="button" class="btn btn-success btn-lg btn-block">
+                <i class="fas fa-sign-language"></i> &nbsp; Enterprise Business Details</button>
+                <?php
+                $query_fetch_ent = "SELECT * FROM enterprise WHERE family_id='$fam_id'";
+                $res_fetch_ent = mysqli_query($link, $query_fetch_ent);
+                $count_ent_fetch = mysqli_num_rows($res_fetch_ent);
+                if($count_ent_fetch==0){
+                  echo "Enter Enterprise Details.";
+                }
+
+                else{
+                  echo '<table class="table">';
+                  echo '<tr>';
+                  echo '<th> ENTERPRISE NAME </th> <th> ENTERPRENEUR NAME </th> <th> Persons Employed </th>  <th> Annual Income </th> <th> Net Income </th>';
+                  echo '</tr>';
+                  while($row_ent_fetch = mysqli_fetch_assoc($res_fetch_ent)){
+                    echo '<tr>';
+                    echo '<td>';
+                      echo $row_ent_fetch['enterprise_name'];
+                    echo '</td>';
+
+                    echo '<td>';
+                      echo $row_ent_fetch['enterpreneur_name'];
+                    echo '</td>';
+                    
+                    echo '<td>';
+                      echo $row_ent_fetch['person_employed'];
+                    echo '</td>';
+
+                    echo '<td>';
+                      echo $row_ent_fetch['annual_income'];
+                    echo '</td>';
+
+                    echo '<td>';
+                      echo $row_ent_fetch['net_income'];
+                    echo '</td>';
+                    echo '</tr>';
+                  }
+                  echo '</table>';
+                }
+                ?>
+          <br>
           <br>
 
 <!-- Default form login -->
@@ -1033,6 +1241,13 @@ function cal_wage(){
   b = document.getElementById('orangeForm-passdailywage1').value;
   c = document.getElementById('orangeForm-passdailywage4').value;
   document.getElementById('orangeForm-passdailywage5').value=a*b*c;
+}
+
+function cal_income_enterprise(){
+  income_ent = document.getElementById('').value;
+  expense_ent = document.getElementById('').value;
+  document.getElementById('').value=income_ent-expense_ent;
+
 }
 </script>
 
