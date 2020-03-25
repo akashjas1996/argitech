@@ -1298,48 +1298,7 @@ if(isset($_POST['location_submit'])){
                 ?>
           <br>
           <br>
-           <button data-toggle="modal" data-target="#modalenterprise" type="button" class="btn btn-success btn-lg btn-block">
-                <i class="fas fa-sign-language"></i> &nbsp; Enterprise Business Details</button> <br>
-                <?php
-                $query_fetch_ent = "SELECT * FROM enterprise WHERE family_id='$fam_id'";
-                $res_fetch_ent = mysqli_query($link, $query_fetch_ent);
-                $count_ent_fetch = mysqli_num_rows($res_fetch_ent);
-                if($count_ent_fetch==0){
-                  echo "Enter Enterprise Details.";
-                }
-
-                else{
-                  echo '<table class="table">';
-                  echo '<tr>';
-                  echo '<th> ENTERPRISE NAME </th> <th> ENTERPRENEUR NAME </th> <th> Persons Employed </th>  <th> Annual Income </th> <th> Net Income </th>';
-                  echo '</tr>';
-                  while($row_ent_fetch = mysqli_fetch_assoc($res_fetch_ent)){
-                    echo '<tr>';
-                    echo '<td>';
-                      echo $row_ent_fetch['enterprise_name'];
-                    echo '</td>';
-
-                    echo '<td>';
-                      echo $row_ent_fetch['enterpreneur_name'];
-                    echo '</td>';
-                    
-                    echo '<td>';
-                      echo $row_ent_fetch['person_employed'];
-                    echo '</td>';
-
-                    echo '<td>';
-                      echo $row_ent_fetch['annual_income'];
-                    echo '</td>';
-
-                    echo '<td>';
-                      echo $row_ent_fetch['net_income'];
-                    echo '</td>';
-                    echo '</tr>';
-                  }
-                  echo '</table>';
-                }
-                ?>
-          <br>
+           
 
 
            <button data-toggle="modal" data-target="#modalenterprise" type="button" class="btn btn-success btn-lg btn-block">
@@ -1441,7 +1400,6 @@ if(isset($_POST['location_submit'])){
                 if($count_allied_fetch==0){
                   echo "Enter Allied Activity Details.";
                 }
-
                 else{
                   echo '<table class="table">';
                   echo '<tr>';
