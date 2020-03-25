@@ -1066,9 +1066,9 @@ if(isset($_POST['location_submit'])){
                 <?php
                 $query_fetch_dailywage = "SELECT * FROM daily_wage WHERE family_id='$fam_id'";
                 $res_fetch_dailywage = mysqli_query($link, $query_fetch_dailywage);
-                $count_dailywage_fetch = mysqli_num_rows($res_fetch_cult);
+                $count_dailywage_fetch = mysqli_num_rows($res_fetch_dailywage);
                 if($count_dailywage_fetch==0){
-                  echo "Enter Crop Details.";
+                  echo "Enter Daily Wage details.";
                 }
 
                 else{
