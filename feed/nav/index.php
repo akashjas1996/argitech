@@ -998,6 +998,16 @@ if(isset($_POST['location_submit'])){
               }
               else{
                 echo '<table class="table">';
+
+                echo '<tr>';
+                echo '<td>';
+                  echo 'Year of BLS:';
+                echo '</td>';
+                echo '<td>';
+                  echo $row_loc_data['year_of_BLS'];
+                echo '</td>';
+                echo '</tr>';
+
                 echo '<tr>';
                 echo '<td>';
                   echo 'Caste:';
