@@ -420,17 +420,17 @@ if(isset($_POST['location_submit'])){
         </div>
 
         <div class="md-form mb-4">
-          <input name="ann_income_allied" type="number" id="orangeForm-sp_ann_income_allied" class="form-control">
+          <input onchange="cal_net_allied()" name="ann_income_allied" type="number" id="orangeForm-sp_ann_income_allied" class="form-control">
           <label for="orangeForm-sp_ann_income_allied">Annual Income</label>
         </div>
 
          <div class="md-form mb-4">
-          <input name="ann_exp_allied" type="number" id="orangeForm-annualexp_allied" class="form-control">
+          <input onchange="cal_net_allied()" name="ann_exp_allied" type="number" id="orangeForm-annualexp_allied" class="form-control">
           <label for="orangeForm-annualexp_allied">Annual Expenditure</label>
         </div>
 
         <div class="md-form mb-4">
-          <input name="net_inc_allied" type="number" id="orangeForm-netannual_allied" class="form-control">
+          <input readonly="readonly" name="net_inc_allied" type="number" id="orangeForm-netannual_allied" class="form-control">
           <label for="orangeForm-netannual_allied">Net Annual</label>
         </div>
 
@@ -492,6 +492,8 @@ if(isset($_POST['location_submit'])){
             <option value="2019-20">2019-20</option>
             <option value="2020-21">2020-21</option>
             <option value="2020-21">2021-22</option>
+            <option value="2020-21">2022-23</option>
+            <option value="2020-21">2023-24</option>
           </select>
         </div>
 
@@ -1151,7 +1153,8 @@ if(isset($_POST['location_submit'])){
             <button data-toggle="modal" data-target="#modaloccupation" type="button" class="btn btn-success btn-lg btn-block">
               <i class="fa fa-money-bill-alt"></i> &nbsp; Income Details</button>
            <br>
-           <?php 
+           <?php
+            $total_income=0;
             $query_income = "SELECT * FROM income_details WHERE family_id='$fam_id'";
             $res_income = mysqli_query($link, $query_income);
             $count_income = mysqli_num_rows($res_income);
@@ -1177,10 +1180,18 @@ if(isset($_POST['location_submit'])){
 
                     echo "<td>";
                     echo $row_income['annual_income'];
+                    $total_income+=$row_income['annual_income'];
                   echo "</td>";
                 echo "</tr>";
               }
-
+              echo '<tr>';
+              echo '<td colspan="2">';
+                echo '<b> Estimated Income: '.$total_income;
+              echo '</b> </td>';
+               echo '<td colspan="2">';
+               echo '<b> Calculated Income';
+              echo '</b> </td>';
+              echo '<tr>';
               echo '</table>';
             }
            ?>
@@ -1570,6 +1581,13 @@ function cal_income_enterprise(){
   expense_ent = document.getElementById('').value;
   document.getElementById('').value=income_ent-expense_ent;
 
+}
+
+function cal_net_allied(){
+  ann_income = document.getElementById('orangeForm-sp_ann_income_allied').value;
+  ann_exp = document.getElementById('orangeForm-annualexp_allied').value;
+  net_income = ann_income-ann_exp;
+  document.getElementById('orangeForm-netannual_allied').value = net_income;
 }
 </script>
 </body>
