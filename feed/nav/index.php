@@ -1001,13 +1001,15 @@ if(isset($_POST['location_submit'])){
 <!--   <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalRegisterForm">Launch
     Modal Register Form</a> -->
 </div>
-          
-          
 
-          <button data-toggle="modal" data-target="#modalfamilyleader" type="button" class="btn btn-success btn-lg btn-block"><i class="fas fa-map-marker"></i> &nbsp; Location</button>
+<button data-toggle="modal" data-target="#modalfamilyleader" type="button" class="btn btn-success btn-lg btn-block"><i class="fas fa-map-marker"></i> &nbsp; Location</button>
           <br>
             <?php 
-              if($count_loc==0){
+
+            $query_loc_data = "SELECT * FROM family WHERE family_id='$fam_id'";
+                $res_loc_data = mysqli_query($link, $query_loc_data);
+                $row_loc_data = mysqli_fetch_assoc($res_loc_data);
+                if($count_loc==0){
                 // echo "ADD LOCATION DETAILS";
               }
               else{
@@ -1072,12 +1074,9 @@ if(isset($_POST['location_submit'])){
               }
              ?>
           <br>
-
+          
           <button data-toggle="modal" data-target="#modalgeninfo" type="button" class="btn btn-success btn-lg btn-block"><i class="fas fa-address-book"></i> &nbsp; General Info</button>
           <?php 
-            $query_loc_data = "SELECT * FROM family WHERE family_id='$fam_id'";
-                $res_loc_data = mysqli_query($link, $query_loc_data);
-                $row_loc_data = mysqli_fetch_assoc($res_loc_data);
                 if($count_loc==0){
                 // echo "ADD LOCATION DETAILS";
               }
@@ -1138,7 +1137,6 @@ if(isset($_POST['location_submit'])){
 
           <br>
 
-          
             <button data-toggle="modal" data-target="#modalfamilymember" type="button" class="btn btn-success btn-lg btn-block"><i class="fas fa-users"></i> &nbsp; Add Family Member</button>
             <br>
             <?php 
@@ -1358,104 +1356,12 @@ if(isset($_POST['location_submit'])){
               ?>
             <br>
 
-              <button data-toggle="modal" data-target="#modaldailyWage" type="button" class="btn btn-success btn-lg btn-block">
-                <i class="fas fa-sign-language"></i> &nbsp; daily Wage/Labour Details</button>
-                <?php
-                $query_fetch_dailywage = "SELECT * FROM daily_wage WHERE family_id='$fam_id'";
-                $res_fetch_dailywage = mysqli_query($link, $query_fetch_dailywage);
-                $count_dailywage_fetch = mysqli_num_rows($res_fetch_dailywage);
-                if($count_dailywage_fetch==0){
-                  // echo "Enter Daily Wage details.";
-                }
-
-                else{
-                  echo '<table class="table">';
-                  echo '<tr>';
-                  echo '<th> Members Involved </th> <th> Days Involved </th> <th> Place </th> <th> Wage </th> <th> Annual Income </th> <th> <i class="fas fa-trash-alt"></i> </th>';
-                  echo '</tr>';
-                  while($row_dailywage_fetch = mysqli_fetch_assoc($res_fetch_dailywage)){
-                    echo '<tr>';
-                    echo '<td>';
-                      echo $row_dailywage_fetch['members_count'];
-                    echo '</td>';
-
-                    echo '<td>';
-                      echo $row_dailywage_fetch['days_involved'];
-                    echo '</td>';
-                    
-                    echo '<td>';
-                      echo $row_dailywage_fetch['place'];
-                    echo '</td>';
-
-                    echo '<td>';
-                      echo $row_dailywage_fetch['wage'];
-                    echo '</td>';
-
-                    echo '<td>';
-                      echo $row_dailywage_fetch['annual_income'];
-                    echo '</td>';
-
-                    echo '<td>';
-                      ?>
-
-                    <button onclick="del_obj('<?php echo $row_dailywage_fetch['entry_id']; ?>', 'dailywage')">
-                      <i style="color:red" class="fas fa-times"> </i> 
-                    </button>
-
-                      <?php
-                    echo '</td>';
-                    echo '</tr>';
-                  }
-                  echo '</table>';
-                }
-                ?>
-          <br>
+              
           <br>
            
 
 
-           <button data-toggle="modal" data-target="#modalenterprise" type="button" class="btn btn-success btn-lg btn-block">
-                <i class="fas fa-industry"></i> &nbsp; Enterprise Business Details</button><br>
-                <?php
-                $query_fetch_ent = "SELECT * FROM enterprise WHERE family_id='$fam_id'";
-                $res_fetch_ent = mysqli_query($link, $query_fetch_ent);
-                $count_ent_fetch = mysqli_num_rows($res_fetch_ent);
-                if($count_ent_fetch==0){
-                  // echo "Enter Enterprise Details.";
-                }
-
-                else{
-                  echo '<table class="table">';
-                  echo '<tr>';
-                  echo '<th> ENTERPRISE NAME </th> <th> ENTERPRENEUR NAME </th> <th> Net Income </th> <th> <i class="fas fa-trash-alt"></i> </th>';
-                  echo '</tr>';
-                  while($row_ent_fetch = mysqli_fetch_assoc($res_fetch_ent)){
-                    echo '<tr>';
-                    echo '<td>';
-                      echo $row_ent_fetch['enterprise_name'];
-                    echo '</td>';
-
-                    echo '<td>';
-                      echo $row_ent_fetch['enterpreneur_name'];
-                    echo '</td>';
-                    
-                    echo '<td>';
-                      echo $row_ent_fetch['net_income'];
-                    echo '</td>';
-
-                    echo '<td>';
-                    ?>
-                      <button onclick="del_obj('<?php echo $row_ent_fetch['entry_id']; ?>', 'enterprise')">
-                      <i style="color:red" class="fas fa-times"> </i> 
-                    </button>
-                    <?php
-                    echo '</td>';
-                    echo '</tr>';
-                  }
-                  echo '</table>';
-                }
-                ?>
-          <br>
+           
 
           <button data-toggle="modal" data-target="#modallivestock" type="button" class="btn btn-success btn-lg btn-block">
                 <i class="fas fa-coffee"></i> &nbsp; Agri Allied - Livestock</button>
@@ -1556,7 +1462,105 @@ if(isset($_POST['location_submit'])){
                   echo '</table>';
                 }
                 ?>
-                <br><br><br>
+                <br><br>
+
+                <button data-toggle="modal" data-target="#modaldailyWage" type="button" class="btn btn-success btn-lg btn-block">
+                <i class="fas fa-sign-language"></i> &nbsp; daily Wage/Labour Details</button>
+                <?php
+                $query_fetch_dailywage = "SELECT * FROM daily_wage WHERE family_id='$fam_id'";
+                $res_fetch_dailywage = mysqli_query($link, $query_fetch_dailywage);
+                $count_dailywage_fetch = mysqli_num_rows($res_fetch_dailywage);
+                if($count_dailywage_fetch==0){
+                  // echo "Enter Daily Wage details.";
+                }
+
+                else{
+                  echo '<table class="table">';
+                  echo '<tr>';
+                  echo '<th> Members Involved </th> <th> Days Involved </th> <th> Place </th> <th> Wage </th> <th> Annual Income </th> <th> <i class="fas fa-trash-alt"></i> </th>';
+                  echo '</tr>';
+                  while($row_dailywage_fetch = mysqli_fetch_assoc($res_fetch_dailywage)){
+                    echo '<tr>';
+                    echo '<td>';
+                      echo $row_dailywage_fetch['members_count'];
+                    echo '</td>';
+
+                    echo '<td>';
+                      echo $row_dailywage_fetch['days_involved'];
+                    echo '</td>';
+                    
+                    echo '<td>';
+                      echo $row_dailywage_fetch['place'];
+                    echo '</td>';
+
+                    echo '<td>';
+                      echo $row_dailywage_fetch['wage'];
+                    echo '</td>';
+
+                    echo '<td>';
+                      echo $row_dailywage_fetch['annual_income'];
+                    echo '</td>';
+
+                    echo '<td>';
+                      ?>
+
+                    <button onclick="del_obj('<?php echo $row_dailywage_fetch['entry_id']; ?>', 'dailywage')">
+                      <i style="color:red" class="fas fa-times"> </i> 
+                    </button>
+
+                      <?php
+                    echo '</td>';
+                    echo '</tr>';
+                  }
+                  echo '</table>';
+                }
+                ?>
+          <br>
+
+          <button data-toggle="modal" data-target="#modalenterprise" type="button" class="btn btn-success btn-lg btn-block">
+                <i class="fas fa-industry"></i> &nbsp; Enterprise Business Details</button><br>
+                <?php
+                $query_fetch_ent = "SELECT * FROM enterprise WHERE family_id='$fam_id'";
+                $res_fetch_ent = mysqli_query($link, $query_fetch_ent);
+                $count_ent_fetch = mysqli_num_rows($res_fetch_ent);
+                if($count_ent_fetch==0){
+                  // echo "Enter Enterprise Details.";
+                }
+
+                else{
+                  echo '<table class="table">';
+                  echo '<tr>';
+                  echo '<th> ENTERPRISE NAME </th> <th> ENTERPRENEUR NAME </th> <th> Net Income </th> <th> <i class="fas fa-trash-alt"></i> </th>';
+                  echo '</tr>';
+                  while($row_ent_fetch = mysqli_fetch_assoc($res_fetch_ent)){
+                    echo '<tr>';
+                    echo '<td>';
+                      echo $row_ent_fetch['enterprise_name'];
+                    echo '</td>';
+
+                    echo '<td>';
+                      echo $row_ent_fetch['enterpreneur_name'];
+                    echo '</td>';
+                    
+                    echo '<td>';
+                      echo $row_ent_fetch['net_income'];
+                    echo '</td>';
+
+                    echo '<td>';
+                    ?>
+                      <button onclick="del_obj('<?php echo $row_ent_fetch['entry_id']; ?>', 'enterprise')">
+                      <i style="color:red" class="fas fa-times"> </i> 
+                    </button>
+                    <?php
+                    echo '</td>';
+                    echo '</tr>';
+                  }
+                  echo '</table>';
+                }
+                ?>
+          <br>
+
+          <br>
 
 <!-- Default form login -->
         </div>
