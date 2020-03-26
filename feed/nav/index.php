@@ -360,17 +360,17 @@ if(isset($_POST['location_submit'])){
         </div>
 
          <div class="md-form mb-4">
-          <input name="ann_income_livestock" type="number" id="orangeForm-income_livestock" class="form-control">
+          <input onchange="cal_net_livestock()" name="ann_income_livestock" type="number" id="orangeForm-income_livestock" class="form-control">
           <label for="orangeForm-income_livestock">Annual Income</label>
         </div>
 
         <div class="md-form mb-4">
-          <input name="rearing_cost_livestock" type="number" id="orangeForm-cost_livestock" class="form-control">
+          <input onchange="cal_net_livestock()" name="rearing_cost_livestock" type="number" id="orangeForm-cost_livestock" class="form-control">
           <label for="orangeForm-cost_livestock">Cost of rearing</label>
         </div>
 
         <div class="md-form mb-4">
-          <input name="net_income_livestock" type="number" id="orangeForm-netincome_livestock" class="form-control">
+          <input readonly="readonly" name="net_income_livestock" type="number" id="orangeForm-netincome_livestock" class="form-control">
           <label for="orangeForm-netincome_livestock">Net Annual Income</label>
         </div>
 
@@ -804,7 +804,7 @@ if(isset($_POST['location_submit'])){
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <select name="owned_land" class="browser-default custom-select">
-            <option value="Land_owned" disabled="disabled" selected>Land Owned</option>
+            <option value="Land_owned" disabled="disabled" selected>Farmer Type</option>
             <option value="big">Big (More than 10 acre)</option>
             <option value="medium">Medium (5 to 10 acre)</option>
             <option value="small">Small (2.5 to 5 acre)</option>
@@ -1584,10 +1584,17 @@ function cal_income_enterprise(){
 }
 
 function cal_net_allied(){
-  ann_income = document.getElementById('orangeForm-sp_ann_income_allied').value;
-  ann_exp = document.getElementById('orangeForm-annualexp_allied').value;
-  net_income = ann_income-ann_exp;
-  document.getElementById('orangeForm-netannual_allied').value = net_income;
+  ann_income_allied_act = document.getElementById('orangeForm-sp_ann_income_allied').value;
+  ann_exp_allied_act = document.getElementById('orangeForm-annualexp_allied').value;
+  net_income_allied_act = ann_income_allied_act-ann_exp_allied_act;
+  document.getElementById('orangeForm-netannual_allied').value = net_income_allied_act;
+}
+
+function cal_net_livestock(){
+  ann_income_livestock = document.getElementById('orangeForm-income_livestock').value;
+  rearing_exp = document.getElementById('orangeForm-cost_livestock').value;
+  net_income = ann_income_livestock-rearing_exp;
+  document.getElementById('orangeForm-netincome_livestock').value = net_income;
 }
 </script>
 </body>
