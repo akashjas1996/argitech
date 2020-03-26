@@ -186,6 +186,7 @@ if(isset($_POST['geninfo_submit'])){
   $house_gen = $_POST['house_gen'];
   $toilet_gen = $_POST['toilet_gen'];
   $year_gen = $_POST['year_BLS'];
+  $date_gen = $_POST['date_survey'];
 
   $query_gen_info = "
   UPDATE `family`
@@ -193,7 +194,8 @@ SET
 `house_type` = '$house_gen',
 `toilet` = '$toilet_gen',
 `caste` = '$caste_gen',
-`year_of_BLS` = '$year_gen'
+`year_of_BLS` = '$year_gen',
+`date` = '$date_gen'
 WHERE `family_id` = '$fam_id';
 ";
 
@@ -241,8 +243,9 @@ if(isset($_POST['member_add'])){
   $edu_status = $_POST['edu_status'];
   $skills = $_POST['skills'];
   $mob_no = $_POST['mob_no'];
+  $other_edu = $_POST['other_edu'];
 
-  $query_member_add = "INSERT INTO family_member(`family_id`, `name`, `age`, `sex`, `ed_status`, `skill`, `mobile`) VALUES('$fam_id', '$mem_name', '$age_mem', '$gender', '$edu_status', '$skills', '$mob_no')";
+  $query_member_add = "INSERT INTO family_member(`family_id`, `name`, `age`, `sex`, `ed_status`, `skill`, `mobile`, `edu_other`) VALUES('$fam_id', '$mem_name', '$age_mem', '$gender', '$edu_status', '$skills', '$mob_no', '$other_edu')";
 
   $res_member_add = mysqli_query($link, $query_member_add);
 
@@ -257,8 +260,14 @@ if(isset($_POST['location_submit'])){
   $village = $_POST['village'];
   $date = $_POST['date'];
 
+  $in_loc = "INSERT INTO family(`family_id`, `TSRDS_op_area`, `gp`, `block`, `dist`, `state`, `village`) VALUES('$fam_id', '$op_area', '$gp', '$block', '$district', '$state','$village')";
+
   if($count_loc==0){
-    $in_loc = "INSERT INTO family(`family_id`, `TSRDS_op_area`, `gp`, `block`, `dist`, `state`, `village`, `date`) VALUES('$fam_id', '$op_area', '$gp', '$block', '$district', '$state','$village', '$date')";
+    $res_loc = mysqli_query($link, $in_loc);
+  }
+  else{
+    $query_del_location_info = "DELETE FROM `family` WHERE family_id='$fam_id'";
+    $res_del_location_info = mysqli_query($link, $query_del_location_info);
     $res_loc = mysqli_query($link, $in_loc);
   }
 }
@@ -341,6 +350,7 @@ if(isset($_POST['location_submit'])){
             <option value="Pig">Pig</option>
             <option value="Hen">Hen</option>
             <option value="Duck">Duck</option>
+            <option value="Others">Others</option>
           </select>
         </div>
 
@@ -495,6 +505,11 @@ if(isset($_POST['location_submit'])){
             <option value="2020-21">2022-23</option>
             <option value="2020-21">2023-24</option>
           </select>
+        </div>
+
+         <div class="md-form mb-4">
+          <input type="Date" name="date_survey" type="text" id="orangeForm-pass" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="orangeForm-pass">Baseline Survey Date</label>
         </div>
 
       </div>
@@ -695,11 +710,6 @@ if(isset($_POST['location_submit'])){
           <label data-error="wrong" data-success="right" for="orangeForm-pass">Village</label>
         </div>
         <div class="md-form mb-4">
-          <input disabled="disabled" type="text" id="orangeForm-pass" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="orangeForm-pass">Date - <?php echo date("d/m/Y") ?></label>
-          <input type="hidden" name="date" vale="<?php echo date('D/M/Y') ?>">
-        </div>
-        <div class="md-form mb-4">
           <p id="location"> Hello </p>
         </div>
       </div>
@@ -895,13 +905,20 @@ if(isset($_POST['location_submit'])){
         </div>
 
         <div class="md-form mb-4">
-          <select style="width: 100%" name="edu_status">
+          <select onchange="otheredu(this.value)" style="width: 100%" name="edu_status">
             <option disabled="disabled">Educational Status</option>
             <option value="Primary">Primary</option>
             <option value="Secondary">Secondary</option>
             <option value="Under Graduated">Under Graduated</option>
             <option value="Graduated">Graduated</option>
+            <option value="Other">Other</option>
           </select>
+        </div>
+
+        <div id="otherEduField" style="display: none" class="md-form mb-4">
+          <i class="fas fa-book prefix grey-text"></i>
+          <input name="other_edu" type="text" id="orangeForm-pass-othereducation" class="form-control validate" value="-">
+          <label data-error="wrong" data-success="right" for="orangeForm-pass-othereducation">Other Education</label>
         </div>
 
 
@@ -1013,6 +1030,15 @@ if(isset($_POST['location_submit'])){
                 echo '</td>';
                 echo '<td>';
                   echo $row_loc_data['year_of_BLS'];
+                echo '</td>';
+                echo '</tr>';
+
+                 echo '<tr>';
+                echo '<td>';
+                  echo 'Date of BLS:';
+                echo '</td>';
+                echo '<td>';
+                  echo $row_loc_data['date'];
                 echo '</td>';
                 echo '</tr>';
 
@@ -1302,7 +1328,7 @@ if(isset($_POST['location_submit'])){
                 else{
                   echo '<table class="table">';
                   echo '<tr>';
-                  echo '<th> Members Involved </th> <th> Days Involved </th> <th> Place </th> <th> Distance </th> <th> Wage </th> <th> Annual Income </th>';
+                  echo '<th> Members Involved </th> <th> Days Involved </th> <th> Place </th> <th> Wage </th> <th> Annual Income </th>';
                   echo '</tr>';
                   while($row_dailywage_fetch = mysqli_fetch_assoc($res_fetch_dailywage)){
                     echo '<tr>';
@@ -1316,10 +1342,6 @@ if(isset($_POST['location_submit'])){
                     
                     echo '<td>';
                       echo $row_dailywage_fetch['place'];
-                    echo '</td>';
-
-                    echo '<td>';
-                      echo $row_dailywage_fetch['distance'];
                     echo '</td>';
 
                     echo '<td>';
@@ -1340,7 +1362,7 @@ if(isset($_POST['location_submit'])){
 
 
            <button data-toggle="modal" data-target="#modalenterprise" type="button" class="btn btn-success btn-lg btn-block">
-                <i class="fas fa-sign-language"></i> &nbsp; Enterprise Business Details</button><br>
+                <i class="fas fa-industry"></i> &nbsp; Enterprise Business Details</button><br>
                 <?php
                 $query_fetch_ent = "SELECT * FROM enterprise WHERE family_id='$fam_id'";
                 $res_fetch_ent = mysqli_query($link, $query_fetch_ent);
@@ -1352,7 +1374,7 @@ if(isset($_POST['location_submit'])){
                 else{
                   echo '<table class="table">';
                   echo '<tr>';
-                  echo '<th> ENTERPRISE NAME </th> <th> ENTERPRENEUR NAME </th> <th> Persons Employed </th>  <th> Annual Income </th> <th> Net Income </th>';
+                  echo '<th> ENTERPRISE NAME </th> <th> ENTERPRENEUR NAME </th> <th> Net Income </th>';
                   echo '</tr>';
                   while($row_ent_fetch = mysqli_fetch_assoc($res_fetch_ent)){
                     echo '<tr>';
@@ -1364,13 +1386,6 @@ if(isset($_POST['location_submit'])){
                       echo $row_ent_fetch['enterpreneur_name'];
                     echo '</td>';
                     
-                    echo '<td>';
-                      echo $row_ent_fetch['person_employed'];
-                    echo '</td>';
-
-                    echo '<td>';
-                      echo $row_ent_fetch['annual_income'];
-                    echo '</td>';
 
                     echo '<td>';
                       echo $row_ent_fetch['net_income'];
@@ -1383,7 +1398,7 @@ if(isset($_POST['location_submit'])){
           <br>
 
           <button data-toggle="modal" data-target="#modallivestock" type="button" class="btn btn-success btn-lg btn-block">
-                <i class="fas fa-coffee"></i> &nbsp; Livestock Details</button>
+                <i class="fas fa-coffee"></i> &nbsp; Agri Allied - Livestock</button>
                 <br>
                 <?php
                 $query_fetch_livestock = "SELECT * FROM livestock WHERE family_id='$fam_id'";
@@ -1429,7 +1444,7 @@ if(isset($_POST['location_submit'])){
                 <br>
 
                  <button data-toggle="modal" data-target="#modalallied" type="button" class="btn btn-success btn-lg btn-block">
-                <i class="fas fa-apple-alt"></i> &nbsp; Allied Activity Details</button>
+                <i class="fas fa-apple-alt"></i> &nbsp; Agri Allied - Others</button>
                 <br>
                 <?php
                 $query_fetch_allied = "SELECT * FROM allied WHERE family_id='$fam_id'";
@@ -1441,7 +1456,7 @@ if(isset($_POST['location_submit'])){
                 else{
                   echo '<table class="table">';
                   echo '<tr>';
-                  echo '<th> Activity </th> <th> Area (in acre) </th> <th> Production </th>  <th> Annual Income </th> <th> Annual Expenditure </th> <th> Net Annual Income </th>';
+                  echo '<th> Activity </th> <th> Area (in acre) </th> <th> Production </th> <th> Net Annual Income </th>';
                   echo '</tr>';
                   while($row_allied_fetch = mysqli_fetch_assoc($res_fetch_allied)){
                     echo '<tr>';
@@ -1455,14 +1470,6 @@ if(isset($_POST['location_submit'])){
                     
                     echo '<td>';
                       echo $row_allied_fetch['production'];
-                    echo '</td>';
-
-                    echo '<td>';
-                      echo $row_allied_fetch['ann_income'];
-                    echo '</td>';
-
-                    echo '<td>';
-                      echo $row_allied_fetch['ann_exp'];
                     echo '</td>';
 
                     echo '<td>';
@@ -1601,6 +1608,15 @@ function cal_net_livestock(){
   rearing_exp = document.getElementById('orangeForm-cost_livestock').value;
   net_income = ann_income_livestock-rearing_exp;
   document.getElementById('orangeForm-netincome_livestock').value = net_income;
+}
+
+function otheredu(a){
+  if(a=='Other'){
+    document.getElementById('otherEduField').style.display="block";
+  }
+  else{
+    document.getElementById('otherEduField').style.display="none";
+  }
 }
 </script>
 </body>
