@@ -648,10 +648,16 @@ if(isset($_POST['location_submit'])){
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <select name="op_area" class="browser-default custom-select">
-            <option selected>TSRDS Operation Area</option>
+            <option selected>TSRDS Operational Area</option>
             <option value="Jamshedpur">Jamshedpur</option>
-            <option value="Wesbook">Wesbook</option>
-            <option value="Nuamundi">Nuamundi</option>
+            <option value="Noamundi">Noamundi</option>
+            <option value="West Bokaro">West Bokaro</option>
+            <option value="Jamadoba">Jamadoba</option>
+            <option value="Kaling Nagar">Kaling Nagar</option>
+            <option value="Sukinda">Sukinda</option>
+            <option value="Bamnipal">Bamnipal</option>
+            <option value="Joda">Joda</option>
+            <option value="Gopalpur">Gopalpur</option>
           </select>
         </div>
 
