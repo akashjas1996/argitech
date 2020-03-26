@@ -24,6 +24,8 @@ if(isset($_POST['login_pressed'])){
   }
 }
 
+
+
 if(isset($_POST['allied_submit'])){
   $allied_type = $_POST['name_allied'];
   $allied_area = $_POST['area_allied'];
@@ -55,8 +57,8 @@ $res_allied = mysqli_query($link, $query_allied);
 if(isset($_POST['livestock_submit'])){
   $livestock_name = $_POST['name_livestock'];
   $livestock_num = $_POST['number_livestock'];
-  $livestock_qty = $_POST['qty_livestock'];
-  $livestock_sp = $_POST['rate_livestock'];
+  // $livestock_qty = $_POST['qty_livestock'];
+  // $livestock_sp = $_POST['rate_livestock'];
   $livestock_annualIncome = $_POST['ann_income_livestock'];
   $livestock_cost = $_POST['rearing_cost_livestock'];
   $livestock_net_income = $_POST['net_income_livestock'];
@@ -66,8 +68,6 @@ if(isset($_POST['livestock_submit'])){
 (`family_id`,
 `name`,
 `number`,
-`qty`,
-`rate`,
 `annual_income`,
 `cost`,
 `net_income`)
@@ -75,11 +75,11 @@ VALUES
 ('$fam_id',
 '$livestock_name',
 '$livestock_num',
-'$livestock_qty',
-'$livestock_sp',
 '$livestock_annualIncome',
 '$livestock_cost',
 '$livestock_net_income')";
+
+echo $query_livestock;
 $res_livestock = mysqli_query($link, $query_livestock);
 
 
@@ -114,7 +114,6 @@ VALUES
 '$net_income',
 '$reg_status',
 '$person_employed');";
-echo $query_enterprise;
 $res_enterprise = mysqli_query($link, $query_enterprise);
 }
 
@@ -357,16 +356,6 @@ if(isset($_POST['location_submit'])){
         <div class="md-form mb-4">
           <input name="number_livestock" type="number" id="orangeForm-pass" class="form-control validate">
           <label data-error="wrong" data-success="right" for="orangeForm-pass">Numbers</label>
-        </div>
-
-        <div class="md-form mb-4">
-          <input name="qty_livestock" type="number" id="orangeForm-qty_livestock" class="form-control">
-          <label for="orangeForm-qty_livestock">Quantity (in lts.)</label>
-        </div>
-
-        <div class="md-form mb-4">
-          <input name="rate_livestock" type="number" id="orangeForm-sp_livestock" class="form-control">
-          <label for="orangeForm-sp_livestock">Selling price</label>
         </div>
 
          <div class="md-form mb-4">
@@ -944,7 +933,7 @@ if(isset($_POST['location_submit'])){
 </form>
 <!-- MODAL END FOR FAMILY MEMBER -->
 
-<!-- MODAL START FOR OCCUPATION -->
+<!-- MODAL START FOR INCOME -->
 <form action="" method="POST">
 <div class="modal fade" id="modaloccupation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
@@ -1005,7 +994,7 @@ if(isset($_POST['location_submit'])){
   </div>
 </div>
 </form>
-<!-- MODAL END FOR OCCUPATION -->
+<!-- MODAL END FOR INCOME -->
 
 
 <div class="text-center">
@@ -1153,12 +1142,12 @@ if(isset($_POST['location_submit'])){
             $res_member = mysqli_query($link, $query_member);
             $count_members = mysqli_num_rows($res_member);
             if($count_members==0){
-              echo "No Family Members Added";
+              // echo "No Family Members Added";
             }
 
             else{
               echo '<table class="table">
-                <tr>  <th>Name</th> <th>Age</th>  <th>Education</th> <th>Skills</th> </tr>';
+                <tr>  <th>Name</th> <th>Age</th>  <th>Education</th> <th>Skills</th> <th> <i class="fas fa-trash-alt"></i> </th> </tr>';
               while($row_members = mysqli_fetch_assoc($res_member)){
                 echo '
                 <tr>
@@ -1173,8 +1162,19 @@ if(isset($_POST['location_submit'])){
                     echo '</td>
                     <td>';
                     echo $row_members['skill'];
-                    echo '</td>
-                    </tr>';
+                    echo '</td>';
+                    echo '<td>';
+                    $entry_id_member = $row_members['member_id'];
+                    
+                    ?>
+                    <button onclick="del_obj('<?php echo $row_members['member_id']; ?>', 'member')"  name="del_member" type="submit">
+                      <i style="color:red" class="fas fa-times"> </i> 
+                    </button>
+                    <p id="result"> </p>
+
+                    <?php
+                    echo '</td>';
+                    echo '</tr>';
               }
               echo '</table>';
 
@@ -1191,11 +1191,11 @@ if(isset($_POST['location_submit'])){
             $res_income = mysqli_query($link, $query_income);
             $count_income = mysqli_num_rows($res_income);
             if($count_income==0){
-              echo "ADD INCOME DETAILS.";
+              // echo "ADD INCOME DETAILS.";
             }
             else{
               echo '<table class="table">';
-              echo '<th>Occupation</th>  <th>Type</th> <th>Days Engaged</th> <th>Annual Income</th>';
+              echo '<th>Occupation</th>  <th>Type</th> <th>Days Engaged</th> <th>Annual Income </th> <th> <i class="fas fa-trash-alt"></i> </th>';
               while($row_income = mysqli_fetch_assoc($res_income)){
                 echo "<tr>";
                   echo "<td>";
@@ -1214,6 +1214,19 @@ if(isset($_POST['location_submit'])){
                     echo $row_income['annual_income'];
                     $total_income+=$row_income['annual_income'];
                   echo "</td>";
+                  echo '<td>';
+                    $entry_id_income = $row_income['entry_id'];
+                    ?>
+                   
+                     <button onclick="del_obj('<?php echo $row_income['entry_id']; ?>', 'income')"  name="del_member" type="submit">
+                      <i style="color:red" class="fas fa-times"> </i> 
+                    </button>
+                    <p id="result"> </p>
+
+                    <?php
+                    echo '</td>';
+
+
                 echo "</tr>";
               }
               echo '<tr>';
@@ -1238,11 +1251,11 @@ if(isset($_POST['location_submit'])){
              $res_check_land = mysqli_query($link, $query_check_land);
              $count_check_land = mysqli_num_rows($res_check_land);
              if($count_check_land==0){
-              echo "ENTER LAND DETAILS";
+              // echo "ENTER LAND DETAILS";
              }
              else{
               echo '<table class="table">';
-              echo "<th> Farmer Type </th> <th> Total Land Holding </th> <th>Irrigated Land Holding</th>";
+              echo "<th> Farmer Type </th> <th> Total Land Holding </th> <th>Irrigated Land Holding</th> <th> <i class='fas fa-trash-alt'></i> </th>";
               while($row_check_land = mysqli_fetch_assoc($res_check_land)){
                 echo "<tr>";
                 echo "<td>";
@@ -1256,6 +1269,19 @@ if(isset($_POST['location_submit'])){
                  echo "<td>";
                  echo $row_check_land['irrigated_land'];
                 echo "</td>";
+
+
+                 echo '<td>';
+                    $entry_id_land = $row_check_land['entry_id'];
+                    ?>
+
+                    <button onclick="del_obj('<?php echo $row_check_land['entry_id']; ?>', 'land')">
+                      <i style="color:red" class="fas fa-times"> </i> 
+                    </button>
+                    <p id="result"> </p>
+
+                    <?php
+                    echo '</td>';
 
                 echo "</tr>";
               }
@@ -1280,12 +1306,12 @@ if(isset($_POST['location_submit'])){
                 $res_fetch_cult = mysqli_query($link, $query_fetch_cult);
                 $count_cult_fetch = mysqli_num_rows($res_fetch_cult);
                 if($count_cult_fetch==0){
-                  echo "Enter Crop Details.";
+                  // echo "Enter Crop Details.";
                 }
                 else{
                   echo '<table class="table">';
                   echo '<tr>';
-                  echo '<th> Category </th> <th> Name </th> <th> Cultivated Area </th> <th> Yield </th> <th> Net Income </th>';
+                  echo '<th> Category </th> <th> Name </th> <th> Cultivated Area </th> <th> Yield </th> <th> Net Income </th> <th> <i class="fas fa-trash-alt"></i> </th>';
                   echo '</tr>';
                   while($row_Cult_fetch = mysqli_fetch_assoc($res_fetch_cult)){
                     echo '<tr>';
@@ -1308,6 +1334,19 @@ if(isset($_POST['location_submit'])){
                     echo '<td>';
                       echo $row_Cult_fetch['net_income'];
                     echo '</td>';
+
+                    echo '<td>';
+                    $entry_id_crop = $row_Cult_fetch['entry_id'];
+                    ?>
+
+                    <button onclick="del_obj('<?php echo $row_Cult_fetch['entry_id']; ?>', 'crop')">
+                      <i style="color:red" class="fas fa-times"> </i> 
+                    </button>
+
+                    <?php
+                    echo '</td>';
+
+
                     echo '</tr>';
                   }
                   echo '</table>';
@@ -1322,13 +1361,13 @@ if(isset($_POST['location_submit'])){
                 $res_fetch_dailywage = mysqli_query($link, $query_fetch_dailywage);
                 $count_dailywage_fetch = mysqli_num_rows($res_fetch_dailywage);
                 if($count_dailywage_fetch==0){
-                  echo "Enter Daily Wage details.";
+                  // echo "Enter Daily Wage details.";
                 }
 
                 else{
                   echo '<table class="table">';
                   echo '<tr>';
-                  echo '<th> Members Involved </th> <th> Days Involved </th> <th> Place </th> <th> Wage </th> <th> Annual Income </th>';
+                  echo '<th> Members Involved </th> <th> Days Involved </th> <th> Place </th> <th> Wage </th> <th> Annual Income </th> <th> <i class="fas fa-trash-alt"></i> </th>';
                   echo '</tr>';
                   while($row_dailywage_fetch = mysqli_fetch_assoc($res_fetch_dailywage)){
                     echo '<tr>';
@@ -1351,6 +1390,16 @@ if(isset($_POST['location_submit'])){
                     echo '<td>';
                       echo $row_dailywage_fetch['annual_income'];
                     echo '</td>';
+
+                    echo '<td>';
+                      ?>
+
+                    <button onclick="del_obj('<?php echo $row_dailywage_fetch['entry_id']; ?>', 'dailywage')">
+                      <i style="color:red" class="fas fa-times"> </i> 
+                    </button>
+
+                      <?php
+                    echo '</td>';
                     echo '</tr>';
                   }
                   echo '</table>';
@@ -1368,13 +1417,13 @@ if(isset($_POST['location_submit'])){
                 $res_fetch_ent = mysqli_query($link, $query_fetch_ent);
                 $count_ent_fetch = mysqli_num_rows($res_fetch_ent);
                 if($count_ent_fetch==0){
-                  echo "Enter Enterprise Details.";
+                  // echo "Enter Enterprise Details.";
                 }
 
                 else{
                   echo '<table class="table">';
                   echo '<tr>';
-                  echo '<th> ENTERPRISE NAME </th> <th> ENTERPRENEUR NAME </th> <th> Net Income </th>';
+                  echo '<th> ENTERPRISE NAME </th> <th> ENTERPRENEUR NAME </th> <th> Net Income </th> <th> <i class="fas fa-trash-alt"></i> </th>';
                   echo '</tr>';
                   while($row_ent_fetch = mysqli_fetch_assoc($res_fetch_ent)){
                     echo '<tr>';
@@ -1386,9 +1435,16 @@ if(isset($_POST['location_submit'])){
                       echo $row_ent_fetch['enterpreneur_name'];
                     echo '</td>';
                     
-
                     echo '<td>';
                       echo $row_ent_fetch['net_income'];
+                    echo '</td>';
+
+                    echo '<td>';
+                    ?>
+                      <button onclick="del_obj('<?php echo $row_ent_fetch['entry_id']; ?>', 'enterprise')">
+                      <i style="color:red" class="fas fa-times"> </i> 
+                    </button>
+                    <?php
                     echo '</td>';
                     echo '</tr>';
                   }
@@ -1405,13 +1461,13 @@ if(isset($_POST['location_submit'])){
                 $res_fetch_livestock = mysqli_query($link, $query_fetch_livestock);
                 $count_livestock_fetch = mysqli_num_rows($res_fetch_livestock);
                 if($count_livestock_fetch==0){
-                  echo "Enter Livestock Details.";
+                  // echo "Enter Livestock Details.";
                 }
 
                 else{
                   echo '<table class="table">';
                   echo '<tr>';
-                  echo '<th> Livestock </th> <th> Count </th> <th> Qty (in lts.) </th>  <th> Selling price </th> <th> Net Income </th>';
+                  echo '<th> Livestock </th> <th> Count </th> <th> Annual Income </th> <th> Net Income </th> <th> <i class="fas fa-trash-alt"></i> </th>';
                   echo '</tr>';
                   while($row_livestock_fetch = mysqli_fetch_assoc($res_fetch_livestock)){
                     echo '<tr>';
@@ -1422,19 +1478,25 @@ if(isset($_POST['location_submit'])){
                     echo '<td>';
                       echo $row_livestock_fetch['number'];
                     echo '</td>';
-                    
-                    echo '<td>';
-                      echo $row_livestock_fetch['qty'];
-                    echo '</td>';
 
                     echo '<td>';
-                      echo $row_livestock_fetch['rate'];
+                      echo $row_livestock_fetch['annual_income'];
                     echo '</td>';
 
                       echo '<td>';
                       echo $row_livestock_fetch['net_income'];
                     echo '</td>';
 
+                    echo '<td>';
+                    ?>
+
+                      <button onclick="del_obj('<?php echo $row_livestock_fetch['entry_id']; ?>', 'livestock')">
+                      <i style="color:red" class="fas fa-times"> </i> 
+                    </button>
+
+
+                    <?php
+                    echo '</td>';
 
                     echo '</tr>';
                   }
@@ -1451,12 +1513,12 @@ if(isset($_POST['location_submit'])){
                 $res_fetch_allied = mysqli_query($link, $query_fetch_allied);
                 $count_allied_fetch = mysqli_num_rows($res_fetch_allied);
                 if($count_allied_fetch==0){
-                  echo "Enter Allied Activity Details.";
+                  // echo "Enter Allied Activity Details.";
                 }
                 else{
                   echo '<table class="table">';
                   echo '<tr>';
-                  echo '<th> Activity </th> <th> Area (in acre) </th> <th> Production </th> <th> Net Annual Income </th>';
+                  echo '<th> Activity </th> <th> Area (in acre) </th> <th> Production </th> <th> Net Annual Income </th> <th> <i class="fas fa-trash-alt"></i> </th>';
                   echo '</tr>';
                   while($row_allied_fetch = mysqli_fetch_assoc($res_fetch_allied)){
                     echo '<tr>';
@@ -1476,19 +1538,15 @@ if(isset($_POST['location_submit'])){
                       echo $row_allied_fetch['net_annual'];
                     echo '</td>';
 
-                    // echo '<td>';
-                    //   echo $row_livestock_fetch['annual_income'];
-                    // echo '</td>';
+                    echo '<td>';
+                    ?>
 
-                    //   echo '<td>';
-                    //   echo $row_livestock_fetch['cost'];
-                    // echo '</td>';
+                    <button onclick="del_obj('<?php echo $row_allied_fetch['entry_id']; ?>', 'allied')">
+                      <i style="color:red" class="fas fa-times"> </i> 
+                    </button>
 
-                      echo '<td>';
-                      echo $row_livestock_fetch['net_income'];
+                    <?php
                     echo '</td>';
-
-
                     echo '</tr>';
                   }
                   echo '</table>';
@@ -1618,6 +1676,27 @@ function otheredu(a){
     document.getElementById('otherEduField').style.display="none";
   }
 }
+
+
+function del_obj(entry_id, category) {
+               // alert(status);
+                //alert(empid)
+                $.ajax({
+                    url: "delete_row.php",
+                    method: "POST",
+                    data: {
+                        entry_id: entry_id,
+                        category: category
+                    },
+                    success: function(data) {
+                        // $('#result').html(data);
+                        window.location = window.location;
+                        console.log(data);
+                    }
+                });
+            }
+
+
 </script>
 </body>
 </html>
