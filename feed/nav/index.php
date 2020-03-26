@@ -1002,70 +1002,7 @@ if(isset($_POST['location_submit'])){
     Modal Register Form</a> -->
 </div>
           
-          <button data-toggle="modal" data-target="#modalgeninfo" type="button" class="btn btn-success btn-lg btn-block"><i class="fas fa-address-book"></i> &nbsp; General Info</button>
-          <?php 
-            $query_loc_data = "SELECT * FROM family WHERE family_id='$fam_id'";
-                $res_loc_data = mysqli_query($link, $query_loc_data);
-                $row_loc_data = mysqli_fetch_assoc($res_loc_data);
-                if($count_loc==0){
-                // echo "ADD LOCATION DETAILS";
-              }
-              else{
-                echo '<table class="table">';
-
-                echo '<tr>';
-                echo '<td>';
-                  echo 'Year of BLS:';
-                echo '</td>';
-                echo '<td>';
-                  echo $row_loc_data['year_of_BLS'];
-                echo '</td>';
-                echo '</tr>';
-
-                 echo '<tr>';
-                echo '<td>';
-                  echo 'Date of BLS:';
-                echo '</td>';
-                echo '<td>';
-                  echo $row_loc_data['date'];
-                echo '</td>';
-                echo '</tr>';
-
-                echo '<tr>';
-                echo '<td>';
-                  echo 'Caste:';
-                echo '</td>';
-                echo '<td>';
-                  echo $row_loc_data['caste'];
-                echo '</td>';
-                echo '</tr>';
-
-                echo '<tr>';
-                echo '<td>';
-                  echo 'House Type:';
-                echo '</td>';
-                echo '<td>';
-                  echo $row_loc_data['house_type'];
-                echo '</td>';
-                echo '</tr>';
-
-                echo '<tr>';
-                echo '<td>';
-                  echo 'Toilet:';
-                echo '</td>';
-                echo '<td>';
-                  echo $row_loc_data['toilet'];
-                echo '</td>';
-                echo '</tr>';
-
-
-                echo '</table>';
-              }
-
-
-                ?>
-
-          <br>
+          
 
           <button data-toggle="modal" data-target="#modalfamilyleader" type="button" class="btn btn-success btn-lg btn-block"><i class="fas fa-map-marker"></i> &nbsp; Location</button>
           <br>
@@ -1135,6 +1072,73 @@ if(isset($_POST['location_submit'])){
               }
              ?>
           <br>
+
+          <button data-toggle="modal" data-target="#modalgeninfo" type="button" class="btn btn-success btn-lg btn-block"><i class="fas fa-address-book"></i> &nbsp; General Info</button>
+          <?php 
+            $query_loc_data = "SELECT * FROM family WHERE family_id='$fam_id'";
+                $res_loc_data = mysqli_query($link, $query_loc_data);
+                $row_loc_data = mysqli_fetch_assoc($res_loc_data);
+                if($count_loc==0){
+                // echo "ADD LOCATION DETAILS";
+              }
+              else{
+                echo '<table class="table">';
+
+                echo '<tr>';
+                echo '<td>';
+                  echo 'Year of BLS:';
+                echo '</td>';
+                echo '<td>';
+                  echo $row_loc_data['year_of_BLS'];
+                echo '</td>';
+                echo '</tr>';
+
+                 echo '<tr>';
+                echo '<td>';
+                  echo 'Date of BLS:';
+                echo '</td>';
+                echo '<td>';
+                  echo $row_loc_data['date'];
+                echo '</td>';
+                echo '</tr>';
+
+                echo '<tr>';
+                echo '<td>';
+                  echo 'Caste:';
+                echo '</td>';
+                echo '<td>';
+                  echo $row_loc_data['caste'];
+                echo '</td>';
+                echo '</tr>';
+
+                echo '<tr>';
+                echo '<td>';
+                  echo 'House Type:';
+                echo '</td>';
+                echo '<td>';
+                  echo $row_loc_data['house_type'];
+                echo '</td>';
+                echo '</tr>';
+
+                echo '<tr>';
+                echo '<td>';
+                  echo 'Toilet:';
+                echo '</td>';
+                echo '<td>';
+                  echo $row_loc_data['toilet'];
+                echo '</td>';
+                echo '</tr>';
+
+
+                echo '</table>';
+              }
+
+
+                ?>
+
+          <br>
+
+          
             <button data-toggle="modal" data-target="#modalfamilymember" type="button" class="btn btn-success btn-lg btn-block"><i class="fas fa-users"></i> &nbsp; Add Family Member</button>
             <br>
             <?php 
