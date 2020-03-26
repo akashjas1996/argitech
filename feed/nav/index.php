@@ -804,7 +804,7 @@ if(isset($_POST['location_submit'])){
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <select name="owned_land" class="browser-default custom-select">
-            <option value="Land_owned" disabled="disabled" selected>Farmer Type</option>
+            <option value="Land_owned" disabled="disabled" selected>Farmer Category</option>
             <option value="big">Big (More than 10 acre)</option>
             <option value="medium">Medium (5 to 10 acre)</option>
             <option value="small">Small (2.5 to 5 acre)</option>
