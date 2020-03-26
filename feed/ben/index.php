@@ -42,10 +42,9 @@ include '../inc/header.php';
         <div class="col-lg-6">
           <br><br><br>
             <center> <h1> 
-             Benificiary List
+             Family Profile
             </h1></center>
           <br><br><br>
-         
           <?php 
             $query_ben = "SELECT * FROM respondent";
             $res_ben = mysqli_query($link, $query_ben);
@@ -54,7 +53,6 @@ include '../inc/header.php';
             echo '<th>Respondent\'s Name</th> <th> Contact No. </th> ';
             echo '<tr>';
             while($row_ben = mysqli_fetch_assoc($res_ben)){
-             
               echo '<tr>';
               echo '<td>';
                  echo '<a href="../nav/?res='.$row_ben["res_id"].'">';
@@ -65,13 +63,10 @@ include '../inc/header.php';
                 echo $row_ben['res_id'];
               echo '</td>';
               echo '</tr>';
-              
             }
             echo '<table>';
           ?>
-
-
-<!-- Default form login -->
+            <!-- Default form login -->
         </div>
         <div class="col-lg-3">
         </div>  
