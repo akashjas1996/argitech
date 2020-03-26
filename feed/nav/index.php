@@ -1008,7 +1008,7 @@ if(isset($_POST['location_submit'])){
                 $res_loc_data = mysqli_query($link, $query_loc_data);
                 $row_loc_data = mysqli_fetch_assoc($res_loc_data);
                 if($count_loc==0){
-                echo "ADD LOCATION DETAILS";
+                // echo "ADD LOCATION DETAILS";
               }
               else{
                 echo '<table class="table">';
@@ -1071,7 +1071,7 @@ if(isset($_POST['location_submit'])){
           <br>
             <?php 
               if($count_loc==0){
-                echo "ADD LOCATION DETAILS";
+                // echo "ADD LOCATION DETAILS";
               }
               else{
                 
