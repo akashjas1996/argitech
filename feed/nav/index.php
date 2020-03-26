@@ -1677,8 +1677,16 @@ function otheredu(a){
   }
 }
 
-
 function del_obj(entry_id, category) {
+  var txt;
+  var r = confirm("Are you sure you want to delete?");
+  if (r == true) {
+    del_obj1(entry_id, category);
+  } 
+}
+
+
+function del_obj1(entry_id, category) {
                // alert(status);
                 //alert(empid)
                 $.ajax({
