@@ -1183,7 +1183,6 @@ if(isset($_POST['location_submit'])){
             }
             ?>
             <br>
-            <br>
             <button data-toggle="modal" data-target="#modaloccupation" type="button" class="btn btn-success btn-lg btn-block">
               <i class="fa fa-money-bill-alt"></i> &nbsp; Income Details</button>
            <br>
@@ -1243,7 +1242,6 @@ if(isset($_POST['location_submit'])){
             }
            ?>
            <br>
-           <br>
 
              <button data-toggle="modal" data-target="#modallandholding" type="button" class="btn btn-success btn-lg btn-block">
               <i class="fas fa-tractor"></i> &nbsp; Land Holding</button>
@@ -1298,7 +1296,6 @@ if(isset($_POST['location_submit'])){
               }
              }
              ?>
-             <br>
              <br>
                <button data-toggle="modal" data-target="#modalcropCultivation" type="button" class="btn btn-success btn-lg btn-block">
                 <i class="fas fa-seedling"></i> &nbsp; Crop Cultivation Details</button>
@@ -1355,11 +1352,6 @@ if(isset($_POST['location_submit'])){
                 }
               ?>
             <br>
-
-              
-          <br>
-           
-
 
            
 
@@ -1462,7 +1454,7 @@ if(isset($_POST['location_submit'])){
                   echo '</table>';
                 }
                 ?>
-                <br><br>
+                <br>
 
                 <button data-toggle="modal" data-target="#modaldailyWage" type="button" class="btn btn-success btn-lg btn-block">
                 <i class="fas fa-sign-language"></i> &nbsp; daily Wage/Labour Details</button>
