@@ -648,7 +648,7 @@ if(isset($_POST['location_submit'])){
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <select name="op_area" class="browser-default custom-select">
-            <option selected>TSRDS Operational Area</option>
+            <option disabled="disabled" selected>TSRDS Operational Area</option>
             <option value="Jamshedpur">Jamshedpur</option>
             <option value="Noamundi">Noamundi</option>
             <option value="West Bokaro">West Bokaro</option>
@@ -663,7 +663,7 @@ if(isset($_POST['location_submit'])){
 
         <div class="md-form mb-5">
            <select name="state" class="browser-default custom-select">
-            <option selected>State</option>
+            <option disabled="disabled" selected>State</option>
             <option value="Jharkhand">Jharkhand</option>
             <option value="Odisha">Odisha</option>
           </select>
@@ -671,7 +671,7 @@ if(isset($_POST['location_submit'])){
 
         <div class="md-form mb-4">
          <select name="district" class="browser-default custom-select">
-            <option selected>District</option>
+            <option disabled="disabled" selected>District</option>
             <option value="East Singhbhum">East Singhbhum</option>
             <option value="District 2">District 2</option>
             <option value="District 3">District 3</option>
