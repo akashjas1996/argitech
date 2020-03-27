@@ -363,17 +363,17 @@ if(isset($_POST['location_submit'])){
 
          <div class="md-form mb-4">
           <input onchange="cal_net_livestock()" name="ann_income_livestock" type="number" id="orangeForm-income_livestock" class="form-control">
-          <label for="orangeForm-income_livestock">Annual Income</label>
+          <label for="orangeForm-income_livestock">Annual Income(₹)</label>
         </div>
 
         <div class="md-form mb-4">
           <input onchange="cal_net_livestock()" name="rearing_cost_livestock" type="number" id="orangeForm-cost_livestock" class="form-control">
-          <label for="orangeForm-cost_livestock">Cost of rearing</label>
+          <label for="orangeForm-cost_livestock">Cost of rearing(₹)</label>
         </div>
 
         <div class="md-form mb-4">
           <input readonly="readonly" name="net_income_livestock" type="number" id="orangeForm-netincome_livestock" class="form-control">
-          <label for="orangeForm-netincome_livestock">Net Annual Income</label>
+          <label for="orangeForm-netincome_livestock">Net Annual Income(₹)</label>
         </div>
 
       </div>
@@ -423,17 +423,17 @@ if(isset($_POST['location_submit'])){
 
         <div class="md-form mb-4">
           <input onchange="cal_net_allied()" name="ann_income_allied" type="number" id="orangeForm-sp_ann_income_allied" class="form-control">
-          <label for="orangeForm-sp_ann_income_allied">Annual Income</label>
+          <label for="orangeForm-sp_ann_income_allied">Annual Income(₹)</label>
         </div>
 
          <div class="md-form mb-4">
           <input onchange="cal_net_allied()" name="ann_exp_allied" type="number" id="orangeForm-annualexp_allied" class="form-control">
-          <label for="orangeForm-annualexp_allied">Annual Expenditure</label>
+          <label for="orangeForm-annualexp_allied">Annual Expenditure(₹)</label>
         </div>
 
         <div class="md-form mb-4">
           <input readonly="readonly" name="net_inc_allied" type="number" id="orangeForm-netannual_allied" class="form-control">
-          <label for="orangeForm-netannual_allied">Net Annual</label>
+          <label for="orangeForm-netannual_allied">Net Annual(₹)</label>
         </div>
 
       </div>
@@ -521,7 +521,7 @@ if(isset($_POST['location_submit'])){
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Daily Wage</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Daily Wage(₹)</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -550,12 +550,12 @@ if(isset($_POST['location_submit'])){
 
         <div class="md-form mb-4">
           <input onchange="cal_wage()" name="wage_dailywage" type="number" id="orangeForm-passdailywage4" class="form-control">
-          <label data-error="wrong" data-success="right" for="orangeForm-passdailywage4">Wage</label>
+          <label data-error="wrong" data-success="right" for="orangeForm-passdailywage4">Wage(₹)</label>
         </div>
 
         <div class="md-form mb-4">
           <input name="income_dailywage" type="number" id="orangeForm-passdailywage5" class="form-control">
-          <label data-error="wrong" data-success="right" for="orangeForm-passdailywage5">Annual Income</label>
+          <label data-error="wrong" data-success="right" for="orangeForm-passdailywage5">Annual Income(₹)</label>
         </div>
 
       </div>
@@ -604,12 +604,12 @@ if(isset($_POST['location_submit'])){
 
         <div class="md-form mb-4">
           <input onchange="cal_net_enterprise()" name="annual_income_enterprise" type="number" id="orangeForm-passentinc" class="form-control">
-          <label data-error="wrong" data-success="right" for="orangeForm-passentinc">Annual Income</label>
+          <label data-error="wrong" data-success="right" for="orangeForm-passentinc">Annual Income(₹)</label>
         </div>
 
         <div class="md-form mb-4">
           <input readonly="readonly" name="net_income_enterprise" type="number" id="orangeForm-passentnet" class="form-control">
-          <label data-error="wrong" data-success="right" for="orangeForm-passentnet">Net Income</label>
+          <label data-error="wrong" data-success="right" for="orangeForm-passentnet">Net Income(₹)</label>
         </div>
 
          <div class="md-form mb-4">
@@ -767,12 +767,12 @@ if(isset($_POST['location_submit'])){
 
         <div class="md-form mb-4">
           <input name="crop_tot_income" type="number" id="total_income_field" class="form-control">
-          <label data-error="wrong" data-success="right" for="total_income_field">Total Income</label>
+          <label data-error="wrong" data-success="right" for="total_income_field">Total Income(₹)</label>
         </div>
 
          <div class="md-form mb-4">
           <input onchange="cal_net_total(), cal_costofcult()" name="crop_total_expenditure" type="number" id="total_expenditure_field" class="form-control">
-          <label data-error="wrong" data-success="right" for="total_expenditure_field">Total Expediture</label>
+          <label data-error="wrong" data-success="right" for="total_expenditure_field">Total Expediture(₹)</label>
         </div>
 
          <div class="md-form mb-4">
@@ -783,7 +783,7 @@ if(isset($_POST['location_submit'])){
 
         <div class="md-form mb-4">
           <input readonly="readonly" name="crop_net_income" type="number" id="orangeForm-pass_netincome" class="form-control">
-          <label data-error="wrong" data-success="right" for="orangeForm-pass_netincome">Net Income</label>
+          <label data-error="wrong" data-success="right" for="orangeForm-pass_netincome">Net Income(₹)</label>
         </div>
       </div>
       <div class="modal-footer d-flex justify-content-center">
@@ -837,7 +837,7 @@ if(isset($_POST['location_submit'])){
 
         <div class="md-form mb-4">
           <input onchange="cal_irr_land()" name="irrigated_land" type="number" id="irrigated_land_count" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="orangeForm-pass_irr1">Irrigated land (in acre0</label>
+          <label data-error="wrong" data-success="right" for="orangeForm-pass_irr1">Irrigated land (in acre)</label>
         </div>
 
         <div class="md-form mb-4">
@@ -869,8 +869,6 @@ if(isset($_POST['location_submit'])){
 
 
 <!-- MODAL END FOT LAND HOLDING -->
-
-
 <!-- MODAL START FOR FAMILY MEMBER -->
 <form action="" method="POST">
 <div class="modal fade" id="modalfamilymember" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -997,7 +995,7 @@ if(isset($_POST['location_submit'])){
         <div class="md-form mb-5">
           <i class="fas fa-rupee-sign prefix grey-text"></i>
           <input name="annual_inc" type="number" id="orangeForm-email3" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="orangeForm-email3">Annual Income</label>
+          <label data-error="wrong" data-success="right" for="orangeForm-email3">Annual Income(₹)</label>
         </div>
       </div>
       <div class="modal-footer d-flex justify-content-center">
@@ -1018,7 +1016,6 @@ if(isset($_POST['location_submit'])){
 <button data-toggle="modal" data-target="#modalfamilyleader" type="button" class="btn btn-success btn-lg btn-block"><i class="fas fa-map-marker"></i> &nbsp; Location</button>
           <br>
             <?php 
-
             $query_loc_data = "SELECT * FROM family WHERE family_id='$fam_id'";
                 $res_loc_data = mysqli_query($link, $query_loc_data);
                 $row_loc_data = mysqli_fetch_assoc($res_loc_data);
@@ -1026,7 +1023,6 @@ if(isset($_POST['location_submit'])){
                 // echo "ADD LOCATION DETAILS";
               }
               else{
-                
                 echo '
                 <table class="table">
                   <tr>
@@ -1140,7 +1136,6 @@ if(isset($_POST['location_submit'])){
                   echo $row_loc_data['toilet'];
                 echo '</td>';
                 echo '</tr>';
-
 
                 echo '</table>';
               }
@@ -1267,7 +1262,7 @@ if(isset($_POST['location_submit'])){
              }
              else{
               echo '<table class="table">';
-              echo "<th> Ownership Type </th> <th> Farmer Type </th> <th> Total Land Holding </th> <th>Irrigated Land Holding</th> <th> <i class='fas fa-trash-alt'></i> </th>";
+              echo "<th> Ownership Type </th> <th> Farmer Type </th> <th> Total Land (in acre) </th> <th>Irrigated Land (in acre)</th> <th> <i class='fas fa-trash-alt'></i> </th>";
               while($row_check_land = mysqli_fetch_assoc($res_check_land)){
                 echo "<tr>";
 
@@ -1327,7 +1322,7 @@ if(isset($_POST['location_submit'])){
                 else{
                   echo '<table class="table">';
                   echo '<tr>';
-                  echo '<th> Category </th> <th> Name </th> <th> Cultivated Area </th> <th> Yield </th> <th> Net Income </th> <th> <i class="fas fa-trash-alt"></i> </th>';
+                  echo '<th> Category </th> <th> Name </th> <th> Cultivated Area (acre) </th> <th> Yield (Qtl/acre) </th> <th> Net Income (₹) </th> <th> <i class="fas fa-trash-alt"></i> </th>';
                   echo '</tr>';
                   while($row_Cult_fetch = mysqli_fetch_assoc($res_fetch_cult)){
                     echo '<tr>';
@@ -1361,8 +1356,6 @@ if(isset($_POST['location_submit'])){
 
                     <?php
                     echo '</td>';
-
-
                     echo '</tr>';
                   }
                   echo '</table>';
@@ -1386,7 +1379,7 @@ if(isset($_POST['location_submit'])){
                 else{
                   echo '<table class="table">';
                   echo '<tr>';
-                  echo '<th> Livestock </th> <th> Count </th> <th> Annual Income </th> <th> Net Income </th> <th> <i class="fas fa-trash-alt"></i> </th>';
+                  echo '<th> Livestock </th> <th> Count </th> <th> Annual Income(₹) </th> <th> Net Income(₹) </th> <th> <i class="fas fa-trash-alt"></i> </th>';
                   echo '</tr>';
                   while($row_livestock_fetch = mysqli_fetch_assoc($res_fetch_livestock)){
                     echo '<tr>';
@@ -1437,7 +1430,7 @@ if(isset($_POST['location_submit'])){
                 else{
                   echo '<table class="table">';
                   echo '<tr>';
-                  echo '<th> Activity </th> <th> Area (in acre) </th> <th> Production </th> <th> Net Annual Income </th> <th> <i class="fas fa-trash-alt"></i> </th>';
+                  echo '<th> Activity </th> <th> Area (in acre) </th> <th> Production </th> <th> Net Annual Income (₹) </th> <th> <i class="fas fa-trash-alt"></i> </th>';
                   echo '</tr>';
                   while($row_allied_fetch = mysqli_fetch_assoc($res_fetch_allied)){
                     echo '<tr>';
@@ -1486,7 +1479,7 @@ if(isset($_POST['location_submit'])){
                 else{
                   echo '<table class="table">';
                   echo '<tr>';
-                  echo '<th> Members Involved </th> <th> Days Involved </th> <th> Place </th> <th> Wage </th> <th> Annual Income </th> <th> <i class="fas fa-trash-alt"></i> </th>';
+                  echo '<th> Members Involved </th> <th> Days Involved </th> <th> Place </th> <th> Wage(₹) </th> <th> Annual Income(₹) </th> <th> <i class="fas fa-trash-alt"></i> </th>';
                   echo '</tr>';
                   while($row_dailywage_fetch = mysqli_fetch_assoc($res_fetch_dailywage)){
                     echo '<tr>';
@@ -1539,7 +1532,7 @@ if(isset($_POST['location_submit'])){
                 else{
                   echo '<table class="table">';
                   echo '<tr>';
-                  echo '<th> ENTERPRISE NAME </th> <th> ENTERPRENEUR NAME </th> <th> Net Income </th> <th> <i class="fas fa-trash-alt"></i> </th>';
+                  echo '<th> Enterprise </th> <th> Enterpreneur </th> <th> Net Income(₹) </th> <th> <i class="fas fa-trash-alt"></i> </th>';
                   echo '</tr>';
                   while($row_ent_fetch = mysqli_fetch_assoc($res_fetch_ent)){
                     echo '<tr>';
@@ -1568,7 +1561,6 @@ if(isset($_POST['location_submit'])){
                 }
                 ?>
           <br>
-
           <br>
 
 <!-- Default form login -->
