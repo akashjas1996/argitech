@@ -209,6 +209,7 @@ if(isset($_POST['land_holding']) && isset($_POST['owned_land'])){
   $irrigated_land = $_POST['irrigated_land'];
   $total_land = $_POST['total_land'];
   $irr_percentage = $_POST['irrigated_percentage'];
+  $ownership_type = $_POST['ownership_type'];
 
   if(isset($_POST['irrigation_source']))
     $irrigation_source = $_POST['irrigation_source'];
@@ -221,7 +222,7 @@ if(isset($_POST['land_holding']) && isset($_POST['owned_land'])){
   }
  
 
-  $query_land = "INSERT INTO land_holding(`family_id`, `land_owned`, `land_category`,`irrigated_land`, `irrigated_percentage`) VALUES('$fam_id', '$total_land', '$owned_land', '$irrigated_land', '$irr_percentage')";
+  $query_land = "INSERT INTO land_holding(`family_id`, `land_owned`, `land_category`,`irrigated_land`, `irrigated_percentage`, `ownership_type`) VALUES('$fam_id', '$total_land', '$owned_land', '$irrigated_land', '$irr_percentage', '$ownership_type')";
   echo $query_land;
   $res_land = mysqli_query($link, $query_land);
 }
@@ -574,7 +575,7 @@ if(isset($_POST['location_submit'])){
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Enterprise / Modal Enterprise</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Enterprise / Business details</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -597,18 +598,18 @@ if(isset($_POST['location_submit'])){
         </div>
 
         <div class="md-form mb-4">
-          <input name="ann_exp_enterprise" type="number" id="orangeForm-passdailywage3" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="orangeForm-passdailywage3">Annual Expediture</label>
+          <input onchange="cal_net_enterprise()" name="ann_exp_enterprise" type="number" id="orangeForm-passenterpriseexp" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="orangeForm-passenterpriseexp">Annual Expediture</label>
         </div>
 
         <div class="md-form mb-4">
-          <input name="annual_income_enterprise" type="number" id="orangeForm-passdailywage4" class="form-control">
-          <label data-error="wrong" data-success="right" for="orangeForm-passdailywage4">Annual Income</label>
+          <input onchange="cal_net_enterprise()" name="annual_income_enterprise" type="number" id="orangeForm-passentinc" class="form-control">
+          <label data-error="wrong" data-success="right" for="orangeForm-passentinc">Annual Income</label>
         </div>
 
         <div class="md-form mb-4">
-          <input name="net_income_enterprise" type="number" id="orangeForm-passdailywage5" class="form-control">
-          <label data-error="wrong" data-success="right" for="orangeForm-passdailywage5">Net Income</label>
+          <input readonly="readonly" name="net_income_enterprise" type="number" id="orangeForm-passentnet" class="form-control">
+          <label data-error="wrong" data-success="right" for="orangeForm-passentnet">Net Income</label>
         </div>
 
          <div class="md-form mb-4">
@@ -811,8 +812,8 @@ if(isset($_POST['location_submit'])){
       <div class="modal-body mx-3">
 
         <div class="md-form mb-4">
-          <select name="owned_land" class="browser-default custom-select">
-            <option value="Land_owned" disabled="disabled" selected>Ownership Type</option>
+          <select name="ownership_type" class="browser-default custom-select">
+            <option value="Land_owned" selected>Ownership Type</option>
             <option value="Leased">Leased</option>
             <option value="Owned">Owned</option>
           </select>
@@ -1179,7 +1180,6 @@ if(isset($_POST['location_submit'])){
                     echo '</td>';
                     echo '<td>';
                     $entry_id_member = $row_members['member_id'];
-                    
                     ?>
                     <button onclick="del_obj('<?php echo $row_members['member_id']; ?>', 'member')"  name="del_member" type="submit">
                       <i style="color:red" class="fas fa-times"> </i> 
@@ -1267,9 +1267,14 @@ if(isset($_POST['location_submit'])){
              }
              else{
               echo '<table class="table">';
-              echo "<th> Farmer Type </th> <th> Total Land Holding </th> <th>Irrigated Land Holding</th> <th> <i class='fas fa-trash-alt'></i> </th>";
+              echo "<th> Ownership Type </th> <th> Farmer Type </th> <th> Total Land Holding </th> <th>Irrigated Land Holding</th> <th> <i class='fas fa-trash-alt'></i> </th>";
               while($row_check_land = mysqli_fetch_assoc($res_check_land)){
                 echo "<tr>";
+
+                echo "<td>";
+                  echo $row_check_land['ownership_type'];
+                echo "</td>";
+
                 echo "<td>";
                   echo $row_check_land['land_category'];
                 echo "</td>";
@@ -1680,6 +1685,13 @@ function cal_net_livestock(){
   document.getElementById('orangeForm-netincome_livestock').value = net_income;
 }
 
+function cal_net_enterprise(){
+  ann_income_ent = document.getElementById('orangeForm-passentinc').value;
+  ent_exp = document.getElementById('orangeForm-passenterpriseexp').value;
+  net_income_ent = ann_income_ent-ent_exp;
+  document.getElementById('orangeForm-passentnet').value = net_income_ent;
+}
+
 function otheredu(a){
   if(a=='Other'){
     document.getElementById('otherEduField').style.display="block";
@@ -1694,13 +1706,12 @@ function del_obj(entry_id, category) {
   var r = confirm("Are you sure you want to delete?");
   if (r == true) {
     del_obj1(entry_id, category);
-  } 
+  }
 }
-
 
 function del_obj1(entry_id, category) {
                // alert(status);
-                //alert(empid)
+                //alert(empid);
                 $.ajax({
                     url: "delete_row.php",
                     method: "POST",
@@ -1712,7 +1723,6 @@ function del_obj1(entry_id, category) {
                         // $('#result').html(data);
                         // window.location = window.location();
                         window.location.href = window.location.href
-
                         console.log(data);
                     }
                 });
