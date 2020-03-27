@@ -208,6 +208,7 @@ if(isset($_POST['land_holding']) && isset($_POST['owned_land'])){
   $owned_land = $_POST['owned_land'];
   $irrigated_land = $_POST['irrigated_land'];
   $total_land = $_POST['total_land'];
+  $irr_percentage = $_POST['irrigated_percentage'];
 
   if(isset($_POST['irrigation_source']))
     $irrigation_source = $_POST['irrigation_source'];
@@ -220,7 +221,8 @@ if(isset($_POST['land_holding']) && isset($_POST['owned_land'])){
   }
  
 
-  $query_land = "INSERT INTO land_holding(`family_id`, `land_owned`, `land_category`,`irrigated_land`) VALUES('$fam_id', '$total_land', '$owned_land', '$irrigated_land')";
+  $query_land = "INSERT INTO land_holding(`family_id`, `land_owned`, `land_category`,`irrigated_land`, `irrigated_percentage`) VALUES('$fam_id', '$total_land', '$owned_land', '$irrigated_land', '$irr_percentage')";
+  echo $query_land;
   $res_land = mysqli_query($link, $query_land);
 }
 
@@ -807,7 +809,16 @@ if(isset($_POST['location_submit'])){
         </button>
       </div>
       <div class="modal-body mx-3">
-        <div class="md-form mb-5">
+
+        <div class="md-form mb-4">
+          <select name="owned_land" class="browser-default custom-select">
+            <option value="Land_owned" disabled="disabled" selected>Ownership Type</option>
+            <option value="Leased">Leased</option>
+            <option value="Owned">Owned</option>
+          </select>
+        </div>
+
+        <div class="md-form mb-4">
           <select name="owned_land" class="browser-default custom-select">
             <option value="Land_owned" disabled="disabled" selected>Farmer Category</option>
             <option value="big">Big (More than 10 acre)</option>
@@ -820,15 +831,16 @@ if(isset($_POST['location_submit'])){
         
          <div class="md-form mb-4">
           <input onchange="cal_irr_land()" name="total_land" type="number" id="total_land_count" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="orangeForm-pass_irr">Total land</label>
+          <label data-error="wrong" data-success="right" for="orangeForm-pass_irr">Total land (in acre)</label>
         </div>
 
         <div class="md-form mb-4">
           <input onchange="cal_irr_land()" name="irrigated_land" type="number" id="irrigated_land_count" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="orangeForm-pass_irr1">Irrigated land</label>
+          <label data-error="wrong" data-success="right" for="orangeForm-pass_irr1">Irrigated land (in acre0</label>
         </div>
 
         <div class="md-form mb-4">
+          <p> <b> Irrigation Sources </b> </p>
           <Select  multiple size=5 name="irrigation_source[]" id="orangeForm-pass4" class="form-control validate">
             <option value = "Pond">Pond</option>
             <option value = "Well">Well</option>
@@ -840,14 +852,14 @@ if(isset($_POST['location_submit'])){
         </div>
 
         <div class="md-form mb-4">
-          <input id="irrigated_land_percentage" disabled="disabled" name="irrigated_percentage" type="text"  class="form-control validate" placeholder="Percentage of Irrigated land">
+          <input id="irrigated_land_percentage" readonly="readonly" name="irrigated_percentage" type="text"  class="form-control validate" placeholder="Percentage of Irrigated land">
           <!-- <label data-error="wrong" data-success="right" for="irrigated_land_percentage"></label> -->
         </div>
        
       
       </div>
       <div class="modal-footer d-flex justify-content-center">
-        <input name="land_holding" type="submit" name="irrigation_submit" class="btn btn-deep-orange"></button>
+        <input name="land_holding" type="submit" class="btn btn-deep-orange"></button>
       </div>
     </div>
   </div>
@@ -1622,7 +1634,7 @@ function cal_irr_land(){
   console.log(irrigated_land);
   percentage_irr_land = (irrigated_land/tot_land*100);
   percentage_irr_land = parseFloat(percentage_irr_land).toFixed(2);
-  document.getElementById('irrigated_land_percentage').value=percentage_irr_land+'%';
+  document.getElementById('irrigated_land_percentage').value=percentage_irr_land;
 }
 
 function cal_yield(){
@@ -1698,7 +1710,9 @@ function del_obj1(entry_id, category) {
                     },
                     success: function(data) {
                         // $('#result').html(data);
-                        window.location = window.location;
+                        // window.location = window.location();
+                        window.location.href = window.location.href
+
                         console.log(data);
                     }
                 });
