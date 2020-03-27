@@ -1168,7 +1168,12 @@ if(isset($_POST['location_submit'])){
                     echo $row_members['age'];
                     echo '</td>
                     <td>';
-                    echo $row_members['ed_status'];
+                    if($row_members['ed_status']=='Other'){
+                      echo $row_members['edu_other'];
+                    }
+                    else{
+                      echo $row_members['ed_status'];
+                    }
                     echo '</td>
                     <td>';
                     echo $row_members['skill'];
