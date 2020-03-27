@@ -209,6 +209,7 @@ if(isset($_POST['land_holding']) && isset($_POST['owned_land'])){
   $irrigated_land = $_POST['irrigated_land'];
   $total_land = $_POST['total_land'];
   $irr_percentage = $_POST['irrigated_percentage'];
+  $irr_percentage = rtrim($irr_percentage, "%");
   $ownership_type = $_POST['ownership_type'];
 
   if(isset($_POST['irrigation_source']))
@@ -831,13 +832,13 @@ if(isset($_POST['location_submit'])){
         </div>
         
          <div class="md-form mb-4">
-          <input onchange="cal_irr_land()" name="total_land" type="number" id="total_land_count" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="orangeForm-pass_irr">Total land (in acre)</label>
+          <input onchange="cal_irr_land()" name="total_land" type="number" id="total_land_count" class="form-control">
+          <label for="orangeForm-pass_irr">Total land (in acre)</label>
         </div>
 
         <div class="md-form mb-4">
-          <input onchange="cal_irr_land()" name="irrigated_land" type="number" id="irrigated_land_count" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="orangeForm-pass_irr1">Irrigated land (in acre)</label>
+          <input onchange="cal_irr_land()" name="irrigated_land" type="number" id="irrigated_land_count" class="form-control">
+          <label for="orangeForm-pass_irr1">Irrigated land (in acre)</label>
         </div>
 
         <div class="md-form mb-4">
@@ -1267,7 +1268,7 @@ if(isset($_POST['location_submit'])){
              }
              else{
               echo '<table class="table">';
-              echo "<th> Ownership Type </th> <th> Farmer Type </th> <th> Total Land (in acre) </th> <th>Irrigated Land (in acre)</th> <th> <i class='fas fa-trash-alt'></i> </th>";
+              echo "<th> Ownership Type </th> <th> Farmer Type </th> <th> Total Land (in acre) </th> <th>Irrigated Land (in acre)</th> <th> % of Irrigated Land </th> <th> <i class='fas fa-trash-alt'></i> </th>";
               while($row_check_land = mysqli_fetch_assoc($res_check_land)){
                 echo "<tr>";
 
@@ -1285,6 +1286,11 @@ if(isset($_POST['location_submit'])){
 
                  echo "<td>";
                  echo $row_check_land['irrigated_land'];
+                echo "</td>";
+
+                echo "<td>";
+                 echo $row_check_land['irrigated_percentage'];
+                 echo '%';
                 echo "</td>";
 
 
@@ -1636,7 +1642,7 @@ function cal_irr_land(){
   console.log(irrigated_land);
   percentage_irr_land = (irrigated_land/tot_land*100);
   percentage_irr_land = parseFloat(percentage_irr_land).toFixed(2);
-  document.getElementById('irrigated_land_percentage').value=percentage_irr_land;
+  document.getElementById('irrigated_land_percentage').value=percentage_irr_land+'%';
 }
 
 function cal_yield(){
