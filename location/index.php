@@ -2,7 +2,12 @@
 <?php include '../sidebar.php'; ?>
 <?php include '../content.php'; ?>
 <?php include '../dbconnection.php'; ?>
+<head>
 
+<link rel="stylesheet" href="
+https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
 <style>
     .canvasjs-chart-credit{
         display: none;
@@ -11,6 +16,8 @@
 <h1></h1>
 
 <div class="container-fluid">
+  <center> <h2>Region Wise</h2> </center>
+  <br>
     <div class="row">
         <table class="table table-striped table-bordered">
   <!-- <thead class="thead-dark">
@@ -354,10 +361,6 @@
         ?>
       </td>
 
-
-
-
-
     </tr>
     <tr>
       <th scope="row">Village</th>
@@ -371,6 +374,30 @@
 
   </tbody>
 </table>
+<br>
+<hr>
+
+
+<center> <h2>TSRDS Operational Area Wise</h2> </center>
+<br>
+<style type="text/css">
+  .btn{
+    margin:5px;
+  }
+
+</style>
+<div style="display: flex; justify-content: center;">
+<button class="btn btn-default">Bamnipal</i></button>
+<button class="btn btn-default">Gomardih</i></button>
+<button class="btn btn-default">Gopalpur</i></button>
+<button class="btn btn-default">Jamadoba</i></button>
+<button class="btn btn-default">Jamshedpur</i></button>
+<button class="btn btn-default">Joda</i></button>
+<button class="btn btn-default">Kalinga Nagar</i></button>
+<button class="btn btn-default">Noamundi</i></button>
+<button class="btn btn-default">Sukinda</i></button>
+<button class="btn btn-default">West Bokaro</i></button>
+</div>
     </div>
 </div>
 
