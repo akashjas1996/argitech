@@ -661,7 +661,8 @@ if(isset($_POST['location_submit'])){
             <option value="Noamundi">Noamundi</option>
             <option value="West Bokaro">West Bokaro</option>
             <option value="Jamadoba">Jamadoba</option>
-            <option value="Kaling Nagar">Kaling Nagar</option>
+            <option value="Kaling Nagar">Kalinga Nagar</option>
+            <option value="Kaling Nagar">Gomardih</option>
             <option value="Sukinda">Sukinda</option>
             <option value="Bamnipal">Bamnipal</option>
             <option value="Joda">Joda</option>
@@ -751,7 +752,7 @@ if(isset($_POST['location_submit'])){
 
         <div class="md-form mb-4">
           <input onchange="cal_total_income(), cal_yield()" name="crop_production" type="number" id="total_production" class="form-control">
-          <label data-error="wrong" data-success="right" for="total_production">Total Production</label>
+          <label data-error="wrong" data-success="right" for="total_production">Total Production(in acre)</label>
         </div>
 
         <div class="md-form mb-4">
@@ -1319,7 +1320,7 @@ if(isset($_POST['location_submit'])){
               }
              }
              ?>
-             <br>
+             <br><br>
                <button data-toggle="modal" data-target="#modalcropCultivation" type="button" class="btn btn-success btn-lg btn-block">
                 <i class="fas fa-seedling"></i> &nbsp; Crop Cultivation Details</button>
             <br>
