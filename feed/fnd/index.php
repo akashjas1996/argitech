@@ -38,6 +38,12 @@ include '../inc/header.php';
   <?php 
     if(isset($_GET['src'])){
     $search_data = $_GET['src'];
+    $query_ben = "SELECT * FROM respondent WHERE name LIKE '$search_data%' OR res_id LIKE '$search_data%'";
+    }
+            else{
+              $search_data = "";
+              $query_ben = "SELECT * FROM respondent";
+            }
   ?>
   <div style="height: 100vh">
     <div class="container">
@@ -57,11 +63,7 @@ include '../inc/header.php';
 
 
            <?php
-            $query_ben = "SELECT * FROM respondent WHERE name LIKE '$search_data%' OR res_id LIKE '$search_data%'";
-           }
-            else{
-              $query_ben = "SELECT * FROM respondent";
-            }
+            
             $res_ben = mysqli_query($link, $query_ben);
             while($row_ben = mysqli_fetch_assoc($res_ben)){ 
               $fam_id = $row_ben['family_id']; ?>
