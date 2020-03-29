@@ -404,11 +404,15 @@ if(isset($_POST['location_submit'])){
         <div class="md-form mb-5">
           <select name="name_allied" class="browser-default custom-select">
             <option disabled="disabled" selected>Allied Activity</option>
-            <option value="Cow">Horticulture(Fruits)</option>
-            <option value="Ox">Floriculture</option>
-            <option value="Buffallow">Sericulture</option>
-            <option value="Goat">Apiculture</option>
-            <option value="Sheep">Pisciculture</option>
+            <option value="Apiculture">Apiculture</option>
+            <option value="Floriculture">Fishery</option>
+            <option value="Floriculture">Floriculture</option>
+            <option value="Horticulture">Horticulture(Fruits)</option>
+            <option value="Pisciculture">Pisciculture</option>
+            <option value="Sericulture">Sericulture</option>
+            <option value="Tasar">Tasar</option>
+            <option value="Lac">LAC</option>
+            <option value="Other">Other</option>
           </select>
         </div>
 

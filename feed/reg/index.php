@@ -19,15 +19,12 @@ function redirect($url)
         echo '</noscript>'; exit;
     }
 }
-
-if(isset($_POST['login_pressed'])){
-  $username = $_POST['username'];
-  $password =  $_POST['password'];
-
-  if($username=='admin' && $password =="tata123"){
-    echo "LOGIN";
-    $_SESSION['userid'] = "admin_tata"; 
-  }
+if(!isset($_SESSION['role'])){
+  echo "<h1>BAD</h1>";
+}
+if(!isset($_SESSION['role'])=='CRP'){
+  echo $_SESSION['role'];
+  redirect('../');
 }
 
 if(isset($_POST['reg_pressed'])){

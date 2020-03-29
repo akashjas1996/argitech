@@ -1,5 +1,6 @@
-<?php 
+<?php
 session_start();
+include '../dbconnection.php';
 
 function redirect($url)
 {
@@ -24,12 +25,20 @@ if(isset($_POST['login_pressed'])){
   $username = $_POST['username'];
   $password =  $_POST['password'];
 
-  if($username=='admin' && $password =="tata123"){
-    $_SESSION['userid'] = "admin_tata";
+  $query_login = "SELECT * FROM user_CRP WHERE username='$username' AND password='$password'";
+  $res_login = mysqli_query($link, $query_login);
+  if(mysqli_num_rows($res_login)>0){
+    $row_login = mysqli_fetch_assoc($res_login);
+    $_SESSION['role'] = "CRP";
+    $_SESSION['userid'] = $row_login['entry_id'];
+    $_SESSION['name'] = $row_login['name'];
+
+    // echo $_SESSION['role'];
+    // echo $_SESSION['userid'];
+    // echo $_SESSION['name'];
     redirect('reg/');
   }
 }
-
 ?>
 
 <!DOCTYPE html>

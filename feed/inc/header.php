@@ -1,8 +1,14 @@
 <!--Navbar -->
+
+<?php 
+if(isset($_SESSION['name'])){
+  $name_tag = $_SESSION['name'];
+}
+?>
 <nav class="mb-1 navbar navbar-expand-lg navbar-dark green accent-9">
   <a class="navbar-brand" href="../reg/">Registration</a>
   <a class="navbar-brand" href="../ben/">Baseline</a>
-  <a class="navbar-brand" href="#">Interventions</a>
+  <a class="navbar-brand" href="../intv/">Interventions</a>
   <a class="navbar-brand" href="#">Reports</a>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4"
@@ -24,10 +30,10 @@
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-user"></i> Profile </a>
+          <i class="fas fa-user"></i> <?php echo $name_tag ?> </a>
         <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
           <a class="dropdown-item" href="#">My account</a>
-          <a class="dropdown-item" href="#">Log out</a>
+          <a class="dropdown-item" href="../inc/logout.php">Log out</a>
         </div>
       </li>
     </ul>
