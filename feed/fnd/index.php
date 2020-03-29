@@ -34,6 +34,11 @@ include '../inc/header.php';
   <!--?php include '../inc/header.php'?-->
 
   <!-- Start your project here-->  
+
+  <?php 
+    if(isset($_GET['src'])){
+    $search_data = $_GET['src'];
+  ?>
   <div style="height: 100vh">
     <div class="container">
       <div class="row">
@@ -42,15 +47,21 @@ include '../inc/header.php';
         <div class="col-lg-6">
           <br>
             <center>
-             <div class="active-cyan-4 mb-4">
-              <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-            </div>
+             <form action="" method="GET" class="form-inline md-form mr-auto mb-4">
+  <input value='<?php echo $search_data
+  ?>' name="src" style="width: 75%" class="form-control mr-sm-4" type="text" placeholder="Search" aria-label="Search">
+  <button class="btn btn-outline-success btn-rounded btn-sm my-0" type="submit">Search</button>
+</form>
             </center>
           <br><br>
 
 
-           <?php 
-            $query_ben = "SELECT * FROM respondent";
+           <?php
+            $query_ben = "SELECT * FROM respondent WHERE name LIKE '$search_data%' OR res_id LIKE '$search_data%'";
+           }
+            else{
+              $query_ben = "SELECT * FROM respondent";
+            }
             $res_ben = mysqli_query($link, $query_ben);
             while($row_ben = mysqli_fetch_assoc($res_ben)){ 
               $fam_id = $row_ben['family_id']; ?>
