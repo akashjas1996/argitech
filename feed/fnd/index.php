@@ -48,7 +48,7 @@ include '../inc/header.php';
           <br>
             <center>
              <form action="" method="GET" class="form-inline md-form mr-auto mb-4">
-  <input value='<?php echo $search_data
+  <input value='<?php echo $search_data;
   ?>' name="src" style="width: 75%" class="form-control mr-sm-4" type="text" placeholder="Search" aria-label="Search">
   <button class="btn btn-outline-success btn-rounded btn-sm my-0" type="submit">Search</button>
 </form>
