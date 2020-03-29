@@ -65,13 +65,17 @@ include '../inc/header.php';
           $res_loc_details = mysqli_query($link, $query_loc_details);
           $row_loc_details = mysqli_fetch_assoc($res_loc_details);
         ?>
-        <b><p style="line-height: 10px"> <i class="fas fa-phone blue-text pr-2"></i> <?php echo $row_ben['res_id']; ?>
-        &nbsp;&nbsp; <i class="fas fa-users blue-text pr-2"></i>
+        <b><p style="line-height: 10px"> 
+          <i class="fas fa-phone blue-text pr-2"></i> <?php echo $row_ben['res_id']; ?>
+        &nbsp;&nbsp; 
+        <i class="fas fa-users blue-text pr-2"></i>
         <?php 
         $q_count_mem="SELECT count(*) as members from `family_member` WHERE `family_id`='$fam_id'";
         $res_count_mem=mysqli_query($link,$q_count_mem);
         $data=mysqli_fetch_assoc($res_count_mem);
-        echo $data['members'];?>
+        echo $data['members'];?> &nbsp;&nbsp;
+        <i class="fas fa-calendar blue-text pr-2"></i>
+        <?php echo $row_loc_details['date'] ?>
       </p></b>
         <p class="text-muted mb-lg-0">
           <?php echo '<b>'.$row_loc_details['TSRDS_op_area'].'</b>, '.
