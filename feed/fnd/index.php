@@ -41,34 +41,52 @@ include '../inc/header.php';
         </div>
         <div class="col-lg-6">
           <br>
-            <center> <h1> 
+            <center>
              <div class="active-cyan-4 mb-4">
-  <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-</div>
-            </h1></center>
-          <br><br><br>
-          <?php 
+              <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+            </div>
+            </center>
+          <br><br>
+
+
+           <?php 
             $query_ben = "SELECT * FROM respondent";
             $res_ben = mysqli_query($link, $query_ben);
-            echo '<table class="table">';
-            echo '<tr>';
-            echo '<th>Respondent\'s Name</th> <th> Contact No. </th> ';
-            echo '<tr>';
-            while($row_ben = mysqli_fetch_assoc($res_ben)){
-              echo '<tr>';
-              echo '<td>';
-                 echo '<a href="../nav/?res='.$row_ben["res_id"].'">';
-                echo $row_ben['name'];
-                echo '</a>';
-              echo '</td>';
-              echo '<td>';
-                echo $row_ben['res_id'];
-              echo '</td>';
-              echo '</tr>';
-            }
-            echo '<table>';
+            while($row_ben = mysqli_fetch_assoc($res_ben)){ 
+              $fam_id = $row_ben['family_id']; ?>
+               <div class="col-lg-12 col-md-6 mb-4">
+        <h4 class="font-weight-bold mb-3">
+          <i class="fas fa-user green-text pr-2"></i> <?php 
+            echo $row_ben['name'];
           ?>
-            <!-- Default form login -->
+        </h4>
+        <?php 
+          $query_loc_details = "SELECT * FROM `family` WHERE family_id='$fam_id'";
+          $res_loc_details = mysqli_query($link, $query_loc_details);
+          $row_loc_details = mysqli_fetch_assoc($res_loc_details);
+        ?>
+        <b><p style="line-height: 10px"> <i class="fas fa-phone blue-text pr-2"></i> <?php echo $row_ben['res_id']; ?>
+        &nbsp;&nbsp; <i class="fas fa-users blue-text pr-2"></i>
+        <?php 
+        $q_count_mem="SELECT count(*) as members from `family_member` WHERE `family_id`='$fam_id'";
+        $res_count_mem=mysqli_query($link,$q_count_mem);
+        $data=mysqli_fetch_assoc($res_count_mem);
+        echo $data['members'];?>
+      </p></b>
+        <p class="text-muted mb-lg-0">
+          <?php echo '<b>'.$row_loc_details['TSRDS_op_area'].'</b>, '.
+                     $row_loc_details['village'].', '.
+                     $row_loc_details['block'].', '.
+                     $row_loc_details['dist'].', '.
+                     $row_loc_details['state'].', '
+                     ;
+           ?>
+        </p>
+      </div>
+      <hr>
+              <?php
+            }
+          ?>
         </div>
         <div class="col-lg-3">
         </div>  
@@ -90,20 +108,6 @@ include '../inc/header.php';
 
   <script>
 
-
-var x = document.getElementById("location");
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
-  } else {
-    x.innerHTML = "Geolocation is not supported by this browser.";
-  }
-}
-
-function showPosition(position) {
-  x.innerHTML = "Latitude: " + position.coords.latitude +
-  "<br>Longitude: " + position.coords.longitude;
-}
 </script>
 
 
