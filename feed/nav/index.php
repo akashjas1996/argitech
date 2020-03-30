@@ -248,7 +248,7 @@ if(isset($_POST['member_add'])){
   $mob_no = $_POST['mob_no'];
   $other_edu = $_POST['other_edu'];
   $query_member_add = "INSERT INTO family_member(`family_id`, `name`, `age`, `sex`, `ed_status`, `skill`, `mobile`, `edu_other`) VALUES('$fam_id', '$mem_name', '$age_mem', '$gender', '$edu_status', '$skills', '$mob_no', '$other_edu')";
-  echo $query_member_add;
+
   $res_member_add = mysqli_query($link, $query_member_add);
 
 }
