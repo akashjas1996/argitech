@@ -398,11 +398,11 @@ if(isset($_POST['location_submit'])){
         </button>
       </div>
       <div class="modal-body mx-3">
-        <div class="md-form mb-5">
+        <div class="md-form mb-4">
           <select name="name_allied" class="browser-default custom-select">
             <option disabled="disabled" selected>Allied Activity</option>
             <option value="Apiculture">Apiculture</option>
-            <option value="Floriculture">Fishery</option>
+            <option value="Fishery">Fishery</option>
             <option value="Floriculture">Floriculture</option>
             <option value="Horticulture">Horticulture(Fruits)</option>
             <option value="Pisciculture">Pisciculture</option>
@@ -411,6 +411,21 @@ if(isset($_POST['location_submit'])){
             <option value="Lac">LAC</option>
             <option value="Other">Other</option>
           </select>
+        </div>
+
+        <div class="md-form mb-4">
+          <input readonly="readonly" name="net_inc_allied" type="number" id="orangeForm-netannual_allied" class="form-control">
+          <label for="orangeForm-netannual_allied">Name of Intervention</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input readonly="readonly" name="net_inc_allied" type="number" id="orangeForm-netannual_allied" class="form-control">
+          <label for="orangeForm-netannual_allied">Qty. of Intervention</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input readonly="readonly" name="net_inc_allied" type="number" id="orangeForm-netannual_allied" class="form-control">
+          <label for="orangeForm-netannual_allied">Unit of Measurement</label>
         </div>
 
         <div class="md-form mb-4">
@@ -1434,7 +1449,7 @@ if(isset($_POST['location_submit'])){
                 <i class="fas fa-apple-alt"></i> &nbsp; Agri Allied - Others</button>
                 <br>
                 <?php
-                $query_fetch_allied = "SELECT * FROM allied WHERE family_id='$fam_id'";
+                $query_fetch_allied = "SELECT * FROM allied WHERE family_id='$fam_id' AND bsl_allied='0'";
                 $res_fetch_allied = mysqli_query($link, $query_fetch_allied);
                 $count_allied_fetch = mysqli_num_rows($res_fetch_allied);
                 if($count_allied_fetch==0){

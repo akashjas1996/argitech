@@ -5,6 +5,8 @@ include '../inc/dbconnection.php';
 include '../inc/header.php';
 
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,8 +42,7 @@ if(isset($_GET['res_id'])){
   $fam_id = $row_mob['family_id'];
 }
 
-
-
+// QUERY START FOR CROP CULTIVATION
 
 if(isset($_POST['crop_submit'])){
   $crop_category = $_POST['crop_category'];
@@ -54,7 +55,7 @@ if(isset($_POST['crop_submit'])){
   $crop_cultivation_cost = $_POST['crop_cultivation_cost'];
   $crop_total_expenditure = $_POST['crop_total_expenditure'];
   $crop_net_income = $_POST['crop_net_income'];
-  $crop_intv_year = $_POST['intervention_year'];
+  $crop_intv_year = $_GET['year'];
   $crop_intv_name = $_POST['crop_intv_name'];
   $crop_intv_qty = $_POST['crop_intv_qty'];
   $crop_intv_unit = $_POST['crop_intv_unit'];
@@ -102,9 +103,64 @@ VALUES
 '$crop_intv_amount',
 '$trsds_support'
 )";
-}
 
-echo $query_crop_cultivation;
+$res_crop_cultivation = mysqli_query($link, $query_crop_cultivation);
+}
+// QUERY END FOR CROP CULTIVATION
+
+// QUERY START FOR ALLIED OTHER ACTIVITIES
+if(isset($_POST['allied_submit'])){
+  $allied_type = $_POST['name_allied'];
+  $allied_area = $_POST['area_allied'];
+  $allied_prod = $_POST['production_allied'];
+  $allied_ann_income = $_POST['ann_income_allied'];
+  $allied_exp = $_POST['ann_exp_allied'];
+  $allied_net_income = $_POST['net_inc_allied'];
+  $allied_intv_name = $_POST['allied_intv_name'];
+  $allied_intv_qty = $_POST['allied_intv_qty'];
+  $allied_intv_unit = $_POST['allied_intv_unit'];
+  $allied_intv_value = $_POST['allied_intv_value'];
+  $allied_intv_tsrds_supp = $_POST['allied_tsrds_supp'];
+  $selected_year = $_GET['year'];
+
+  $query_allied = "
+  INSERT INTO `allied`
+(`family_id`,
+`type`,
+`area`,
+`production`,
+`ann_income`,
+`ann_exp`,
+`net_annual`,
+`bsl_allied`,
+`intv_name`,
+`intv_qty`,
+`intv_unit`,
+`intv_value`,
+`tsrds_supp`,
+`intv_year`
+)
+VALUES
+('$fam_id',
+'$allied_type',
+'$allied_area',
+'$allied_prod',
+'$allied_ann_income',
+'$allied_exp',
+'$allied_net_income',
+'1',
+'$allied_intv_name',
+'$allied_intv_qty',
+'$allied_intv_unit',
+'$allied_intv_value',
+'$allied_intv_tsrds_supp',
+'$selected_year'
+);";
+
+$res_allied = mysqli_query($link, $query_allied);
+}
+// QUERY END FOR ALLIED OTHER ACTIVITIES
+
 ?>
 <body>
 
@@ -132,7 +188,16 @@ echo $query_crop_cultivation;
                 }
               ?>
             </h1></center>
-          <br><br><br>
+          <br><br>
+           <select onchange="set_year(this.value)" class="browser-default custom-select">
+            <option value=" ">Year</option>
+            <option value="2019-20">2019-20</option>
+            <option value="2020-21">2020-21</option>
+            <option value="2021-22">2021-22</option>
+            <option value="2022-23">2022-23</option>
+            <option value="2023-24">2023-24</option>
+          </select>
+          <br><br>
 
 
 
@@ -151,17 +216,6 @@ echo $query_crop_cultivation;
       </div>
       <div class="modal-body mx-3">
 
-
-        <div class="md-form mb-4">
-          <select name="intervention_year" class="browser-default custom-select">
-            <option disabled="disabled" selected>Year</option>
-            <option value="2019-20">2019-20</option>
-            <option value="2020-21">2020-21</option>
-            <option value="2021-22">2021-22</option>
-            <option value="2022-23">2022-23</option>
-            <option value="2023-24">2023-24</option>
-          </select>
-        </div>
 
         <div class="md-form mb-4">
           <select name="crop_category" class="browser-default custom-select">
@@ -184,7 +238,7 @@ echo $query_crop_cultivation;
 
         <div class="md-form mb-4">
           <input onchange="cal_total_expenditure()" name="crop_intv_unit" type="text" id="orangeForm-pass_cul_area" class="form-control">
-          <label for="orangeForm-pass_cul_area">Unit of measurment</label>
+          <label for="orangeForm-pass_cul_area">Unit of measurement</label>
         </div>
 
         <div class="md-form mb-4">
@@ -263,14 +317,109 @@ echo $query_crop_cultivation;
   </div>
 </div>
 </form>
-
-
 <!-- MODAL END FOR CROP CULTIVATION -->
-           <button data-toggle="modal" data-target="#modalcropCultivation" type="button" class="btn btn-success btn-lg btn-block">
+
+          <!-- MODAL START FOR ALLIED -->
+          <form action="" method="POST">
+          <div class="modal fade" id="modalallied" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Allied Activities</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <select name="name_allied" class="browser-default custom-select">
+            <option disabled="disabled" selected>Allied Activity</option>
+            <option value="Apiculture">Apiculture</option>
+            <option value="Fishery">Fishery</option>
+            <option value="Floriculture">Floriculture</option>
+            <option value="Horticulture">Horticulture(Fruits)</option>
+            <option value="Pisciculture">Pisciculture</option>
+            <option value="Sericulture">Sericulture</option>
+            <option value="Tasar">Tasar</option>
+            <option value="Lac">LAC</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div class="md-form mb-4">
+          <input step="0.1" name="area_allied" type="number" id="orangeForm-passcultarea" class="form-control">
+          <label for="orangeForm-passcultarea">Area Under Cultivation (in acre)</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input step="0.1" name="allied_intv_name" type="text" id="orangeForm-passcultarea" class="form-control">
+          <label for="orangeForm-passcultarea">Name of Intervention</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input step="0.1" name="allied_intv_qty" type="number" id="orangeForm-passcultarea" class="form-control">
+          <label for="orangeForm-passcultarea">Qty. of Intervention</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input name="allied_intv_unit" type="text" id="orangeForm-passcultarea" class="form-control">
+          <label for="orangeForm-passcultarea">Unit of Measurement</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input name="allied_intv_value" type="number" id="orangeForm-prod_allied" class="form-control">
+          <label for="orangeForm-prod_allied">Value of Intervention</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input name="allied_tsrds_supp" type="text" id="orangeForm-prod_allied" class="form-control">
+          <label for="orangeForm-prod_allied">TSRDS Support</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input name="production_allied" type="number" id="orangeForm-prod_allied" class="form-control">
+          <label for="orangeForm-prod_allied">Production (in Qtl.)</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input onchange="cal_net_allied()" name="ann_income_allied" type="number" id="orangeForm-sp_ann_income_allied" class="form-control">
+          <label for="orangeForm-sp_ann_income_allied">Annual Income(₹)</label>
+        </div>
+
+         <div class="md-form mb-4">
+          <input onchange="cal_net_allied()" name="ann_exp_allied" type="number" id="orangeForm-annualexp_allied" class="form-control">
+          <label for="orangeForm-annualexp_allied">Annual Expenditure(₹)</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input readonly="readonly" name="net_inc_allied" type="number" id="orangeForm-netannual_allied" class="form-control">
+          <label for="orangeForm-netannual_allied">Net Annual(₹)</label>
+        </div>
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <input type="submit" name="allied_submit" class="btn btn-deep-orange"></button>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+
+          <!-- MODAL END FOR ALLIED -->
+
+  
+  <?php 
+  if(isset($_GET['year'])){ 
+    $selected_year = $_GET['year'];?>
+
+
+     <!-- BUTTON START FOR CROP CULTIVATION -->
+    <button data-toggle="modal" data-target="#modalcropCultivation" type="button" class="btn btn-success btn-lg btn-block">
                 <i class="fas fa-seedling"></i> &nbsp; Crop Intervention Cultivation</button>
                 <br>
                 <?php 
-                $query_fetch_cult = "SELECT * FROM crop_cultivation WHERE family_id='$fam_id' AND bsl_crop='1'";
+                $query_fetch_cult = "SELECT * FROM crop_cultivation WHERE family_id='$fam_id' AND bsl_crop='1' AND intv_year='$selected_year'";
                 $res_fetch_cult = mysqli_query($link, $query_fetch_cult);
                 $count_cult_fetch = mysqli_num_rows($res_fetch_cult);
                 if($count_cult_fetch==0){
@@ -279,39 +428,37 @@ echo $query_crop_cultivation;
                 else{
                   echo '<table class="table">';
                   echo '<tr>';
-                  echo '<th> Category </th> <th> Year </th> <th> Name </th> <th> Cultivated Area (acre) </th> <th> Yield (Qtl/acre) </th> <th> Intervention </th> <th> Net Income (₹) </th> <th> <i class="fas fa-trash-alt"></i> </th>';
+                  echo '<th> Crop </th>  <th> Yield (Qtl/acre) </th> <th> Interv. </th> <th> Qty <th> Value(₹) </th> </th> <th>Net Income</th> <th>  <i class="fas fa-trash-alt"></i> </th> ';
                   echo '</tr>';
                   while($row_Cult_fetch = mysqli_fetch_assoc($res_fetch_cult)){
                     echo '<tr>';
-                    echo '<td>';
-                      echo $row_Cult_fetch['cat'];
-                    echo '</td>';
 
-                    echo '<td>';
-                       echo $row_Cult_fetch['intv_year'];
-                    echo '</td>';
-
-                    
                     echo '<td>';
                       echo $row_Cult_fetch['name'];
                     echo '</td>';
                     
                     echo '<td>';
-                      echo $row_Cult_fetch['cultivated_area'];
-                    echo '</td>';
-
-                    echo '<td>';
                       echo $row_Cult_fetch['yield'];
                     echo '</td>';
 
                     echo '<td>';
-                      // echo $row_Cult_fetch['yield'];
-                    "Fetch Intervention";
+                       echo $row_Cult_fetch['intv_name'];
+                    echo '</td>';
+
+                     echo '<td>';
+                       echo $row_Cult_fetch['intv_qty'];
+                       echo $row_Cult_fetch['intv_unit_of_measurement'];
                     echo '</td>';
                     
                     echo '<td>';
+                      echo $row_Cult_fetch['value_of_intv'];
+                    echo '</td>';
+
+                    echo '<td>';
                       echo $row_Cult_fetch['net_income'];
                     echo '</td>';
+
+
 
                     echo '<td>';
                     $entry_id_crop = $row_Cult_fetch['entry_id'];
@@ -327,6 +474,85 @@ echo $query_crop_cultivation;
                   }
                   echo '</table>';
                 } ?>
+                <!-- BUTTON END FOR CROP CULTIVATION -->
+
+                <!-- BUTTON START FOR AGRI ALLIED - OTHERS -->
+
+                <button data-toggle="modal" data-target="#modalallied" type="button" class="btn btn-success btn-lg btn-block">
+                <i class="fas fa-apple-alt"></i> &nbsp; Agri Allied - Others</button>
+                <br>
+                <?php
+                $query_fetch_allied = "SELECT * FROM allied WHERE family_id='$fam_id' AND `bsl_allied`='1' AND `intv_year`='$selected_year'";
+                $res_fetch_allied = mysqli_query($link, $query_fetch_allied);
+                $count_allied_fetch = mysqli_num_rows($res_fetch_allied);
+                if($count_allied_fetch==0){
+                  // echo "Enter Allied Activity Details.";
+                }
+                else{
+                  echo '<table class="table">';
+                  echo '<tr>';
+                  echo '<th> Activity </th> <th> Area<br> (in acre) </th> <th> Prod. </th> <th>Intv.</th> <th>Qty</th> <th>Value</th> <th> Net Annual<br> Income (₹) </th> <th> <i class="fas fa-trash-alt"></i> </th>';
+                  echo '</tr>';
+                  while($row_allied_fetch = mysqli_fetch_assoc($res_fetch_allied)){
+                    echo '<tr>';
+                    echo '<td>';
+                      echo $row_allied_fetch['type'];
+                    echo '</td>';
+
+                    echo '<td>';
+                      echo $row_allied_fetch['area'];
+                    echo '</td>';
+
+                    echo '<td>';
+                      echo $row_allied_fetch['production'];
+                    echo '</td>';
+                    
+                    echo '<td>';
+                      echo $row_allied_fetch['intv_name'];
+                    echo '</td>';
+
+
+                    echo '<td>';
+                      echo $row_allied_fetch['intv_qty'];
+                      echo $row_allied_fetch['intv_unit'];
+                    echo '</td>';
+
+                    echo '<td>';
+                      echo $row_allied_fetch['intv_value'];
+                    echo '</td>';
+
+                    echo '<td>';
+                      echo $row_allied_fetch['net_annual'];
+                    echo '</td>';
+
+                    echo '<td>';
+                    ?>
+
+                    <button onclick="del_obj('<?php echo $row_allied_fetch['entry_id']; ?>', 'allied')">
+                      <i style="color:red" class="fas fa-times"> </i> 
+                    </button>
+
+                    <?php
+                    echo '</td>';
+                    echo '</tr>';
+                  }
+                  echo '</table>';
+                }
+                ?>
+                <!-- BUTTON END FOR AGRI ALLIED - OTHERS -->
+                <br>
+
+
+
+<?php
+  }
+  else{
+    echo "SELECT YEAR";
+  }
+?>
+
+<!-- MODAL END FOR CROP CULTIVATION -->
+           
       </div>
       <hr>
         </div>
@@ -395,6 +621,22 @@ function del_obj(entry_id, category) {
   }
 }
 
+function cal_net_allied(){
+  ann_income_allied_act = document.getElementById('orangeForm-sp_ann_income_allied').value;
+  ann_exp_allied_act = document.getElementById('orangeForm-annualexp_allied').value;
+  net_income_allied_act = ann_income_allied_act-ann_exp_allied_act;
+  document.getElementById('orangeForm-netannual_allied').value = net_income_allied_act;
+}
+
+function set_year(a){
+  console.log(a)
+  var loc = window.location;
+     window.location = loc.protocol + '//' + loc.host + loc.pathname + loc.search+'&year='+a;
+    console.log(loc.search);
+}
+
+
+
 function del_obj1(entry_id, category) {
                // alert(status);
                 //alert(empid);
@@ -413,7 +655,6 @@ function del_obj1(entry_id, category) {
                     }
                 });
             }
-
 </script>
 
 
