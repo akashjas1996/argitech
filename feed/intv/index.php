@@ -82,7 +82,7 @@ include '../inc/header.php';
                 else{
                   echo '<table class="table">';
                   echo '<tr>';
-                  echo '<th> Category </th> <th> Name </th> <th> Cultivated Area (acre) </th> <th> Yield (Qtl/acre) </th> <th> Net Income (₹) </th> <th> <i class="fas fa-trash-alt"></i> </th>';
+                  echo '<th> Category </th> <th> Year </th> <th> Name </th> <th> Cultivated Area (acre) </th> <th> Yield (Qtl/acre) </th> <th> Intervention </th> <th> Net Income (₹) </th> <th> <i class="fas fa-trash-alt"></i> </th>';
                   echo '</tr>';
                   while($row_Cult_fetch = mysqli_fetch_assoc($res_fetch_cult)){
                     echo '<tr>';
