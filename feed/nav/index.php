@@ -236,7 +236,7 @@ if(isset($_POST['income_save'])){
   $annual_inc = $_POST['annual_inc'];
 
   $query_income = "INSERT INTO income_details(`family_id`, `type`, `members_involved`, `annual_income`, `engagement_days`, `primary_secondary`) VALUES('$fam_id', '$occupation_inc', '$fam_inv_inc', '$annual_inc', '$days_engaged_inc', '$category_inc')";
-
+  $query_income;
     $res_income = mysqli_query($link, $query_income);
 }
 if(isset($_POST['member_add'])){
