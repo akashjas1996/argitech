@@ -837,12 +837,12 @@ if(isset($_POST['location_submit'])){
         </div>
         
          <div class="md-form mb-4">
-          <input onchange="cal_irr_land()" name="total_land" type="number" id="total_land_count" class="form-control">
+          <input step="0.1" onchange="cal_irr_land()" name="total_land" type="number" id="total_land_count" class="form-control">
           <label for="orangeForm-pass_irr">Total land (in acre)</label>
         </div>
 
         <div class="md-form mb-4">
-          <input onchange="cal_irr_land()" name="irrigated_land" type="number" id="irrigated_land_count" class="form-control">
+          <input step="0.1" onchange="cal_irr_land()" name="irrigated_land" type="number" id="irrigated_land_count" class="form-control">
           <label for="orangeForm-pass_irr1">Irrigated land (in acre)</label>
         </div>
 

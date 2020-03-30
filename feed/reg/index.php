@@ -46,8 +46,6 @@ if(isset($_POST['reg_pressed'])){
 
   redirect('../nav/?res='.$respondent_mobile);
     }
-
-
 }
 ?>
 
