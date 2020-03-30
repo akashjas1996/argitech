@@ -103,6 +103,8 @@ VALUES
 '$trsds_support'
 )";
 }
+
+echo $query_crop_cultivation;
 ?>
 <body>
 
