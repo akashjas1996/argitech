@@ -755,7 +755,7 @@ if(isset($_POST['location_submit'])){
 
         <div class="md-form mb-4">
           <input onchange="cal_total_income(), cal_yield()" name="crop_production" type="number" id="total_production" class="form-control">
-          <label data-error="wrong" data-success="right" for="total_production">Total Production(in acre)</label>
+          <label data-error="wrong" data-success="right" for="total_production">Total Production(in Qtl.)</label>
         </div>
 
         <div class="md-form mb-4">
@@ -1328,7 +1328,7 @@ if(isset($_POST['location_submit'])){
                 <i class="fas fa-seedling"></i> &nbsp; Crop Cultivation Details</button>
             <br>
               <?php 
-                $query_fetch_cult = "SELECT * FROM crop_cultivation WHERE family_id='$fam_id'";
+                $query_fetch_cult = "SELECT * FROM crop_cultivation WHERE family_id='$fam_id' AND bsl_crop='0'";
                 $res_fetch_cult = mysqli_query($link, $query_fetch_cult);
                 $count_cult_fetch = mysqli_num_rows($res_fetch_cult);
                 if($count_cult_fetch==0){

@@ -69,9 +69,13 @@ include '../inc/header.php';
               $fam_id = $row_ben['family_id']; ?>
                <div class="col-lg-12 col-md-6 mb-4">
         <h4 class="font-weight-bold mb-3">
-          <i class="fas fa-user green-text pr-2"></i> <?php 
+          <i class="fas fa-user green-text pr-2"></i> 
+
+          <a style="color: black" href=../intv/?res_id=<?php echo $row_ben['res_id'] ?>>
+          <?php 
             echo $row_ben['name'];
           ?>
+        </a>
         </h4>
         <?php 
           $query_loc_details = "SELECT * FROM `family` WHERE family_id='$fam_id'";
