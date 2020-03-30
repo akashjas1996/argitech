@@ -174,7 +174,7 @@ VALUES
 '$crop_total_expenditure',
 '$crop_net_income')";
 
-
+echo $query_crop_cultivation;
 
  $res_crop_cultivation = mysqli_query($link, $query_crop_cultivation);
 
@@ -200,8 +200,6 @@ WHERE `family_id` = '$fam_id';
 
 
 $res_geninfo = mysqli_query($link, $query_gen_info);
-
-
 }
 
 if(isset($_POST['land_holding']) && isset($_POST['owned_land'])){
@@ -1661,7 +1659,6 @@ function cal_costofcult(){
   total_expense = document.getElementById('total_expenditure_field').value;
   total_land = document.getElementById('orangeForm-pass_cul_area').value;
   document.getElementById('orangeForm-pass_cost').value=total_expense/total_land;
-
 }
 
 function cal_wage(){

@@ -55,7 +55,11 @@ if(isset($_POST['crop_submit'])){
   $crop_total_expenditure = $_POST['crop_total_expenditure'];
   $crop_net_income = $_POST['crop_net_income'];
   $crop_intv_year = $_POST['intervention_year'];
-
+  $crop_intv_name = $_POST['crop_intv_name'];
+  $crop_intv_qty = $_POST['crop_intv_qty'];
+  $crop_intv_unit = $_POST['crop_intv_unit'];
+  $crop_intv_amount = $_POST['crop_intv_amount'];
+  $trsds_support = $_POST['crop_tsrds_supp'];
 
 $query_crop_cultivation = "
 INSERT INTO `crop_cultivation`
@@ -71,7 +75,13 @@ INSERT INTO `crop_cultivation`
 `ttl_expenditure`,
 `net_income`,
 `intv_year`,
-`bsl_crop`)
+`bsl_crop`,
+`intv_name`,
+`intv_qty`,
+`intv_unit_of_measurement`,
+`value_of_intv`,
+`tsrds_support`
+)
 VALUES
 ('$fam_id',
 '$crop_category',
@@ -85,10 +95,13 @@ VALUES
 '$crop_total_expenditure',
 '$crop_net_income',
 '$crop_intv_year',
-'1'
+'1',
+'$crop_intv_name',
+'$crop_intv_qty',
+'$crop_intv_unit',
+'$crop_intv_amount',
+'$trsds_support'
 )";
- $res_crop_cultivation = mysqli_query($link, $query_crop_cultivation);
-
 }
 ?>
 <body>
@@ -121,8 +134,6 @@ VALUES
 
 
 
-
-
           <!-- MODAL START FOR CROP CULTIVATION -->
           <form action="" method="POST">
           <div class="modal fade" id="modalcropCultivation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -130,7 +141,8 @@ VALUES
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Crop Cultivation Details</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Crop 
+        Intervention Details</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -138,7 +150,7 @@ VALUES
       <div class="modal-body mx-3">
 
 
-        <div class="md-form mb-5">
+        <div class="md-form mb-4">
           <select name="intervention_year" class="browser-default custom-select">
             <option disabled="disabled" selected>Year</option>
             <option value="2019-20">2019-20</option>
@@ -149,13 +161,38 @@ VALUES
           </select>
         </div>
 
-        <div class="md-form mb-5">
+        <div class="md-form mb-4">
           <select name="crop_category" class="browser-default custom-select">
             <option disabled="disabled" selected>Crop Category</option>
             <option value="Kharif">Kharif</option>
             <option value="Rabi">Rabi</option>
             <option value="Rabi">Zaid</option>
           </select>
+        </div>
+
+        <div class="md-form mb-4">
+          <input name="crop_intv_name" type="text" id="orangeForm-pass_crop_name" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="orangeForm-pass_crop_name">Name of the Intervention</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input step='0.1' onchange="cal_total_expenditure()" name="crop_intv_qty" type="number" id="orangeForm-pass_cul_area" class="form-control">
+          <label for="orangeForm-pass_cul_area">Qty. of intervention</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input onchange="cal_total_expenditure()" name="crop_intv_unit" type="text" id="orangeForm-pass_cul_area" class="form-control">
+          <label for="orangeForm-pass_cul_area">Unit of measurment</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input step='0.1' onchange="cal_total_expenditure()" name="crop_intv_amount" type="number" id="orangeForm-pass_cul_area" class="form-control">
+          <label for="orangeForm-pass_cul_area">Value of Intervention</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input onchange="cal_total_expenditure()" name="crop_tsrds_supp" type="text" id="orangeForm-pass_cul_area" class="form-control">
+          <label for="orangeForm-pass_cul_area">TSRDS Support</label>
         </div>
 
          <div class="md-form mb-4">
@@ -169,7 +206,7 @@ VALUES
         </div>
 
         <div class="md-form mb-4">
-          <input onchange="cal_total_income(), cal_yield()" name="crop_production" type="number" id="total_production" class="form-control">
+          <input  onchange="cal_total_income(), cal_yield()" name="crop_production" type="number" id="total_production" class="form-control">
           <label data-error="wrong" data-success="right" for="total_production">Total Production(in Qtl.)</label>
         </div>
 
@@ -177,8 +214,6 @@ VALUES
           <input readonly="readonly" step="0.1" name="crop_yield" type="number" id="orangeForm-pass_yield" class="form-control">
           <label data-error="wrong" data-success="right" for="orangeForm-pass_yield">Yield Qtl/acre</label>
         </div>
-
-        
 
         <div class="md-form mb-4">
           <input onchange="cal_total_income()" step="0.1" name="crop_market_rate" type="number" id="market_rate" class="form-control">
@@ -203,7 +238,20 @@ VALUES
 
         <div class="md-form mb-4">
           <input readonly="readonly" name="crop_net_income" type="number" id="orangeForm-pass_netincome" class="form-control">
-          <label data-error="wrong" data-success="right" for="orangeForm-pass_netincome">Net Income(₹)</label>
+          <label for="orangeForm-pass_netincome">Net Income(₹)</label>
+        </div>
+
+        <?php 
+        $crop_base_income=0;
+      $query_base_income = "SELECT * FROM crop_cultivation WHERE family_id='$fam_id' AND bsl_crop='0'";
+      $res_base_income = mysqli_query($link, $query_base_income);
+      while($row_base_income = mysqli_fetch_assoc($res_base_income)){
+        $crop_base_income = $crop_base_income+$row_base_income['net_income'];
+      }
+      ?>
+        <div class="md-form mb-4">
+          <input readonly="readonly" name="crop_base_income" type="number" id="orangeForm-pass_netincome" class="form-control">
+          <label data-error="wrong" data-success="right" for="orangeForm-pass_netincome">Base Income(₹) = <?php echo $crop_base_income; ?></label>
         </div>
       </div>
       <div class="modal-footer d-flex justify-content-center">
@@ -214,13 +262,11 @@ VALUES
 </div>
 </form>
 
+
 <!-- MODAL END FOR CROP CULTIVATION -->
-
            <button data-toggle="modal" data-target="#modalcropCultivation" type="button" class="btn btn-success btn-lg btn-block">
-                <i class="fas fa-seedling"></i> &nbsp; Crop Cultivation Details</button>
-
+                <i class="fas fa-seedling"></i> &nbsp; Crop Intervention Cultivation</button>
                 <br>
-
                 <?php 
                 $query_fetch_cult = "SELECT * FROM crop_cultivation WHERE family_id='$fam_id' AND bsl_crop='1'";
                 $res_fetch_cult = mysqli_query($link, $query_fetch_cult);
