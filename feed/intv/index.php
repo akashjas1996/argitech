@@ -29,7 +29,69 @@ include '../inc/header.php';
 
   </style>
 </head>
-<body onload="getLocation()">
+
+
+<?php 
+if(isset($_GET['res_id'])){
+  $mob = $_GET['res_id'];
+  $query_mob = "SELECT * FROM respondent WHERE res_id='$mob'";
+  $res_mob = mysqli_query($link, $query_mob);
+  $row_mob = mysqli_fetch_assoc($res_mob);
+  $fam_id = $row_mob['family_id'];
+}
+
+
+
+
+if(isset($_POST['crop_submit'])){
+  $crop_category = $_POST['crop_category'];
+  $crop_name = $_POST['crop_name'];
+  $crop_cultivated_area = $_POST['crop_cultivated_area'];
+  $crop_yield = $_POST['crop_yield'];
+  $crop_total_production = $_POST['crop_production'];
+  $crop_market_rate = $_POST['crop_market_rate'];
+  $crop_total_income = $_POST['crop_tot_income'];
+  $crop_cultivation_cost = $_POST['crop_cultivation_cost'];
+  $crop_total_expenditure = $_POST['crop_total_expenditure'];
+  $crop_net_income = $_POST['crop_net_income'];
+  $crop_intv_year = $_POST['intervention_year'];
+
+
+$query_crop_cultivation = "
+INSERT INTO `crop_cultivation`
+(`family_id`,
+`cat`,
+`name`,
+`cultivated_area`,
+`yield`,
+`ttl_prod`,
+`market_rate`,
+`total_income`,
+`cultivation_cost`,
+`ttl_expenditure`,
+`net_income`,
+`intv_year`,
+`bsl_crop`)
+VALUES
+('$fam_id',
+'$crop_category',
+'$crop_name',
+'$crop_cultivated_area',
+'$crop_yield',
+'$crop_total_production',
+'$crop_market_rate',
+'$crop_total_income',
+'$crop_cultivation_cost',
+'$crop_total_expenditure',
+'$crop_net_income',
+'$crop_intv_year',
+'1'
+)";
+ $res_crop_cultivation = mysqli_query($link, $query_crop_cultivation);
+
+}
+?>
+<body>
 
   <!--?php include '../inc/header.php'?-->
 
@@ -44,15 +106,6 @@ include '../inc/header.php';
             <center> <h1> 
               <?php 
                 if(isset($_GET['res_id'])){
-                  $mob = $_GET['res_id'];
-
-
-                  $query_mob = "SELECT * FROM respondent WHERE res_id='$mob'";
-    $res_mob = mysqli_query($link, $query_mob);
-    $row_mob = mysqli_fetch_assoc($res_mob);
-    $fam_id = $row_mob['family_id'];
-
-
                   $query_choose = "SELECT * FROM respondent WHERE res_id='$mob'";
                   $res_choose = mysqli_query($link, $query_choose);
                   $row_choose = mysqli_fetch_assoc($res_choose);
@@ -67,13 +120,109 @@ include '../inc/header.php';
           <br><br><br>
 
 
+
+
+
+          <!-- MODAL START FOR CROP CULTIVATION -->
+          <form action="" method="POST">
+          <div class="modal fade" id="modalcropCultivation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Crop Cultivation Details</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+
+
+        <div class="md-form mb-5">
+          <select name="intervention_year" class="browser-default custom-select">
+            <option disabled="disabled" selected>Year</option>
+            <option value="2019-20">2019-20</option>
+            <option value="2020-21">2020-21</option>
+            <option value="2021-22">2021-22</option>
+            <option value="2022-23">2022-23</option>
+            <option value="2023-24">2023-24</option>
+          </select>
+        </div>
+
+        <div class="md-form mb-5">
+          <select name="crop_category" class="browser-default custom-select">
+            <option disabled="disabled" selected>Crop Category</option>
+            <option value="Kharif">Kharif</option>
+            <option value="Rabi">Rabi</option>
+            <option value="Rabi">Zaid</option>
+          </select>
+        </div>
+
+         <div class="md-form mb-4">
+          <input name="crop_name" type="text" id="orangeForm-pass_crop_name" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="orangeForm-pass_crop_name">Crop Name</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input step='0.1' onchange="cal_total_expenditure()" name="crop_cultivated_area" type="number" id="orangeForm-pass_cul_area" class="form-control">
+          <label for="orangeForm-pass_cul_area">Cultivated Area (acre)</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input onchange="cal_total_income(), cal_yield()" name="crop_production" type="number" id="total_production" class="form-control">
+          <label data-error="wrong" data-success="right" for="total_production">Total Production(in Qtl.)</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input readonly="readonly" step="0.1" name="crop_yield" type="number" id="orangeForm-pass_yield" class="form-control">
+          <label data-error="wrong" data-success="right" for="orangeForm-pass_yield">Yield Qtl/acre</label>
+        </div>
+
+        
+
+        <div class="md-form mb-4">
+          <input onchange="cal_total_income()" step="0.1" name="crop_market_rate" type="number" id="market_rate" class="form-control">
+          <label data-error="wrong" data-success="right" for="market_rate">Market Rate (₹/Qtl)</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input name="crop_tot_income" type="number" id="total_income_field" class="form-control">
+          <label data-error="wrong" data-success="right" for="total_income_field">Total Income(₹)</label>
+        </div>
+
+         <div class="md-form mb-4">
+          <input onchange="cal_net_total(), cal_costofcult()" name="crop_total_expenditure" type="number" id="total_expenditure_field" class="form-control">
+          <label data-error="wrong" data-success="right" for="total_expenditure_field">Total Expediture(₹)</label>
+        </div>
+
+         <div class="md-form mb-4">
+          <input readonly="readonly" onchange="cal_total_expenditure(); cal_net_total()" name="crop_cultivation_cost" type="number" id="orangeForm-pass_cost" class="form-control">
+          <label data-error="wrong" data-success="right" for="orangeForm-pass_cost">Cost of cultivation (₹/acre)</label>
+        </div>
+
+
+        <div class="md-form mb-4">
+          <input readonly="readonly" name="crop_net_income" type="number" id="orangeForm-pass_netincome" class="form-control">
+          <label data-error="wrong" data-success="right" for="orangeForm-pass_netincome">Net Income(₹)</label>
+        </div>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <input type="submit" name="crop_submit" class="btn btn-deep-orange"></button>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+
+<!-- MODAL END FOR CROP CULTIVATION -->
+
            <button data-toggle="modal" data-target="#modalcropCultivation" type="button" class="btn btn-success btn-lg btn-block">
                 <i class="fas fa-seedling"></i> &nbsp; Crop Cultivation Details</button>
 
                 <br>
 
                 <?php 
-                $query_fetch_cult = "SELECT * FROM crop_cultivation WHERE family_id='$fam_id'";
+                $query_fetch_cult = "SELECT * FROM crop_cultivation WHERE family_id='$fam_id' AND bsl_crop='1'";
                 $res_fetch_cult = mysqli_query($link, $query_fetch_cult);
                 $count_cult_fetch = mysqli_num_rows($res_fetch_cult);
                 if($count_cult_fetch==0){
@@ -91,8 +240,7 @@ include '../inc/header.php';
                     echo '</td>';
 
                     echo '<td>';
-                      // echo $row_Cult_fetch['cat'];
-                      "Fetch Year";
+                       echo $row_Cult_fetch['intv_year'];
                     echo '</td>';
 
                     
@@ -153,6 +301,70 @@ include '../inc/header.php';
   <script type="text/javascript"></script>
 
   <script>
+
+    function cal_yield(){
+  total_production = document.getElementById('total_production').value;
+  cultivated_area = document.getElementById('orangeForm-pass_cul_area').value;
+  yeild = total_production/cultivated_area;
+  yeild = parseFloat(yeild).toFixed(2);
+  document.getElementById('orangeForm-pass_yield').value=yeild;
+}
+
+function cal_costofcult(){
+  total_expense = document.getElementById('total_expenditure_field').value;
+  total_land = document.getElementById('orangeForm-pass_cul_area').value;
+  document.getElementById('orangeForm-pass_cost').value=total_expense/total_land;
+}
+
+function cal_total_expenditure(){
+  area = document.getElementById('orangeForm-pass_cul_area').value;
+  cost = document.getElementById('orangeForm-pass_cost').value;
+  document.getElementById('total_expenditure_field').value=area*cost;
+
+  cal_net_total();
+}
+
+function cal_net_total(){
+  console.log("Hello World");
+  expenditure = document.getElementById('total_expenditure_field').value;
+  income = document.getElementById('total_income_field').value;
+  console.log(expenditure);
+  console.log(income);
+  document.getElementById('orangeForm-pass_netincome').value=income-expenditure;
+}
+
+function cal_total_income(){
+  production = document.getElementById('total_production').value;
+  rate = document.getElementById('market_rate').value;
+  document.getElementById('total_income_field').value=production*rate;
+}
+
+function del_obj(entry_id, category) {
+  var txt;
+  var r = confirm("Are you sure you want to delete?");
+  if (r == true) {
+    del_obj1(entry_id, category);
+  }
+}
+
+function del_obj1(entry_id, category) {
+               // alert(status);
+                //alert(empid);
+                $.ajax({
+                    url: "delete_row.php",
+                    method: "POST",
+                    data: {
+                        entry_id: entry_id,
+                        category: category
+                    },
+                    success: function(data) {
+                        // $('#result').html(data);
+                        // window.location = window.location();
+                        window.location.href = window.location.href
+                        console.log(data);
+                    }
+                });
+            }
 
 </script>
 
