@@ -224,7 +224,7 @@ if(isset($_POST['land_holding']) && isset($_POST['owned_land'])){
  
 
   $query_land = "INSERT INTO land_holding(`family_id`, `land_owned`, `land_category`,`irrigated_land`, `irrigated_percentage`, `ownership_type`) VALUES('$fam_id', '$total_land', '$owned_land', '$irrigated_land', '$irr_percentage', '$ownership_type')";
-  echo $query_land;
+
   $res_land = mysqli_query($link, $query_land);
 }
 
