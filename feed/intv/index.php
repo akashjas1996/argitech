@@ -89,6 +89,12 @@ include '../inc/header.php';
                     echo '<td>';
                       echo $row_Cult_fetch['cat'];
                     echo '</td>';
+
+                    echo '<td>';
+                      // echo $row_Cult_fetch['cat'];
+                      "Fetch Year";
+                    echo '</td>';
+
                     
                     echo '<td>';
                       echo $row_Cult_fetch['name'];
@@ -100,6 +106,11 @@ include '../inc/header.php';
 
                     echo '<td>';
                       echo $row_Cult_fetch['yield'];
+                    echo '</td>';
+
+                    echo '<td>';
+                      // echo $row_Cult_fetch['yield'];
+                    "Fetch Intervention";
                     echo '</td>';
                     
                     echo '<td>';
