@@ -970,6 +970,7 @@ $res_enterprise = mysqli_query($link, $query_enterprise);
                 <!-- BUTTON STAT FOR DAILYWAGE -->
                 <button data-toggle="modal" data-target="#modaldailyWage" type="button" class="btn btn-success btn-lg btn-block">
                 <i class="fas fa-sign-language"></i> &nbsp; daily Wage/Labour Details</button>
+                 <br>
                 <?php
                 $query_fetch_dailywage = "SELECT * FROM daily_wage WHERE family_id='$fam_id' AND intv_year='$selected_year' AND bsl_dailywage='1'";
                 $res_fetch_dailywage = mysqli_query($link, $query_fetch_dailywage);
@@ -1007,7 +1008,7 @@ $res_enterprise = mysqli_query($link, $query_enterprise);
 
                     echo '<td>';
                       ?>
-                      <br><br>
+
                     <button onclick="del_obj('<?php echo $row_dailywage_fetch['entry_id']; ?>', 'dailywage')">
                       <i style="color:red" class="fas fa-times"> </i> 
                     </button>
