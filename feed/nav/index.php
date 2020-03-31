@@ -1497,7 +1497,7 @@ if(isset($_POST['location_submit'])){
                 <button data-toggle="modal" data-target="#modaldailyWage" type="button" class="btn btn-success btn-lg btn-block">
                 <i class="fas fa-sign-language"></i> &nbsp; daily Wage/Labour Details</button>
                 <?php
-                $query_fetch_dailywage = "SELECT * FROM daily_wage WHERE family_id='$fam_id'";
+                $query_fetch_dailywage = "SELECT * FROM daily_wage WHERE family_id='$fam_id' AND bsl_dailywage='0'";
                 $res_fetch_dailywage = mysqli_query($link, $query_fetch_dailywage);
                 $count_dailywage_fetch = mysqli_num_rows($res_fetch_dailywage);
                 if($count_dailywage_fetch==0){
@@ -1550,7 +1550,7 @@ if(isset($_POST['location_submit'])){
           <button data-toggle="modal" data-target="#modalenterprise" type="button" class="btn btn-success btn-lg btn-block">
                 <i class="fas fa-industry"></i> &nbsp; Enterprise Business Details</button><br>
                 <?php
-                $query_fetch_ent = "SELECT * FROM enterprise WHERE family_id='$fam_id'";
+                $query_fetch_ent = "SELECT * FROM enterprise WHERE family_id='$fam_id' AND bsl_ent='0'";
                 $res_fetch_ent = mysqli_query($link, $query_fetch_ent);
                 $count_ent_fetch = mysqli_num_rows($res_fetch_ent);
                 if($count_ent_fetch==0){
