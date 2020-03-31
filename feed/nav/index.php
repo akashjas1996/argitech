@@ -1397,7 +1397,7 @@ if(isset($_POST['location_submit'])){
                 <i class="fas fa-coffee"></i> &nbsp; Agri Allied - Livestock</button>
                 <br>
                 <?php
-                $query_fetch_livestock = "SELECT * FROM livestock WHERE family_id='$fam_id'";
+                $query_fetch_livestock = "SELECT * FROM livestock WHERE family_id='$fam_id' AND bsl_livestock='0'";
                 $res_fetch_livestock = mysqli_query($link, $query_fetch_livestock);
                 $count_livestock_fetch = mysqli_num_rows($res_fetch_livestock);
                 if($count_livestock_fetch==0){

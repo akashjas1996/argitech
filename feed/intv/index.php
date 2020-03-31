@@ -60,7 +60,7 @@ if(isset($_POST['crop_submit'])){
   $crop_intv_qty = $_POST['crop_intv_qty'];
   $crop_intv_unit = $_POST['crop_intv_unit'];
   $crop_intv_amount = $_POST['crop_intv_amount'];
-  $trsds_support = $_POST['crop_tsrds_supp'];
+
 
 $query_crop_cultivation = "
 INSERT INTO `crop_cultivation`
@@ -80,8 +80,7 @@ INSERT INTO `crop_cultivation`
 `intv_name`,
 `intv_qty`,
 `intv_unit_of_measurement`,
-`value_of_intv`,
-`tsrds_support`
+`value_of_intv`
 )
 VALUES
 ('$fam_id',
@@ -100,10 +99,9 @@ VALUES
 '$crop_intv_name',
 '$crop_intv_qty',
 '$crop_intv_unit',
-'$crop_intv_amount',
-'$trsds_support'
+'$crop_intv_amount'
 )";
-
+echo $query_crop_cultivation;
 $res_crop_cultivation = mysqli_query($link, $query_crop_cultivation);
 }
 // QUERY END FOR CROP CULTIVATION
@@ -120,7 +118,6 @@ if(isset($_POST['allied_submit'])){
   $allied_intv_qty = $_POST['allied_intv_qty'];
   $allied_intv_unit = $_POST['allied_intv_unit'];
   $allied_intv_value = $_POST['allied_intv_value'];
-  $allied_intv_tsrds_supp = $_POST['allied_tsrds_supp'];
   $selected_year = $_GET['year'];
 
   $query_allied = "
@@ -137,7 +134,6 @@ if(isset($_POST['allied_submit'])){
 `intv_qty`,
 `intv_unit`,
 `intv_value`,
-`tsrds_supp`,
 `intv_year`
 )
 VALUES
@@ -153,7 +149,6 @@ VALUES
 '$allied_intv_qty',
 '$allied_intv_unit',
 '$allied_intv_value',
-'$allied_intv_tsrds_supp',
 '$selected_year'
 );";
 
@@ -161,6 +156,56 @@ $res_allied = mysqli_query($link, $query_allied);
 }
 // QUERY END FOR ALLIED OTHER ACTIVITIES
 
+
+// QUERY START FOR LIVESTOCK
+if(isset($_POST['livestock_submit'])){
+  $livestock_name = $_POST['name_livestock'];
+  $livestock_num = $_POST['number_livestock'];
+  $livestock_annualIncome = $_POST['ann_income_livestock'];
+  $livestock_cost = $_POST['rearing_cost_livestock'];
+  $livestock_net_income = $_POST['net_income_livestock'];
+  $livestock_intv_name = $_POST['livestock_intv_name'];
+  $livestock_intv_qty = $_POST['livestock_intv_qty'];
+  $livestock_intv_unit = $_POST['livestock_intv_unit'];
+  $livestock_intv_value = $_POST['livestock_intv_value'];
+  $intv_year = $_GET['year'];
+
+
+ $query_livestock= "INSERT INTO `livestock`
+(`family_id`,
+`name`,
+`number`,
+`annual_income`,
+`cost`,
+`net_income`,
+`bsl_livestock`,
+`intv_name`,
+`intv_qty`,
+`intv_unit`,
+`intv_value`,
+`intv_year`
+)
+VALUES
+('$fam_id',
+'$livestock_name',
+'$livestock_num',
+'$livestock_annualIncome',
+'$livestock_cost',
+'$livestock_net_income',
+'1',
+'$livestock_intv_name',
+'$livestock_intv_qty',
+'$livestock_intv_unit',
+'$livestock_intv_value',
+'$intv_year'
+)";
+
+echo $query_livestock;
+$res_livestock = mysqli_query($link, $query_livestock);
+
+
+}
+// QUERY END FOR LIVESTOCK
 ?>
 <body>
 
@@ -226,30 +271,13 @@ $res_allied = mysqli_query($link, $query_allied);
           </select>
         </div>
 
-        <div class="md-form mb-4">
-          <input name="crop_intv_name" type="text" id="orangeForm-pass_crop_name" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="orangeForm-pass_crop_name">Name of the Intervention</label>
-        </div>
+        
 
-        <div class="md-form mb-4">
-          <input step='0.1' onchange="cal_total_expenditure()" name="crop_intv_qty" type="number" id="orangeForm-pass_cul_area" class="form-control">
-          <label for="orangeForm-pass_cul_area">Qty. of intervention</label>
-        </div>
 
-        <div class="md-form mb-4">
-          <input onchange="cal_total_expenditure()" name="crop_intv_unit" type="text" id="orangeForm-pass_cul_area" class="form-control">
-          <label for="orangeForm-pass_cul_area">Unit of measurement</label>
-        </div>
 
-        <div class="md-form mb-4">
-          <input step='0.1' onchange="cal_total_expenditure()" name="crop_intv_amount" type="number" id="orangeForm-pass_cul_area" class="form-control">
-          <label for="orangeForm-pass_cul_area">Value of Intervention</label>
-        </div>
 
-        <div class="md-form mb-4">
-          <input onchange="cal_total_expenditure()" name="crop_tsrds_supp" type="text" id="orangeForm-pass_cul_area" class="form-control">
-          <label for="orangeForm-pass_cul_area">TSRDS Support</label>
-        </div>
+
+
 
          <div class="md-form mb-4">
           <input name="crop_name" type="text" id="orangeForm-pass_crop_name" class="form-control validate">
@@ -297,18 +325,30 @@ $res_allied = mysqli_query($link, $query_allied);
           <label for="orangeForm-pass_netincome">Net Income(₹)</label>
         </div>
 
-        <?php 
-        $crop_base_income=0;
-      $query_base_income = "SELECT * FROM crop_cultivation WHERE family_id='$fam_id' AND bsl_crop='0'";
-      $res_base_income = mysqli_query($link, $query_base_income);
-      while($row_base_income = mysqli_fetch_assoc($res_base_income)){
-        $crop_base_income = $crop_base_income+$row_base_income['net_income'];
-      }
-      ?>
-        <div class="md-form mb-4">
-          <input readonly="readonly" name="crop_base_income" type="number" id="orangeForm-pass_netincome" class="form-control">
-          <label data-error="wrong" data-success="right" for="orangeForm-pass_netincome">Base Income(₹) = <?php echo $crop_base_income; ?></label>
+       <center> <h5>TSRDS SUPPORT</h5> </center>
+
+       <div class="md-form mb-4">
+          <input name="crop_intv_name" type="text" id="orangeForm-pass_crop_name" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="orangeForm-pass_crop_name">Name of the Intervention</label>
         </div>
+
+        <div class="md-form mb-4">
+          <input step='0.1' onchange="cal_total_expenditure()" name="crop_intv_qty" type="number" id="orangeForm-pass_cul_area" class="form-control">
+          <label for="orangeForm-pass_cul_area">Qty. of intervention</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input onchange="cal_total_expenditure()" name="crop_intv_unit" type="text" id="orangeForm-pass_cul_area" class="form-control">
+          <label for="orangeForm-pass_cul_area">Unit of measurement</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input step='0.1' onchange="cal_total_expenditure()" name="crop_intv_amount" type="number" id="orangeForm-pass_cul_area" class="form-control">
+          <label for="orangeForm-pass_cul_area">Value of Intervention</label>
+        </div>
+
+
+      
       </div>
       <div class="modal-footer d-flex justify-content-center">
         <input type="submit" name="crop_submit" class="btn btn-deep-orange"></button>
@@ -352,30 +392,7 @@ $res_allied = mysqli_query($link, $query_allied);
           <label for="orangeForm-passcultarea">Area Under Cultivation (in acre)</label>
         </div>
 
-        <div class="md-form mb-4">
-          <input step="0.1" name="allied_intv_name" type="text" id="orangeForm-passcultarea" class="form-control">
-          <label for="orangeForm-passcultarea">Name of Intervention</label>
-        </div>
-
-        <div class="md-form mb-4">
-          <input step="0.1" name="allied_intv_qty" type="number" id="orangeForm-passcultarea" class="form-control">
-          <label for="orangeForm-passcultarea">Qty. of Intervention</label>
-        </div>
-
-        <div class="md-form mb-4">
-          <input name="allied_intv_unit" type="text" id="orangeForm-passcultarea" class="form-control">
-          <label for="orangeForm-passcultarea">Unit of Measurement</label>
-        </div>
-
-        <div class="md-form mb-4">
-          <input name="allied_intv_value" type="number" id="orangeForm-prod_allied" class="form-control">
-          <label for="orangeForm-prod_allied">Value of Intervention</label>
-        </div>
-
-        <div class="md-form mb-4">
-          <input name="allied_tsrds_supp" type="text" id="orangeForm-prod_allied" class="form-control">
-          <label for="orangeForm-prod_allied">TSRDS Support</label>
-        </div>
+       
 
         <div class="md-form mb-4">
           <input name="production_allied" type="number" id="orangeForm-prod_allied" class="form-control">
@@ -397,6 +414,29 @@ $res_allied = mysqli_query($link, $query_allied);
           <label for="orangeForm-netannual_allied">Net Annual(₹)</label>
         </div>
 
+
+        <center><h5>TSRDS SUPPORT</h5></center>
+
+         <div class="md-form mb-4">
+          <input step="0.1" name="allied_intv_name" type="text" id="orangeForm-passcultarea" class="form-control">
+          <label for="orangeForm-passcultarea">Name of Intervention</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input step="0.1" name="allied_intv_qty" type="number" id="orangeForm-passcultarea" class="form-control">
+          <label for="orangeForm-passcultarea">Qty. of Intervention</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input name="allied_intv_unit" type="text" id="orangeForm-passcultarea" class="form-control">
+          <label for="orangeForm-passcultarea">Unit of Measurement</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input name="allied_intv_value" type="number" id="orangeForm-prod_allied" class="form-control">
+          <label for="orangeForm-prod_allied">Value of Intervention</label>
+        </div>
+
       </div>
       <div class="modal-footer d-flex justify-content-center">
         <input type="submit" name="allied_submit" class="btn btn-deep-orange"></button>
@@ -407,6 +447,91 @@ $res_allied = mysqli_query($link, $query_allied);
 </form>
 
           <!-- MODAL END FOR ALLIED -->
+
+          <!-- MODAL START FOR LIVESTOCK -->
+          <form action="" method="POST">
+          <div class="modal fade" id="modallivestock" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Livestock Details</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <select name="name_livestock" class="browser-default custom-select">
+            <option disabled="disabled" selected>Name of the Livestock</option>
+            <option value="Cow">Cow</option>
+            <option value="Ox">Ox</option>
+            <option value="Buffallow">Buffallow</option>
+            <option value="Goat">Goat</option>
+            <option value="Sheep">Sheep</option>
+            <option value="Pig">Pig</option>
+            <option value="Hen">Hen</option>
+            <option value="Duck">Duck</option>
+            <option value="Others">Others</option>
+          </select>
+        </div>
+
+        <div class="md-form mb-4">
+          <input name="number_livestock" type="number" id="orangeForm-pass" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="orangeForm-pass">Numbers</label>
+        </div>
+
+       
+
+         <div class="md-form mb-4">
+          <input onchange="cal_net_livestock()" name="ann_income_livestock" type="number" id="orangeForm-income_livestock" class="form-control">
+          <label for="orangeForm-income_livestock">Annual Income(₹)</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input onchange="cal_net_livestock()" name="rearing_cost_livestock" type="number" id="orangeForm-cost_livestock" class="form-control">
+          <label for="orangeForm-cost_livestock">Cost of rearing(₹)</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input readonly="readonly" name="net_income_livestock" type="number" id="orangeForm-netincome_livestock" class="form-control">
+          <label for="orangeForm-netincome_livestock">Net Annual Income(₹)</label>
+        </div>
+
+        <center><h5>TSRDS SUPPORT</h5></center>
+
+         <div class="md-form mb-4">
+          <input name="livestock_intv_name" type="text" id="orangeForm-income_livestock" class="form-control">
+          <label for="orangeForm-income_livestock">Name of Intervention</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input name="livestock_intv_qty" type="number" id="orangeForm-income_livestock" class="form-control">
+          <label for="orangeForm-income_livestock">Qty of Intervention</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input name="livestock_intv_unit" type="text" id="orangeForm-income_livestock" class="form-control">
+          <label for="orangeForm-income_livestock">Unit of measurement</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <input name="livestock_intv_value" type="number" id="orangeForm-income_livestock" class="form-control">
+          <label for="orangeForm-income_livestock">Value of Intervention(₹)</label>
+        </div>
+
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <input type="submit" name="livestock_submit" class="btn btn-deep-orange"></button>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+
+          <!-- MODAL END FOR LIVESTOCK -->
 
   
   <?php 
@@ -542,6 +667,61 @@ $res_allied = mysqli_query($link, $query_allied);
                 <!-- BUTTON END FOR AGRI ALLIED - OTHERS -->
                 <br>
 
+                <!-- BUTTON START FOR LIVESTOCK -->
+
+                <button data-toggle="modal" data-target="#modallivestock" type="button" class="btn btn-success btn-lg btn-block">
+                <i class="fas fa-coffee"></i> &nbsp; Agri Allied - Livestock</button>
+                <br>
+                <?php
+                $query_fetch_livestock = "SELECT * FROM livestock WHERE family_id='$fam_id' AND bsl_livestock='1' AND intv_year='$selected_year'";
+                $res_fetch_livestock = mysqli_query($link, $query_fetch_livestock);
+                $count_livestock_fetch = mysqli_num_rows($res_fetch_livestock);
+                if($count_livestock_fetch==0){
+                  // echo "Enter Livestock Details.";
+                }
+
+                else{
+                  echo '<table class="table">';
+                  echo '<tr>';
+                  echo '<th> Livestock </th> <th> Count </th> <th> Annual Income(₹) </th> <th> Net Income(₹) </th> <th> <i class="fas fa-trash-alt"></i> </th>';
+                  echo '</tr>';
+                  while($row_livestock_fetch = mysqli_fetch_assoc($res_fetch_livestock)){
+                    echo '<tr>';
+                    echo '<td>';
+                      echo $row_livestock_fetch['name'];
+                    echo '</td>';
+
+                    echo '<td>';
+                      echo $row_livestock_fetch['number'];
+                    echo '</td>';
+
+                    echo '<td>';
+                      echo $row_livestock_fetch['annual_income'];
+                    echo '</td>';
+
+                      echo '<td>';
+                      echo $row_livestock_fetch['net_income'];
+                    echo '</td>';
+
+                    echo '<td>';
+                    ?>
+
+                      <button onclick="del_obj('<?php echo $row_livestock_fetch['entry_id']; ?>', 'livestock')">
+                      <i style="color:red" class="fas fa-times"> </i> 
+                    </button>
+
+
+                    <?php
+                    echo '</td>';
+
+                    echo '</tr>';
+                  }
+                  echo '</table>';
+                }
+                ?>
+                <br>
+                <!-- BUTTON END FOR LIVESTOCK -->
+
 
 
 <?php
@@ -626,6 +806,16 @@ function cal_net_allied(){
   ann_exp_allied_act = document.getElementById('orangeForm-annualexp_allied').value;
   net_income_allied_act = ann_income_allied_act-ann_exp_allied_act;
   document.getElementById('orangeForm-netannual_allied').value = net_income_allied_act;
+}
+
+function cal_net_livestock(){
+  ann_income_livestock = document.getElementById('orangeForm-income_livestock').value;
+  rearing_exp = document.getElementById('orangeForm-cost_livestock').value;
+  net_income = ann_income_livestock-rearing_exp;
+  console.log(ann_income_livestock);
+  console.log(rearing_exp);
+  console.log(net_income);
+  document.getElementById('orangeForm-netincome_livestock').value = net_income;
 }
 
 function set_year(a){
