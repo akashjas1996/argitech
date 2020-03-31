@@ -1007,7 +1007,7 @@ $res_enterprise = mysqli_query($link, $query_enterprise);
 
                     echo '<td>';
                       ?>
-
+                      <br><br>
                     <button onclick="del_obj('<?php echo $row_dailywage_fetch['entry_id']; ?>', 'dailywage')">
                       <i style="color:red" class="fas fa-times"> </i> 
                     </button>
