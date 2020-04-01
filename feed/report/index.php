@@ -176,7 +176,7 @@ if(isset($_GET['res_id'])){
                 </td>
               </tr>
 
-               <tr>
+               <tr style="background-color: lightblue ">
                 <th colspan="4">Total Amount</th>
                 <th>2800</th>
               </tr>

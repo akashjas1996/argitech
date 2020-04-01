@@ -498,7 +498,7 @@ $res_enterprise = mysqli_query($link, $query_enterprise);
 
         <div class="md-form mb-4">
           <input step='0.1' onchange="cal_total_expenditure()" name="crop_intv_amount" type="number" id="orangeForm-pass_cul_area" class="form-control">
-          <label for="orangeForm-pass_cul_area">Value of Intervention</label>
+          <label for="orangeForm-pass_cul_area">Amount of Intervention(₹)</label>
         </div>
 
 
@@ -588,7 +588,7 @@ $res_enterprise = mysqli_query($link, $query_enterprise);
 
         <div class="md-form mb-4">
           <input name="allied_intv_value" type="number" id="orangeForm-prod_allied" class="form-control">
-          <label for="orangeForm-prod_allied">Value of Intervention</label>
+          <label for="orangeForm-prod_allied">Amount of Intervention(₹)</label>
         </div>
 
       </div>
@@ -672,7 +672,7 @@ $res_enterprise = mysqli_query($link, $query_enterprise);
 
         <div class="md-form mb-4">
           <input name="livestock_intv_value" type="number" id="orangeForm-income_livestock" class="form-control">
-          <label for="orangeForm-income_livestock">Value of Intervention(₹)</label>
+          <label for="orangeForm-income_livestock">Amount of Intervention(₹)</label>
         </div>
 
 
@@ -826,7 +826,7 @@ $res_enterprise = mysqli_query($link, $query_enterprise);
 
         <div class="md-form mb-4">
           <input name="ent_intv_value" type="number" id="orangeForm-income_livestock" class="form-control">
-          <label for="orangeForm-income_livestock">Value of Intervention(₹)</label>
+          <label for="orangeForm-income_livestock">Amount of Intervention(₹)</label>
         </div>
 
       </div>

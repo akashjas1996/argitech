@@ -4,12 +4,19 @@
 if(isset($_SESSION['name'])){
   $name_tag = $_SESSION['name'];
 }
+
+if(isset($_GET['res_id'])){
+  $report_url = '../report/?res_id='.$_GET['res_id'];
+}
+else{
+  $report_url="../fnd/";
+}
 ?>
 <nav class="mb-1 navbar navbar-expand-lg navbar-dark green accent-9">
   <a class="navbar-brand" href="../reg/">Registration</a>
   <a class="navbar-brand" href="../ben/">Baseline</a>
   <a class="navbar-brand" href="../fnd/">Interventions</a>
-  <a class="navbar-brand" href=../report/>Reports</a>
+  <a class="navbar-brand" href="<?php echo $report_url; ?>">Reports</a>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4"
     aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
