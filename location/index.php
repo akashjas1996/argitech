@@ -35,95 +35,95 @@ https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <tbody>
     <tr>
       <th scope="row">State</th>
-       <td align="center" colspan="6"> <a href="#"> Jharkhand </a> </td>
-       <td align="center" colspan="4"> <a href="#"> Odisha </a> </td>
+       <td align="center" colspan="6"> <a href="../report/?state=Jharkhand"> Jharkhand </a> </td>
+       <td align="center" colspan="4"> <a href="../report/?state=Odisha"> Odisha </a> </td>
     </tr>
 
     <tr>
       <th scope="row">District</th>
-       <td > <a href="#"> Dhanbad </a> </td>
-       <td> <a href="#">  Ramgarh </a> </td>
-       <td> <a href="#">  Bokaro </a> </td>
-       <td> <a href="#">  East Singhbhum </a> </td>
-       <td> <a href="#">  West Singhbhum </a> </td>
-       <td> <a href="#">  Saraikela-Kharnsawan </a> </td>
-       <td> <a href="#">  Jajpur </a> </td>
-       <td> <a href="#">  Keonjhar </a> </td>
-       <td> <a href="#">  Ganjam </a> </td>
-       <td> <a href="#">  Sundargargh </a> </td>
+       <td > <a href="../report/?dist=Dhanbad"> Dhanbad </a> </td>
+       <td> <a href="../report/?dist=Ramgarh">  Ramgarh </a> </td>
+       <td> <a href="../report/?dist=Bokaro">  Bokaro </a> </td>
+       <td> <a href="../report/?dist=East Singhbhum">  East Singhbhum </a> </td>
+       <td> <a href="../report/?dist=West Singhbhum">  West Singhbhum </a> </td>
+       <td> <a href="../report/?dist=Saraikela-Kharnsawan">  Saraikela-Kharnsawan </a> </td>
+       <td> <a href="../report/?dist=Jajpur">  Jajpur </a> </td>
+       <td> <a href="../report/?dist=Keonjhar">  Keonjhar </a> </td>
+       <td> <a href="../report/?dist=Ganjam">  Ganjam </a> </td>
+       <td> <a href="../report/?dist=Sundargarh">  Sundargargh </a> </td>
     </tr>
 
     <tr>
       <th scope="row">Block</th>
        <td> 
-            <a href="#"> Dhanbad </a> <br><br>
-            <a href="#"> Tundi </a> <br><br>
-            <a href="#"> Baghmara </a> <br><br>
-            <a href="#"> Baliapur </a> <br><br>
-            <a href="#"> Nirsa </a> <br><br>
+            <a href="../report/?block=Dhanbad"> Dhanbad </a> <br><br>
+            <a href="../report/?block=Tundi"> Tundi </a> <br><br>
+            <a href="../report/?block=Baghmara"> Baghmara </a> <br><br>
+            <a href="../report/?block=Balipur"> Baliapur </a> <br><br>
+            <a href="../report/?block=Nirsa"> Nirsa </a> <br><br>
 
        </td>
        <td> 
-        <a href="#"> Ramgarh </a> <br><br>
-        <a href="#"> Mandu </a> <br><br>
+        <a href="../report/?block=Ramgarh"> Ramgarh </a> <br><br>
+        <a href="../report/?block=Mandu"> Mandu </a> <br><br>
        </td>
        <td> 
-        <a href="#"> Gomia </a> <br><br>
-        <a href="#"> Chandankyari </a> <br><br>
-       </td>
-
-       <td> 
-        <a href="#"> Jamshedpur </a> <br><br>
-        <a href="#"> Boram </a> <br><br>
-        <a href="#"> Patamda </a> <br><br>
-        <a href="#"> Potka </a> <br><br>
-        <a href="#"> Bahargora </a> <br><br>
-        <a href="#"> Ghatsila </a> <br><br>
-        <a href="#"> Gurabandha </a> <br><br>
+        <a href="../report/?block=Gomia"> Gomia </a> <br><br>
+        <a href="../report/?block=Chandankyari"> Chandankyari </a> <br><br>
        </td>
 
        <td> 
-        <a href="#"> Noamundi </a> <br><br>
-        <a href="#"> Chaibasa </a> <br><br>
-        <a href="#"> khuntpani </a> <br><br>
-        <a href="#"> Goilkera </a> <br><br>
-        <a href="#"> Manjhari </a> <br><br>
-        <a href="#"> Tantnagar </a> <br><br>
-        <a href="#"> Chkradharpur </a> <br><br>
+        <a href="../report/?block=Jamshedpur"> Jamshedpur </a> <br><br>
+        <a href="../report/?block=Boram"> Boram </a> <br><br>
+        <a href="../report/?block=Patamda"> Patamda </a> <br><br>
+        <a href="../report/?block=Potka"> Potka </a> <br><br>
+        <a href="../report/?block=Baghmara"> Bahargora </a> <br><br>
+        <a href="../report/?block=Ghatsila"> Ghatsila </a> <br><br>
+        <a href="../report/?block=Gurabandha"> Gurabandha </a> <br><br>
        </td>
 
        <td> 
-        <a href="#"> Saraikela </a> <br><br>
-        <a href="#"> Kharsawan </a> <br><br>
-        <a href="#"> Ichagarh </a> <br><br>
-        <a href="#"> Kuchai </a> <br><br>
-        <a href="#"> Rajnagar </a> <br><br>
-        <a href="#"> Kukru </a> <br><br>
+        <a href="../report/?block=Noamundi"> Noamundi </a> <br><br>
+        <a href="../report/?block=Chaibasa"> Chaibasa </a> <br><br>
+        <a href="../report/?block=khuntpani"> khuntpani </a> <br><br>
+        <a href="../report/?block=Goilkera"> Goilkera </a> <br><br>
+        <a href="../report/?block=Manjhari"> Manjhari </a> <br><br>
+        <a href="../report/?block=Tantnagar"> Tantnagar </a> <br><br>
+        <a href="../report/?block=Chkradharpur"> Chkradharpur </a> <br><br>
        </td>
 
        <td> 
-        <a href="#"> Danagadi </a> <br><br>
-        <a href="#"> Sukinda </a> <br><br>
+        <a href="../report/?block=Saraikela"> Saraikela </a> <br><br>
+        <a href="../report/?block=Kharsawan"> Kharsawan </a> <br><br>
+        <a href="../report/?block=Ichagarh"> Ichagarh </a> <br><br>
+        <a href="../report/?block=Kuchai"> Kuchai </a> <br><br>
+        <a href="../report/?block=Rajnagar"> Rajnagar </a> <br><br>
+        <a href="../report/?block=Kukru"> Kukru </a> <br><br>
        </td>
 
        <td> 
-        <a href="#"> Joda </a> <br><br>
-        <a href="#"> Harichandanpur </a> <br><br>
-        <a href="#"> Ghasipura </a> <br><br>
+        <a href="../report/?block=Danagadi"> Danagadi </a> <br><br>
+        <a href="../report/?block=Sukinda"> Sukinda </a> <br><br>
        </td>
 
        <td> 
-        <a href="#"> Rangailunda </a> <br><br>
-        <a href="#"> Chatrapur </a> <br><br>
-        <a href="#"> Hinjlicut </a> <br><br>
-        <a href="#"> Asca </a> <br><br>
-        <a href="#"> Dighapondi </a> <br><br>
-        <a href="#"> Purshottampur </a> <br><br>
+        <a href="../report/?block=Joda"> Joda </a> <br><br>
+        <a href="../report/?block=Harichandanpur"> Harichandanpur </a> <br><br>
+        <a href="../report/?block=Ghasipura"> Ghasipura </a> <br><br>
        </td>
 
        <td> 
-        <a href="#"> Rajgangpur </a> <br><br>
-        <a href="#"> Kutra </a> <br><br>
+        <a href="../report/?block=Rangailunda"> Rangailunda </a> <br><br>
+        <a href="../report/?block=Chatrapur"> Chatrapur </a> <br><br>
+        <a href="../report/?block=Hinjlicut"> Hinjlicut </a> <br><br>
+        <a href="../report/?block=Asca"> Asca </a> <br><br>
+        <a href="../report/?block=Dighapondi"> Dighapondi </a> <br><br>
+        <a href="../report/?block=Purshottampur"> Purshottampur </a> <br><br>
+       </td>
+
+       <td> 
+        <a href="../report/?block=Rajgangpur"> Rajgangpur </a> <br><br>
+        <a href="../report/?block=Kutra"> Kutra </a> <br><br>
        </td>
 
 
@@ -138,7 +138,7 @@ https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
      $query_gp1 = "SELECT DISTINCT gp FROM family WHERE state='Jharkhand' AND dist='Dhanbad'";
      $res_gp1 = mysqli_query($link, $query_gp1);
      while($row_gp1 = mysqli_fetch_assoc($res_gp1)){
-      echo '<a href="#">';
+      echo '<a href="../report/?GP='.$row_gp1['gp'].'">';
       echo $row_gp1['gp'];
       echo '</a>';
       echo '<br>';
@@ -361,16 +361,16 @@ https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </style>
 <div style="display: flex; justify-content: center;">
-<button class="btn btn-default">Bamnipal</i></button>
-<button class="btn btn-default">Gomardih</i></button>
-<button class="btn btn-default">Gopalpur</i></button>
-<button class="btn btn-default">Jamadoba</i></button>
-<button class="btn btn-default">Jamshedpur</i></button>
-<button class="btn btn-default">Joda</i></button>
-<button class="btn btn-default">Kalinga Nagar</i></button>
-<button class="btn btn-default">Noamundi</i></button>
-<button class="btn btn-default">Sukinda</i></button>
-<button class="btn btn-default">West Bokaro</i></button>
+<a href="../report/?op=Bamnipal"> <button class="btn btn-default">Bamnipal</i></button> </a>
+<a href="../report/?op=Gomardih"> <button class="btn btn-default">Gomardih</i></button> </a>
+<a href="../report/?op=Gopalpur"> <button class="btn btn-default">Gopalpur</i></button> </a>
+<a href="../report/?op=Jamadoba"> <button class="btn btn-default">Jamadoba</i></button> </a>
+<a href="../report/?op=Jamshedpur"> <button class="btn btn-default">Jamshedpur</i></button> </a>
+<a href="../report/?op=Joda"> <button class="btn btn-default">Joda</i></button> </a>
+<a href="../report/?op=Kalinga Nagar"> <button class="btn btn-default">Kalinga Nagar</i></button> </a>
+<a href="../report/?op=Noamundi"> <button class="btn btn-default">Noamundi</i></button> </a>
+<a href="../report/?op=Sukinda"> <button class="btn btn-default">Sukinda</i></button> </a>
+<a href="../report/?op=West Bokaro"> <button class="btn btn-default">West Bokaro</i></button> </a>
 </div>
     </div>
 </div>
