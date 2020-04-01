@@ -75,6 +75,7 @@ else{
 
     </tr>
   </thead> -->
+  <?php $sl=1; ?>
   <tbody>
     <tr>
       <th scope="row">Sr No.</th>
@@ -97,7 +98,7 @@ else{
       ?>
       <tr>
       <td>
-        Sl
+        <?php echo $sl; $sl++ ?>
       </td>
 
       <td>
