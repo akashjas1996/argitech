@@ -9,7 +9,7 @@ if(isset($_SESSION['name'])){
   <a class="navbar-brand" href="../reg/">Registration</a>
   <a class="navbar-brand" href="../ben/">Baseline</a>
   <a class="navbar-brand" href="../fnd/">Interventions</a>
-  <a class="navbar-brand" href="#">Reports</a>
+  <a class="navbar-brand" href=../report/>Reports</a>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4"
     aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">

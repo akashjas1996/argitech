@@ -346,10 +346,14 @@ $res_enterprise = mysqli_query($link, $query_enterprise);
                   $row_sum_base_ent = $row_sum_base_ent['net_income'];
 
                   $baseline_income = $row_sum_base_crop+$row_sum_base_allied+$row_sum_base_livestock+$row_sum_base_dailywage+$row_sum_base_ent;
-                  echo 'TOTAL BASELINE INCOM: &nbsp;';
+                  echo 'TOTAL BASELINE INCOME: &nbsp;';
                   echo $baseline_income;
                   echo '<br>';
-                  $selected_year = $_GET['year'];
+
+                  if(isset($_GET['year']))
+                    $selected_year = $_GET['year'];
+                  else
+                    $selected_year="";
 
                   $q_sum_intv_crop = "SELECT net_income FROM crop_cultivation WHERE family_id='$fam_id' AND bsl_crop='1' AND year='$selected_year'";
                   $q_sum_intv_allied = "SELECT net_annual FROM allied WHERE family_id='$fam_id' AND bsl_allied='1' AND intv_year='$selected_year'";
@@ -381,7 +385,9 @@ $res_enterprise = mysqli_query($link, $query_enterprise);
                   $intvline_income = $row_sum_intv_crop+$row_sum_intv_allied+$row_sum_intv_livestock+$row_sum_intv_dailywage+$row_sum_intv_ent;
 
                   echo 'TOTAL CURRENT YEAR INCOME: &nbsp;';
-                  echo $intvline_income;
+                  
+                  if(isset($_GET['year']))
+                    echo $intvline_income;
 
                 }
                 else{
@@ -399,8 +405,6 @@ $res_enterprise = mysqli_query($link, $query_enterprise);
             <option value="2023-24">2023-24</option>
           </select>
           <br><br>
-
-
 
           <!-- MODAL START FOR CROP CULTIVATION -->
           <form action="" method="POST">
@@ -428,12 +432,6 @@ $res_enterprise = mysqli_query($link, $query_enterprise);
         </div>
 
         
-
-
-
-
-
-
 
          <div class="md-form mb-4">
           <input name="crop_name" type="text" id="orangeForm-pass_crop_name" class="form-control validate">
