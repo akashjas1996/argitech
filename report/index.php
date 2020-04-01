@@ -226,16 +226,16 @@ else{
 
 </style>
 <div style="display: flex; justify-content: center;">
-<button class="btn btn-default">Bamnipal</i></button>
-<button class="btn btn-default">Gomardih</i></button>
-<button class="btn btn-default">Gopalpur</i></button>
-<button class="btn btn-default">Jamadoba</i></button>
-<button class="btn btn-default">Jamshedpur</i></button>
-<button class="btn btn-default">Joda</i></button>
-<button class="btn btn-default">Kalinga Nagar</i></button>
-<button class="btn btn-default">Noamundi</i></button>
-<button class="btn btn-default">Sukinda</i></button>
-<button class="btn btn-default">West Bokaro</i></button>
+<a href="../report/?op=Bamnipal"> <button class="btn btn-default">Bamnipal</i></button> </a>
+<a href="../report/?op=Gomardih"> <button class="btn btn-default">Gomardih</i></button> </a>
+<a href="../report/?op=Gopalpur"> <button class="btn btn-default">Gopalpur</i></button> </a>
+<a href="../report/?op=Jamadoba"> <button class="btn btn-default">Jamadoba</i></button> </a>
+<a href="../report/?op=Jamshedpur"> <button class="btn btn-default">Jamshedpur</i></button> </a>
+<a href="../report/?op=Joda"> <button class="btn btn-default">Joda</i></button> </a>
+<a href="../report/?op=Kalinga Nagar"> <button class="btn btn-default">Kalinga Nagar</i></button> </a>
+<a href="../report/?op=Noamundi"> <button class="btn btn-default">Noamundi</i></button> </a>
+<a href="../report/?op=Sukinda"> <button class="btn btn-default">Sukinda</i></button> </a>
+<a href="../report/?op=West Bokaro"> <button class="btn btn-default">West Bokaro</i></button> </a>
 </div>
     </div>
 </div>
