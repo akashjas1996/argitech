@@ -99,113 +99,113 @@
     array("y" => 2.21, "legendText" => "Daily Wage Labour", "label" => "Daily Wage Labour"),
     );
 
-    $dataPoints1progress = array(
-    array("y" => 11133, "label" => "Unit 1"),
-    array("y" => 49088, "label" => "Unit 2"),
-    array("y" => 62200, "label" => "Unit 3"),
-    array("y" => 90085, "label" => "Unit 4"),
-    array("y" => 38600, "label" => "Unit 5"),
-    array("y" => 48750, "label" => "Unit 6"),
-    array("y" => 11138, "label" => "Unit 7"),
+    $SourceofIncome1 = array(
+    array("y" => 11133, "label" => "Bamnipal"),
+    array("y" => 49088, "label" => "Gomardih"),
+    array("y" => 62200, "label" => "Gopalpur"),
+    array("y" => 90085, "label" => "Jamadoba"),
+    array("y" => 38600, "label" => "Jamshedpur"),
+    array("y" => 48750, "label" => "Joda"),
+    array("y" => 11138, "label" => "Kalinga Nagar"),
     array("y" => 49088, "label" => "Unit 8"),
     array("y" => 62200, "label" => "Unit 9"),
-    array("y" => 90085, "label" => "Unit 10"),
-    array("y" => 38600, "label" => "Unit 11"),
-    array("y" => 48750, "label" => "Unit 12"),
-    array("y" => 11133, "label" => "Unit 13"),
-    array("y" => 49088, "label" => "Unit 14"),
-    array("y" => 62200, "label" => "Unit 15"),
-    array("y" => 90085, "label" => "Unit 16"),
-    array("y" => 38600, "label" => "Unit 17"),
-    array("y" => 48750, "label" => "Unit 18")
+    array("y" => 90085, "label" => "Bamnipal0"),
+    array("y" => 38600, "label" => "Bamnipal1"),
+    array("y" => 48750, "label" => "Bamnipal2"),
+    array("y" => 11133, "label" => "Bamnipal3"),
+    array("y" => 49088, "label" => "Bamnipal4"),
+    array("y" => 62200, "label" => "Bamnipal5"),
+    array("y" => 90085, "label" => "Bamnipal6"),
+    array("y" => 38600, "label" => "Bamnipal7"),
+    array("y" => 48750, "label" => "Bamnipal8")
 );
 
 
-    $dataPoints2progress = array(
-    array("y" => 13530, "label" => "Unit 1"),
-    array("y" => 107922, "label" => "Unit 2"),
-    array("y" => 52300, "label" => "Unit 3"),
-    array("y" => 3360, "label" => "Unit 4"),
-    array("y" => 39900, "label" => "Unit 5"),
-    array("y" => 0, "label" => "Unit 6"),
-    array("y" => 135305, "label" => "Unit 7"),
+    $SourceofIncome2 = array(
+    array("y" => 94500, "label" => "Bamnipal"),
+    array("y" => 107922, "label" => "Gomardih"),
+    array("y" => 52300, "label" => "Gopalpur"),
+    array("y" => 3360, "label" => "Jamadoba"),
+    array("y" => 39900, "label" => "Jamshedpur"),
+    array("y" => 0, "label" => "Joda"),
+    array("y" => 135305, "label" => "Kalinga Nagar"),
     array("y" => 107922, "label" => "Unit 8"),
     array("y" => 52300, "label" => "Unit 9"),
-    array("y" => 3360, "label" => "Unit 10"),
-    array("y" => 39900, "label" => "Unit 11"),
-    array("y" => 0, "label" => "Unit 12"),
-    array("y" => 135305, "label" => "Unit 13"),
-    array("y" => 107922, "label" => "Unit 14"),
-    array("y" => 52300, "label" => "Unit 15"),
-    array("y" => 3360, "label" => "Unit 16"),
-    array("y" => 39900, "label" => "Unit 17"),
-    array("y" => 0, "label" => "Unit 18")
+    array("y" => 3360, "label" => "Bamnipal0"),
+    array("y" => 39900, "label" => "Bamnipal1"),
+    array("y" => 0, "label" => "Bamnipal2"),
+    array("y" => 135305, "label" => "Bamnipal3"),
+    array("y" => 107922, "label" => "Bamnipal4"),
+    array("y" => 52300, "label" => "Bamnipal5"),
+    array("y" => 3360, "label" => "Bamnipal6"),
+    array("y" => 39900, "label" => "Bamnipal7"),
+    array("y" => 0, "label" => "Bamnipal8")
     );
 
     $dataPoints1location = array(
-    array("y" => 3, "label" => "Unit 1"),
-    array("y" => 5, "label" => "Unit 2"),
-    array("y" => 3, "label" => "Unit 3"),
-    array("y" => 6, "label" => "Unit 4"),
-    array("y" => 7, "label" => "Unit 5"),
-    array("y" => 5, "label" => "Unit 6"),
-    array("y" => 5, "label" => "Unit 7"),
+    array("y" => 3, "label" => "Bamnipal"),
+    array("y" => 5, "label" => "Gomardih"),
+    array("y" => 3, "label" => "Gopalpur"),
+    array("y" => 6, "label" => "Jamadoba"),
+    array("y" => 7, "label" => "Jamshedpur"),
+    array("y" => 5, "label" => "Joda"),
+    array("y" => 5, "label" => "Kalinga Nagar"),
     array("y" => 7, "label" => "Unit 8"),
     array("y" => 9, "label" => "Unit 8"),
-    array("y" => 8, "label" => "Unit 10"),
-    array("y" => 12, "label" => "Unit 11")
+    array("y" => 8, "label" => "Bamnipal0"),
+    array("y" => 12, "label" => "Bamnipal1")
     );
     $dataPoints2location = array(
-    array("y" => 0.5, "label" => "Unit 1"),
-    array("y" => 1.5, "label" => "Unit 2"),
-    array("y" => 1, "label" => "Unit 3"),
-    array("y" => 2, "label" => "Unit 4"),
-    array("y" => 2, "label" => "Unit 5"),
-    array("y" => 2.5, "label" => "Unit 6"),
-    array("y" => 1.5, "label" => "Unit 7"),
+    array("y" => 0.5, "label" => "Bamnipal"),
+    array("y" => 1.5, "label" => "Gomardih"),
+    array("y" => 1, "label" => "Gopalpur"),
+    array("y" => 2, "label" => "Jamadoba"),
+    array("y" => 2, "label" => "Jamshedpur"),
+    array("y" => 2.5, "label" => "Joda"),
+    array("y" => 1.5, "label" => "Kalinga Nagar"),
     array("y" => 1, "label" => "Unit 8"),
     array("y" => 2, "label" => "Unit 9"),
-    array("y" => 2, "label" => "Unit 10"),
-    array("y" => 3, "label" => "Unit 11")
+    array("y" => 2, "label" => "Bamnipal0"),
+    array("y" => 3, "label" => "Bamnipal1")
     );
     $dataPoints3location = array(
-    array("y" => 2, "label" => "Unit 1"),
-    array("y" => 3, "label" => "Unit 2"),
-    array("y" => 3, "label" => "Unit 3"),
-    array("y" => 3, "label" => "Unit 4"),
-    array("y" => 4, "label" => "Unit 5"),
-    array("y" => 3, "label" => "Unit 6"),
-    array("y" => 4.5, "label" => "Unit 7"),
+    array("y" => 2, "label" => "Bamnipal"),
+    array("y" => 3, "label" => "Gomardih"),
+    array("y" => 3, "label" => "Gopalpur"),
+    array("y" => 3, "label" => "Jamadoba"),
+    array("y" => 4, "label" => "Jamshedpur"),
+    array("y" => 3, "label" => "Joda"),
+    array("y" => 4.5, "label" => "Kalinga Nagar"),
     array("y" => 4.5, "label" => "Unit 8"),
     array("y" => 6, "label" => "Unit 9"),
-    array("y" => 3, "label" => "Unit 10"),
-    array("y" => 6, "label" => "Unit 11")
+    array("y" => 3, "label" => "Bamnipal0"),
+    array("y" => 6, "label" => "Bamnipal1")
     );
     $dataPoints4location = array(
-    array("y" => 2, "label" => "Unit 1"),
-    array("y" => 3, "label" => "Unit 2"),
-    array("y" => 6, "label" => "Unit 3"),
-    array("y" => 4, "label" => "Unit 4"),
-    array("y" => 4, "label" => "Unit 5"),
-    array("y" => 8, "label" => "Unit 6"),
-    array("y" => 8, "label" => "Unit 7"),
+    array("y" => 2, "label" => "Bamnipal"),
+    array("y" => 3, "label" => "Gomardih"),
+    array("y" => 6, "label" => "Gopalpur"),
+    array("y" => 4, "label" => "Jamadoba"),
+    array("y" => 4, "label" => "Jamshedpur"),
+    array("y" => 8, "label" => "Joda"),
+    array("y" => 8, "label" => "Kalinga Nagar"),
     array("y" => 8, "label" => "Unit 8"),
     array("y" => 4, "label" => "Unit 9"),
-    array("y" => 11, "label" => "Unit 10"),
-    array("y" => 6, "label" => "Unit 11")
+    array("y" => 11, "label" => "Bamnipal0"),
+    array("y" => 6, "label" => "Bamnipal1")
     );
     $dataPoints5location = array(
-    array("y" => 2, "label" => "Unit 1"),
-    array("y" => 3, "label" => "Unit 2"),
-    array("y" => 6, "label" => "Unit 3"),
-    array("y" => 4, "label" => "Unit 4"),
-    array("y" => 4, "label" => "Unit 5"),
-    array("y" => 8, "label" => "Unit 6"),
-    array("y" => 8, "label" => "Unit 7"),
+    array("y" => 2, "label" => "Bamnipal"),
+    array("y" => 3, "label" => "Gomardih"),
+    array("y" => 6, "label" => "Gopalpur"),
+    array("y" => 4, "label" => "Jamadoba"),
+    array("y" => 4, "label" => "Jamshedpur"),
+    array("y" => 8, "label" => "Joda"),
+    array("y" => 8, "label" => "Kalinga Nagar"),
     array("y" => 8, "label" => "Unit 8"),
     array("y" => 4, "label" => "Unit 9"),
-    array("y" => 11, "label" => "Unit 10"),
-    array("y" => 6, "label" => "Unit 11")
+    array("y" => 11, "label" => "Bamnipal0"),
+    array("y" => 6, "label" => "Bamnipal1")
     );
     
 
@@ -213,9 +213,9 @@
 
 <script type="text/javascript">
 
-     $(document).ready(function() {
-            alert("Current data is for demonstration Purpose only.");
-        });
+     // $(document).ready(function() {
+     //        alert("Current data is for demonstration Purpose only.");
+     //    });
 
 
     $(function () {
@@ -269,7 +269,7 @@
             theme: "light2",
             animationEnabled: true,
             title: {
-                text: "Unit wise Progress"
+                text: "Unit wise Baseline Income"
             },
             axisY: {
                 title: "Progress (in percentage)",
@@ -278,20 +278,53 @@
             data: [
             {
                 type: "stackedColumn",
-                legendText: "Other Organizations",
+                legendText: "Crop Cultivation",
                 yValueFormatString: "#0.#,.",
                 showInLegend: "true",
-                dataPoints: <?php echo json_encode($dataPoints1progress, JSON_NUMERIC_CHECK); ?>
+                dataPoints: <?php echo json_encode($SourceofIncome1, JSON_NUMERIC_CHECK); ?>
             }, {
                 type: "stackedColumn",
-                legendText: "TSRDS",
+                legendText: "Allied - Livestock",
                 showInLegend: "true",
                 indexLabel: "#total",
                 yValueFormatString: "#0.#,.",
                 indexLabelFormatString: "#0.#,.",
                 indexLabelPlacement: "outside",
-                dataPoints: <?php echo json_encode($dataPoints2progress, JSON_NUMERIC_CHECK); ?>
-            }
+                dataPoints: <?php echo json_encode($SourceofIncome2, JSON_NUMERIC_CHECK); ?>
+            },
+
+            {
+                type: "stackedColumn",
+                legendText: "Allied - Others",
+                showInLegend: "true",
+                indexLabel: "#total",
+                yValueFormatString: "#0.#,.",
+                indexLabelFormatString: "#0.#,.",
+                indexLabelPlacement: "outside",
+                dataPoints: <?php echo json_encode($SourceofIncome2, JSON_NUMERIC_CHECK); ?>
+            },
+
+            {
+                type: "stackedColumn",
+                legendText: "Daily Wages",
+                showInLegend: "true",
+                indexLabel: "#total",
+                yValueFormatString: "#0.#,.",
+                indexLabelFormatString: "#0.#,.",
+                indexLabelPlacement: "outside",
+                dataPoints: <?php echo json_encode($SourceofIncome2, JSON_NUMERIC_CHECK); ?>
+            },
+
+            {
+                type: "stackedColumn",
+                legendText: "Enterprise",
+                showInLegend: "true",
+                indexLabel: "#total",
+                yValueFormatString: "#0.#,.",
+                indexLabelFormatString: "#0.#,.",
+                indexLabelPlacement: "outside",
+                dataPoints: <?php echo json_encode($SourceofIncome2, JSON_NUMERIC_CHECK); ?>
+            },
             ]
         });
         chart.render();
