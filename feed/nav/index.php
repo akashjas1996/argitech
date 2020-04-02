@@ -697,12 +697,16 @@ if(isset($_POST['location_submit'])){
         <div class="md-form mb-4">
          <select name="district" class="browser-default custom-select">
             <option disabled="disabled" selected>District</option>
+            <option value="Dhanbad">Dhanbad</option>
+            <option value="Ramgarh">Ramgarh</option>
+            <option value="Bokaro">Bokaro</option>
             <option value="East Singhbhum">East Singhbhum</option>
-            <option value="District 2">District 2</option>
-            <option value="District 3">District 3</option>
-            <option value="District 4">District 4</option>
-            <option value="District 5">District 5</option>
-            <option value="District 6">District 6</option>
+            <option value="West Singhbhum">West Singhbhum</option>
+            <option value="Saraikela-Kharnsawan">Saraikela-Kharnsawan</option>
+            <option value="Jajpur">Jajpur</option>
+            <option value="Keonjhar">Keonjhar</option>
+            <option value="Ganjam">Ganjam</option>
+            <option value="Sundargargh">Sundargargh</option>
           </select>
         </div>
         

@@ -24,25 +24,37 @@ include '../inc/header.php';
   <link rel="stylesheet" href="../css/mdb.min.css">
   <!-- Your custom styles (optional) -->
   <link rel="stylesheet" href="../css/style.css">
-
   <style>
-
   </style>
 </head>
-<body onload="getLocation()">
+<body>
 
-  <!--?php include '../inc/header.php'?-->
+  <?php $op_area = $_SESSION['op_area'] ?>
 
-  <!-- Start your project here-->  
 
   <?php 
     if(isset($_GET['src'])){
     $search_data = $_GET['src'];
-    $query_ben = "SELECT * FROM respondent WHERE name LIKE '$search_data%' OR res_id LIKE '$search_data%'";
+    $query_ben = "
+    SELECT
+    *
+    FROM
+  respondent
+  INNER JOIN family on respondent.family_id = family.family_id
+  WHERE
+  (
+    respondent.name LIKE '$search_data%'
+    OR respondent.res_id LIKE '$search_data%'
+  )
+  AND family.TSRDS_op_area = '$op_area'
+";
+
+    echo $query_ben;
+    // $query_ben1 = "SELECT * FROM respondent WHERE name LIKE '$search_data%' OR res_id LIKE '$search_data%' AND op";
     }
             else{
               $search_data = "";
-              $query_ben = "SELECT * FROM respondent";
+              $query_ben = "SELECT * FROM respondent INNER JOIN family on respondent.family_id=family.family_id WHERE family.TSRDS_op_area='$op_area'";
             }
   ?>
   <div style="height: 100vh">

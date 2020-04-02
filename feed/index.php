@@ -32,6 +32,8 @@ if(isset($_POST['login_pressed'])){
     $_SESSION['role'] = "CRP";
     $_SESSION['userid'] = $row_login['entry_id'];
     $_SESSION['name'] = $row_login['name'];
+    $_SESSION['op_area'] = $row_login['op_area'];
+
 
     // echo $_SESSION['role'];
     // echo $_SESSION['userid'];
