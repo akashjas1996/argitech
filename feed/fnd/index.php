@@ -49,7 +49,6 @@ include '../inc/header.php';
   AND family.TSRDS_op_area = '$op_area'
 ";
 
-    echo $query_ben;
     // $query_ben1 = "SELECT * FROM respondent WHERE name LIKE '$search_data%' OR res_id LIKE '$search_data%' AND op";
     }
             else{
@@ -115,6 +114,7 @@ include '../inc/header.php';
                      ;
            ?>
         </p>
+        <div></div>
       </div>
       <hr>
               <?php
