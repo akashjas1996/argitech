@@ -50,7 +50,7 @@ include '../inc/header.php';
             <center> <h1> 
             </h1>
 
-            <div class="row">
+            <div class="table-responsive">
         <table class="table table-striped table-bordered">
 
            <?php $sl=1; ?>
