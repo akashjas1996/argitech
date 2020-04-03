@@ -35,7 +35,7 @@
 			// echo $val;
 
 		}
-    $crop_sum=0;
+    $dataPointsCrops1 = array();
     $query_crops = "SELECT DISTINCT name FROM crop_cultivation";
     $res_crop = mysqli_query($link, $query_crops);
     while($row_crop = mysqli_fetch_assoc($res_crop)){
@@ -43,9 +43,16 @@
         $crop_name = $row_crop['name'];
         $query_crop_area = "SELECT * FROM crop_cultivation WHERE name='$crop_name'";
         $res_crop_area = mysqli_query($link, $query_crop_area);
+        $crop_sum=0;
         while($row_crop_area=mysqli_fetch_assoc($res_crop_area)){
             $crop_sum+=  $row_crop_area['cultivated_area'];
         }
+
+        array_push($dataPointsCrops1, array("y" => "$crop_sum", "legendText" => "$crop_name", "label" => "$crop_name"));
+
+
+        echo $crop_sum;
+        echo '<br>';
 
     }
 
@@ -210,12 +217,12 @@
             theme: "light2",
             animationEnabled: true,
             title: {
-                text: "Intervention"
+                text: "Crops Vs Area"
             },
             data: [
             {
                 type: "column",                
-                dataPoints: <?php echo json_encode($dataPointsCrops, JSON_NUMERIC_CHECK); ?>
+                dataPoints: <?php echo json_encode($dataPointsCrops1, JSON_NUMERIC_CHECK); ?>
             }
             ]
         });
