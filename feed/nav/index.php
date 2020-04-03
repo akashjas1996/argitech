@@ -79,7 +79,7 @@ VALUES
 '$livestock_cost',
 '$livestock_net_income')";
 
-echo $query_livestock;
+
 $res_livestock = mysqli_query($link, $query_livestock);
 
 
