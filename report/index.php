@@ -200,7 +200,7 @@ else{
           $sum_int_ent+= $row_b_intv_enterprise['net_income'];
           $intv_list = $intv_list.$row_b_intv_enterprise['enterprise_name'].", ";
         }
-        $intv_income = $sum_int_crop+$sum_int_allied+$sum_int_livestock+$sum_int_dailywage+$sum_int_ent+$base_linesum;
+        $intv_income = $sum_int_crop+$sum_int_allied+$sum_int_livestock+$sum_int_dailywage+$sum_int_ent;
 
         ?>
 
