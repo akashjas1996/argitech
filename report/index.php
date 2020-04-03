@@ -113,12 +113,14 @@ else{
         <?php echo $row_fetch_family['village'] ?>
       </td>
 
-      <td>
-        <?php echo $row_fetch_family['village'] ?>
-      </td>
 
-      <td>
-        <?php 
+
+        <?php
+         $sum_crop=0;
+        $sum_allied=0;
+        $sum_dailywage=0;
+        $sum_entp=0;
+        $sum_livestock=0;
 
         $query_b_inc_crop = "SELECT * FROM crop_cultivation WHERE family_id='$family_id' AND bsl_crop='0'";
         $query_b_inc_allied = "SELECT * FROM allied WHERE family_id='$family_id' AND bsl_allied='0'";
@@ -131,31 +133,37 @@ else{
         $res_b_inc_livestock = mysqli_query($link, $query_b_inc_livestock);
         $res_b_inc_dailywage = mysqli_query($link, $query_b_inc_dailywage);
         $res_b_inc_enterprise = mysqli_query($link, $query_b_inc_enterprise);
+ while($row_b_inc_crop = mysqli_fetch_assoc($res_b_inc_crop)){
+          $sum_crop+=$row_b_inc_crop['net_income'];
+        }
 
-        $row_b_inc_crop = mysqli_fetch_assoc($res_b_inc_crop);
-        $row_b_inc_allied = mysqli_fetch_assoc($res_b_inc_allied);
-        $row_b_inc_livestock = mysqli_fetch_assoc($res_b_inc_livestock);
-        $row_b_inc_dailywage = mysqli_fetch_assoc($res_b_inc_dailywage);
-        $row_b_inc_enterprise = mysqli_fetch_assoc($res_b_inc_enterprise);
+        while($row_b_inc_allied = mysqli_fetch_assoc($res_b_inc_allied)){
+          $sum_allied+= $row_b_inc_allied['net_annual'];
+        }
+        while($row_b_inc_livestock = mysqli_fetch_assoc($res_b_inc_livestock)){
+          $sum_livestock+= $row_b_inc_livestock['net_income'];
+        }
+        while($row_b_inc_dailywage = mysqli_fetch_assoc($res_b_inc_dailywage)){
+          $sum_dailywage+= $row_b_inc_dailywage['annual_income'];
+        }
+        while($row_b_inc_enterprise = mysqli_fetch_assoc($res_b_inc_enterprise)){
+          $sum_entp+= $row_b_inc_enterprise['net_income'];
+        }
 
-        $row_b_inc_crop = $row_b_inc_crop['net_income'];
-        $row_b_inc_allied = $row_b_inc_allied['net_annual'];
-        $row_b_inc_livestock = $row_b_inc_livestock['net_income'];
-        $row_b_inc_dailywage = $row_b_inc_dailywage['annual_income'];
-        $row_b_inc_enterprise = $row_b_inc_enterprise['net_income'];
 
-
-
-        $base_linesum = $row_b_inc_crop+$row_b_inc_allied+$row_b_inc_livestock+$row_b_inc_dailywage+$row_b_inc_enterprise;
-
-        echo $base_linesum;
+      
+        $base_linesum = $sum_crop+$sum_entp+$sum_dailywage+$sum_allied+$sum_livestock;
 
         ?>
-      </td>
 
 
-       <td>
         <?php 
+         $sum_int_crop=0;
+        $sum_int_allied=0;
+        $sum_int_livestock=0;
+        $sum_int_dailywage=0;
+        $sum_int_ent=0;
+        $intv_list="";
 
         $query_b_intv_crop = "SELECT * FROM crop_cultivation WHERE family_id='$family_id' AND intv_year='2019-20' AND bsl_crop='1'";
         $query_b_intv_allied = "SELECT * FROM allied WHERE family_id='$family_id' AND intv_year='2019-20' AND bsl_allied='1'";
@@ -163,32 +171,53 @@ else{
         $query_b_intv_dailywage = "SELECT * FROM daily_wage WHERE family_id='$family_id' AND intv_year='2019-20' AND bsl_dailywage='1'";
         $query_b_intv_enterprise = "SELECT * FROM enterprise WHERE family_id='$family_id' AND intv_year='2019-20' AND bsl_ent='1'";
 
-        $res_b_intv_crop = mysqli_query($link, $query_b_intv_crop);
+
+
+            $res_b_intv_crop = mysqli_query($link, $query_b_intv_crop);
         $res_b_intv_allied = mysqli_query($link, $query_b_intv_allied);
         $res_b_intv_livestock = mysqli_query($link, $query_b_intv_livestock);
         $res_b_intv_dailywage = mysqli_query($link, $query_b_intv_dailywage);
         $res_b_intv_enterprise = mysqli_query($link, $query_b_intv_enterprise);
 
-        $row_b_intv_crop = mysqli_fetch_assoc($res_b_intv_crop);
-        $row_b_intv_allied = mysqli_fetch_assoc($res_b_intv_allied);
-        $row_b_intv_livestock = mysqli_fetch_assoc($res_b_intv_livestock);
-        $row_b_intv_dailywage = mysqli_fetch_assoc($res_b_intv_dailywage);
-        $row_b_intv_enterprise = mysqli_fetch_assoc($res_b_intv_enterprise);
 
-        $row_b_intv_crop = $row_b_intv_crop['net_income'];
-        $row_b_intv_allied = $row_b_intv_allied['net_annual'];
-        $row_b_intv_livestock = $row_b_intv_livestock['net_income'];
-        $row_b_intv_dailywage = $row_b_intv_dailywage['annual_income'];
-        $row_b_intv_enterprise = $row_b_intv_enterprise['net_income'];
+ while($row_b_intv_crop = mysqli_fetch_assoc($res_b_intv_crop)){
+          $sum_int_crop+= $row_b_intv_crop['net_income'];
+          $intv_list = $intv_list.$row_b_intv_crop['name'].", ";
+        }
+        while($row_b_intv_allied = mysqli_fetch_assoc($res_b_intv_allied)){
+          $sum_int_allied+= $row_b_intv_allied['net_annual'];
+          $intv_list = $intv_list.$row_b_intv_allied['type'].", ";
+        }
+        while($row_b_intv_livestock = mysqli_fetch_assoc($res_b_intv_livestock)){
+          $sum_int_livestock+= $row_b_intv_livestock['net_income'];
+          $intv_list = $intv_list.$row_b_intv_livestock['name'].", ";
+        }
+        while($row_b_intv_dailywage = mysqli_fetch_assoc($res_b_intv_dailywage)){
+          $sum_int_dailywage+= $row_b_intv_dailywage['annual_income'];
 
-
-
-        $intv_income = $row_b_inc_crop+$row_b_inc_allied+$row_b_inc_livestock+$row_b_inc_dailywage+$row_b_inc_enterprise+$base_linesum;
-
-        echo $intv_income;
+        }
+        while($row_b_intv_enterprise = mysqli_fetch_assoc($res_b_intv_enterprise)){
+          $sum_int_ent+= $row_b_intv_enterprise['net_income'];
+          $intv_list = $intv_list.$row_b_intv_enterprise['enterprise_name'].", ";
+        }
+        $intv_income = $sum_int_crop+$sum_int_allied+$sum_int_livestock+$sum_int_dailywage+$sum_int_ent+$base_linesum;
 
         ?>
-      </td>
+
+
+        <td>
+          <?php echo $intv_list; ?>
+        </td>
+
+        <td>
+          <?php echo $base_linesum; ?>
+        </td>
+
+        <td>
+          <?php echo $intv_income; ?>
+        </td>
+
+
 
       <td>
         <?php 
@@ -197,7 +226,9 @@ else{
           echo '0%';
         }
         else{
-          echo ($intv_income-$base_linesum)/$base_linesum*100;
+          $percent = ($intv_income-$base_linesum)/$base_linesum*100;
+          $percent = round($percent,2);
+          echo $percent;
           echo '%';
         }
 
