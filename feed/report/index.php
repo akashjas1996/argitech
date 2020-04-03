@@ -204,7 +204,7 @@ include '../inc/header.php';
         }
         else{
           $percent = ($intv_income-$base_linesum)/$base_linesum*100;
-          $percent = number($percent,2);
+          $percent = round($percent,2);
           echo $percent;
           echo '%';
         }
