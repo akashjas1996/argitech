@@ -1221,6 +1221,50 @@ if(isset($_POST['location_submit'])){
               <i class="fa fa-money-bill-alt"></i> &nbsp; Income Details</button>
            <br>
            <?php
+           // calculation of base line income
+           $family_id = $fam_id;
+        $sum_crop=0;
+        $sum_allied=0;
+        $sum_dailywage=0;
+        $sum_entp=0;
+        $sum_livestock=0;
+        $query_b_inc_crop = "SELECT * FROM crop_cultivation WHERE family_id='$family_id' AND bsl_crop='0'";
+        $query_b_inc_allied = "SELECT * FROM allied WHERE family_id='$family_id' AND bsl_allied='0'";
+        $query_b_inc_livestock = "SELECT * FROM livestock WHERE family_id='$family_id' AND bsl_livestock='0'";
+        $query_b_inc_dailywage = "SELECT * FROM daily_wage WHERE family_id='$family_id' AND bsl_dailywage='0'";
+        $query_b_inc_enterprise = "SELECT * FROM enterprise WHERE family_id='$family_id' AND bsl_ent='0'";
+
+        $res_b_inc_crop = mysqli_query($link, $query_b_inc_crop);
+        $res_b_inc_allied = mysqli_query($link, $query_b_inc_allied);
+        $res_b_inc_livestock = mysqli_query($link, $query_b_inc_livestock);
+        $res_b_inc_dailywage = mysqli_query($link, $query_b_inc_dailywage);
+        $res_b_inc_enterprise = mysqli_query($link, $query_b_inc_enterprise);
+
+        while($row_b_inc_crop = mysqli_fetch_assoc($res_b_inc_crop)){
+          $sum_crop+=$row_b_inc_crop['net_income'];
+        }
+
+        while($row_b_inc_allied = mysqli_fetch_assoc($res_b_inc_allied)){
+          $sum_allied+= $row_b_inc_allied['net_annual'];
+        }
+        while($row_b_inc_livestock = mysqli_fetch_assoc($res_b_inc_livestock)){
+          $sum_livestock+= $row_b_inc_livestock['net_income'];
+        }
+        while($row_b_inc_dailywage = mysqli_fetch_assoc($res_b_inc_dailywage)){
+          $sum_dailywage+= $row_b_inc_dailywage['annual_income'];
+        }
+        while($row_b_inc_enterprise = mysqli_fetch_assoc($res_b_inc_enterprise)){
+          $sum_entp+= $row_b_inc_enterprise['net_income'];
+        }
+
+
+      
+        $base_linesum = $sum_crop+$sum_entp+$sum_dailywage+$sum_allied+$sum_livestock;
+
+
+        
+
+
             $total_income=0;
             $query_income = "SELECT * FROM income_details WHERE family_id='$fam_id'";
             $res_income = mysqli_query($link, $query_income);
@@ -1228,6 +1272,8 @@ if(isset($_POST['location_submit'])){
             if($count_income==0){
               // echo "ADD INCOME DETAILS.";
             }
+
+
             else{
               echo '<table class="table">';
               echo '<th>Occupation</th>  <th>Type</th> <th>Days Engaged</th> <th>Annual Income </th> <th> <i class="fas fa-trash-alt"></i> </th>';
@@ -1269,7 +1315,8 @@ if(isset($_POST['location_submit'])){
                 echo '<b> Estimated Income: '.$total_income;
               echo '</b> </td>';
                echo '<td colspan="2">';
-               echo '<b> Calculated Income';
+
+               echo '<b> Calculated Income: '.$base_linesum;
               echo '</b> </td>';
               echo '<tr>';
               echo '</table>';
