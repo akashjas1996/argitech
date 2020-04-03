@@ -39,7 +39,6 @@
     $query_crops = "SELECT DISTINCT name FROM crop_cultivation";
     $res_crop = mysqli_query($link, $query_crops);
     while($row_crop = mysqli_fetch_assoc($res_crop)){
-        echo $row_crop['name'];
         $crop_name = $row_crop['name'];
         $query_crop_area = "SELECT * FROM crop_cultivation WHERE name='$crop_name'";
         $res_crop_area = mysqli_query($link, $query_crop_area);
@@ -49,10 +48,6 @@
         }
 
         array_push($dataPointsCrops1, array("y" => "$crop_sum", "legendText" => "$crop_name", "label" => "$crop_name"));
-
-
-        echo $crop_sum;
-        echo '<br>';
 
     }
 
