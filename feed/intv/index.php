@@ -333,19 +333,23 @@ $res_enterprise = mysqli_query($link, $query_enterprise);
                   $res_sum_base_dailywage = mysqli_query($link, $q_sum_base_dailywage);
                   $res_sum_base_ent = mysqli_query($link, $q_sum_base_ent);
 
-                  $row_sum_base_crop = mysqli_fetch_assoc($res_sum_base_crop);
-                  $row_sum_base_allied = mysqli_fetch_assoc($res_sum_base_allied);
-                  $row_sum_base_livestock = mysqli_fetch_assoc($res_sum_base_livestock);
-                  $row_sum_base_dailywage = mysqli_fetch_assoc($res_sum_base_dailywage);
-                  $row_sum_base_ent = mysqli_fetch_assoc($res_sum_base_ent);
+                  while($row_sum_base_crop = mysqli_fetch_assoc($res_sum_base_crop)){
+                    $sum_b_crop+= $row_sum_base_crop['net_income'];
+                  }
+                  while($row_sum_base_allied = mysqli_fetch_assoc($res_sum_base_allied)){
+                    $sum_b_allied+= $row_sum_base_allied['net_annual'];
+                  }
+                  while($row_sum_base_livestock = mysqli_fetch_assoc($res_sum_base_livestock)){
+                    $sum_b_livestock+= $row_sum_base_livestock['net_income'];
+                  }
+                  while($row_sum_base_dailywage = mysqli_fetch_assoc($res_sum_base_dailywage)){
+                    $sum_b_dailywage+= $row_sum_base_dailywage['annual_income'];
+                  }
+                  while($row_sum_base_ent = mysqli_fetch_assoc($res_sum_base_ent)){
+                    $sum_b_ent+= $row_sum_base_ent['net_income'];
+                  }
 
-                  $row_sum_base_crop =   $row_sum_base_crop['net_income'];
-                  $row_sum_base_allied = $row_sum_base_allied['net_annual'];
-                  $row_sum_base_livestock = $row_sum_base_livestock['net_income'];
-                  $row_sum_base_dailywage = $row_sum_base_dailywage['annual_income'];
-                  $row_sum_base_ent = $row_sum_base_ent['net_income'];
-
-                  $baseline_income = $row_sum_base_crop+$row_sum_base_allied+$row_sum_base_livestock+$row_sum_base_dailywage+$row_sum_base_ent;
+                  $baseline_income = $sum_b_crop+$sum_b_allied+$sum_b_livestock+$sum_b_dailywage+$sum_int_livestock;
                   echo 'TOTAL BASELINE INCOME: &nbsp;';
                   echo $baseline_income;
                   echo '<br>';
@@ -370,19 +374,23 @@ $res_enterprise = mysqli_query($link, $query_enterprise);
                   $res_sum_intv_dailywage = mysqli_query($link, $q_sum_intv_dailywage);
                   $res_sum_intv_ent = mysqli_query($link, $q_sum_intv_ent);
 
-                  $row_sum_intv_crop = mysqli_fetch_assoc($res_sum_intv_crop);
-                  $row_sum_intv_allied = mysqli_fetch_assoc($res_sum_intv_allied);
-                  $row_sum_intv_livestock = mysqli_fetch_assoc($res_sum_intv_livestock);
-                  $row_sum_intv_dailywage = mysqli_fetch_assoc($res_sum_intv_dailywage);
-                  $row_sum_intv_ent = mysqli_fetch_assoc($res_sum_intv_ent);
+                  while($row_sum_intv_crop = mysqli_fetch_assoc($res_sum_intv_crop)){
+                    $sum_int_crop+= $row_sum_intv_crop['net_income'];;
+                  }
+                  while($row_sum_intv_allied = mysqli_fetch_assoc($res_sum_intv_allied)){
+                    $sum_int_allied+= $row_sum_intv_allied['net_annual'];
+                  }
+                  while($row_sum_intv_livestock = mysqli_fetch_assoc($res_sum_intv_livestock)){
+                    $sum_int_livestock+= $row_sum_intv_livestock['net_income'];
+                  }
+                  while($row_sum_intv_dailywage = mysqli_fetch_assoc($res_sum_intv_dailywage)){
+                    $sum_int_dailywage+= $row_sum_intv_dailywage['annual_income'];
+                  }
+                  while($row_sum_intv_ent = mysqli_fetch_assoc($res_sum_intv_ent)){
+                    $sum_int_ent+= $row_sum_intv_ent['net_income'];
+                  }
 
-                  $row_sum_intv_crop =   $row_sum_intv_crop['net_income'];
-                  $row_sum_intv_allied = $row_sum_intv_allied['net_annual'];
-                  $row_sum_intv_livestock = $row_sum_intv_livestock['net_income'];
-                  $row_sum_intv_dailywage = $row_sum_intv_dailywage['annual_income'];
-                  $row_sum_intv_ent = $row_sum_intv_ent['net_income'];
-
-                  $intvline_income = $row_sum_intv_crop+$row_sum_intv_allied+$row_sum_intv_livestock+$row_sum_intv_dailywage+$row_sum_intv_ent;
+                  $intvline_income = $sum_int_crop+$sum_int_allied+$sum_int_livestock+$sum_int_dailywage+$sum_int_ent;
 
                   echo 'TOTAL CURRENT YEAR INCOME: &nbsp;';
                   
