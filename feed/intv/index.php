@@ -359,7 +359,7 @@ $res_enterprise = mysqli_query($link, $query_enterprise);
                   else
                     $selected_year="";
 
-                  $q_sum_intv_crop = "SELECT net_income FROM crop_cultivation WHERE family_id='$fam_id' AND bsl_crop='1' AND year='$selected_year'";
+                  $q_sum_intv_crop = "SELECT net_income FROM crop_cultivation WHERE family_id='$fam_id' AND bsl_crop='1' AND intv_year='$selected_year'";
                   $q_sum_intv_allied = "SELECT net_annual FROM allied WHERE family_id='$fam_id' AND bsl_allied='1' AND intv_year='$selected_year'";
                   $q_sum_intv_livestock = "SELECT net_income FROM livestock WHERE family_id='$fam_id' AND bsl_livestock='1' AND intv_year='$selected_year'";
                   $q_sum_intv_dailywage = "SELECT annual_income FROM daily_wage WHERE family_id='$fam_id' AND bsl_dailywage='1' AND intv_year='$selected_year'";
