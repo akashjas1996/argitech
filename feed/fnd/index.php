@@ -114,7 +114,10 @@ include '../inc/header.php';
                      ;
            ?>
         </p>
-        <div></div>
+        <div>
+          <a href="../nav/?res=<?php echo $row_ben['res_id'] ?>"> <button style="margin: 10px" type="button" class="btn-sm btn-success">Baseline</button> </a>
+          <a href="../intv/?res_id=<?php echo $row_ben['res_id'] ?>"><button type="button" class="btn-sm btn-success">Intervention</button> </a>
+        </div>
       </div>
       <hr>
               <?php
