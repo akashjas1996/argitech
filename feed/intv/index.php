@@ -366,8 +366,6 @@ $res_enterprise = mysqli_query($link, $query_enterprise);
                   $q_sum_intv_ent = "SELECT net_income FROM enterprise WHERE family_id='$fam_id' AND bsl_ent='1' AND intv_year='$selected_year'";
 
 
-                  echo $q_sum_intv_crop;
-
 
                   
 
