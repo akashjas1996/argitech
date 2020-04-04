@@ -14,7 +14,7 @@
 
 					<li>
 							<a href="../crop/">
-									<i class="fa fa-grapes" aria-hidden="true"></i>
+									<i class="fa fa-leaf" aria-hidden="true"></i>
 									<span>CROP</span>
 							</a>
 
