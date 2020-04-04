@@ -212,7 +212,7 @@
             theme: "light2",
             animationEnabled: true,
             title: {
-                text: "Crops Vs Area"
+                text: "Crops Vs Area(in Acre)"
             },
             data: [
             {
