@@ -12,13 +12,21 @@
 
 					<li role="separator" class="divider"></li>
 
-					<li data-toggle="collapse" href="#crop-types" aria-expanded="true" aria-controls="chart-types">
+					<li>
+							<a href="../crop/">
+									<i class="fa fa-grapes" aria-hidden="true"></i>
+									<span>CROP</span>
+							</a>
+
+					</li>
+
+					<!-- <li data-toggle="collapse" href="#crop-types" aria-expanded="true" aria-controls="chart-types">
 						<a href="#"> 
 							<i class="fa fa-area-chart" aria-hidden="true"></i><span>CROP PRODUCTION</span>
 						</a>
-					</li>
+					</li> -->
 
-					<li>
+					<!-- <li>
 						<ul id="crop-types" class="sub-menu collapse">
 							<li><a href="/domain/?field=1">Kharif</a></li>
 							<li><a href="/domain/?field=2">Rabi</a>
@@ -26,7 +34,7 @@
 							<li><a href="/domain/?field=3">Summer Crop</a>
 							</li>
 						</ul>
-					</li>
+					</li> -->
 
 					<li role="separator" class="divider"></li>
 
