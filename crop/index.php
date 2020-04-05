@@ -81,6 +81,9 @@
             else if($_GET['time']=='2019-20'){
                 $query_crop_area = "SELECT * FROM crop_cultivation WHERE name='$crop_name' AND bsl_crop='1' AND intv_year='2019-20'";
             }
+            else if($_GET['time']=='2020-21'){
+                $query_crop_area = "SELECT * FROM crop_cultivation WHERE name='$crop_name' AND bsl_crop='1' AND intv_year='2020-21'";
+            }
             else{
                 $query_crop_area = "SELECT * FROM crop_cultivation WHERE name='$crop_name'";
             }
