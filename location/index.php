@@ -138,7 +138,7 @@ https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
      $query_gp1 = "SELECT DISTINCT gp FROM family WHERE state='Jharkhand' AND dist='Dhanbad'";
      $res_gp1 = mysqli_query($link, $query_gp1);
      while($row_gp1 = mysqli_fetch_assoc($res_gp1)){
-      echo '<a href="../report/?GP="'. echo $row_gp1['gp'].'>';
+      // echo '<a href="../report/?GP="'. echo $row_gp1['gp'].'>';
       echo $row_gp1['gp'];
       echo '</a>';
       echo '<br>';
