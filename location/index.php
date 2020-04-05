@@ -138,7 +138,7 @@ https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
      $query_gp1 = "SELECT DISTINCT gp FROM family WHERE state='Jharkhand' AND dist='Dhanbad'";
      $res_gp1 = mysqli_query($link, $query_gp1);
      while($row_gp1 = mysqli_fetch_assoc($res_gp1)){
-      // echo '<a href="../report/?GP="'. echo $row_gp1['gp'].'>';
+      echo '<a href="../report/?GP='.$row_gp1["gp"].'">';
       echo $row_gp1['gp'];
       echo '</a>';
       echo '<br>';
@@ -151,7 +151,7 @@ https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
      $query_gp1 = "SELECT DISTINCT gp FROM family WHERE state='Jharkhand' AND dist='Ramgarh'";
      $res_gp1 = mysqli_query($link, $query_gp1);
      while($row_gp1 = mysqli_fetch_assoc($res_gp1)){
-       echo '<a href="../report/?GP="'.echo $row_gp1['gp'].'>';
+echo '<a href="../report/?GP='.$row_gp1["gp"].'">';
       echo $row_gp1['gp'];
       echo '</a>';
       echo '<br>';
@@ -164,7 +164,7 @@ https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
      $query_gp1 = "SELECT DISTINCT gp FROM family WHERE state='Jharkhand' AND dist='Bokaro'";
      $res_gp1 = mysqli_query($link, $query_gp1);
      while($row_gp1 = mysqli_fetch_assoc($res_gp1)){
-       echo '<a href="../report/?GP="'. echo $row_gp1['gp'].'>';
+echo '<a href="../report/?GP='.$row_gp1["gp"].'">';
       echo $row_gp1['gp'];
       echo '</a>';
       echo '<br>';
@@ -177,7 +177,7 @@ https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
      $query_gp1 = "SELECT DISTINCT gp FROM family WHERE state='Jharkhand' AND dist='East Singhbhum'";
      $res_gp1 = mysqli_query($link, $query_gp1);
      while($row_gp1 = mysqli_fetch_assoc($res_gp1)){
-      echo '<a href="../report/?GP='.$row_gp1['gp'].'"';
+echo '<a href="../report/?GP='.$row_gp1["gp"].'">';
       echo $row_gp1['gp'];
       echo '</a>';
       echo '<br>';
@@ -190,7 +190,7 @@ https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
      $query_gp1 = "SELECT DISTINCT gp FROM family WHERE state='Jharkhand' AND dist='West Singhbhum'";
      $res_gp1 = mysqli_query($link, $query_gp1);
      while($row_gp1 = mysqli_fetch_assoc($res_gp1)){
-      echo '<a href="../report/?GP="'. echo $row_gp1['gp'].'>';
+echo '<a href="../report/?GP='.$row_gp1["gp"].'">';
       echo $row_gp1['gp'];
       echo '</a>';
       echo '<br>';
@@ -203,7 +203,7 @@ https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
      $query_gp1 = "SELECT DISTINCT gp FROM family WHERE state='Jharkhand' AND dist='Saraikela-Kharnsawan'";
      $res_gp1 = mysqli_query($link, $query_gp1);
      while($row_gp1 = mysqli_fetch_assoc($res_gp1)){
-      echo '<a href="../report/?GP="'. echo $row_gp1['gp'].'>';
+echo '<a href="../report/?GP='.$row_gp1["gp"].'">';
       echo $row_gp1['gp'];
       echo '</a>';
       echo '<br>';
@@ -221,7 +221,7 @@ https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
      $query_gp1 = "SELECT DISTINCT village FROM family WHERE state='Jharkhand' AND dist='Dhanbad'";
      $res_gp1 = mysqli_query($link, $query_gp1);
      while($row_gp1 = mysqli_fetch_assoc($res_gp1)){
-      echo '<a href="#">';
+echo '<a href="../report/?village='.$row_gp1["village"].'">';
       echo $row_gp1['village'];
       echo '</a>';
       echo '<br>';
@@ -234,7 +234,7 @@ https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
      $query_gp1 = "SELECT DISTINCT village FROM family WHERE state='Jharkhand' AND dist='Ramgarh'";
      $res_gp1 = mysqli_query($link, $query_gp1);
      while($row_gp1 = mysqli_fetch_assoc($res_gp1)){
-      echo '<a href="#">';
+echo '<a href="../report/?village='.$row_gp1["village"].'">';
       echo $row_gp1['village'];
       echo '</a>';
       echo '<br>';
@@ -247,7 +247,7 @@ https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
      $query_gp1 = "SELECT DISTINCT village FROM family WHERE state='Jharkhand' AND dist='Bokaro'";
      $res_gp1 = mysqli_query($link, $query_gp1);
      while($row_gp1 = mysqli_fetch_assoc($res_gp1)){
-      echo '<a href="#">';
+echo '<a href="../report/?village='.$row_gp1["village"].'">';
       echo $row_gp1['village'];
       echo '</a>';
       echo '<br>';
@@ -260,7 +260,7 @@ https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
      $query_gp1 = "SELECT DISTINCT village FROM family WHERE state='Jharkhand' AND dist='East Singhbhum'";
      $res_gp1 = mysqli_query($link, $query_gp1);
      while($row_gp1 = mysqli_fetch_assoc($res_gp1)){
-      echo '<a href="#">';
+echo '<a href="../report/?village='.$row_gp1["village"].'">';
       echo $row_gp1['village'];
       echo '</a>';
       echo '<br>';
@@ -273,7 +273,7 @@ https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
      $query_gp1 = "SELECT DISTINCT village FROM family WHERE state='Jharkhand' AND dist='West Singhbhum'";
      $res_gp1 = mysqli_query($link, $query_gp1);
      while($row_gp1 = mysqli_fetch_assoc($res_gp1)){
-      echo '<a href="#">';
+echo '<a href="../report/?village='.$row_gp1["village"].'">';
       echo $row_gp1['village'];
       echo '</a>';
       echo '<br>';
@@ -286,7 +286,7 @@ https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
      $query_gp1 = "SELECT DISTINCT village FROM family WHERE state='Jharkhand' AND dist='Saraikela-Kharnsawan'";
      $res_gp1 = mysqli_query($link, $query_gp1);
      while($row_gp1 = mysqli_fetch_assoc($res_gp1)){
-      echo '<a href="../report/?village="'.$row_gp1['village'].'>';
+echo '<a href="../report/?village='.$row_gp1["village"].'">';
       echo $row_gp1['village'];
       echo '</a>';
       echo '<br>';
@@ -299,7 +299,7 @@ https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
      $query_gp1 = "SELECT DISTINCT village FROM family WHERE state='Odisha' AND dist='Jajpur'";
      $res_gp1 = mysqli_query($link, $query_gp1);
      while($row_gp1 = mysqli_fetch_assoc($res_gp1)){
-      echo '<a href="#">';
+echo '<a href="../report/?village='.$row_gp1["village"].'">';
       echo $row_gp1['village'];
       echo '</a>';
       echo '<br>';
@@ -312,7 +312,7 @@ https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
      $query_gp1 = "SELECT DISTINCT village FROM family WHERE state='Odisha' AND dist='Keonjhar'";
      $res_gp1 = mysqli_query($link, $query_gp1);
      while($row_gp1 = mysqli_fetch_assoc($res_gp1)){
-      echo '<a href="#">';
+echo '<a href="../report/?village='.$row_gp1["village"].'">';
       echo $row_gp1['village'];
       echo '</a>';
       echo '<br>';
@@ -325,7 +325,7 @@ https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
      $query_gp1 = "SELECT DISTINCT village FROM family WHERE state='Odisha' AND dist='Ganjam'";
      $res_gp1 = mysqli_query($link, $query_gp1);
      while($row_gp1 = mysqli_fetch_assoc($res_gp1)){
-      echo '<a href="#">';
+echo '<a href="../report/?village='.$row_gp1["village"].'">';
       echo $row_gp1['village'];
       echo '</a>';
       echo '<br>';
@@ -338,7 +338,7 @@ https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
      $query_gp1 = "SELECT DISTINCT village FROM family WHERE state='Odisha' AND dist='Sundargargh'";
      $res_gp1 = mysqli_query($link, $query_gp1);
      while($row_gp1 = mysqli_fetch_assoc($res_gp1)){
-      echo '<a href="#">';
+echo '<a href="../report/?village='.$row_gp1["village"].'">';
       echo $row_gp1['village'];
       echo '</a>';
       echo '<br>';
