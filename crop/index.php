@@ -149,7 +149,7 @@
             theme: "light1",
             animationEnabled: true,
             title: {
-                text: "Crops Vs Income(in ₹)"
+                text: "Crops Vs Income (in ₹)"
             },
             data: [
             {
