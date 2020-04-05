@@ -146,7 +146,7 @@
 
      $(function () {
         var chart = new CanvasJS.Chart("chartContainerIncome", {
-            theme: "light2",
+            theme: "light1",
             animationEnabled: true,
             title: {
                 text: "Crops Vs Income(in ₹)"
