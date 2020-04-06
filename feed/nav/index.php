@@ -506,7 +506,7 @@ if(isset($_POST['location_submit'])){
         </div>
 
          <div class="md-form mb-4">
-         <select name="year_BLS" class="browser-default custom-select">
+         <select required="required" name="year_BLS" class="browser-default custom-select">
             <option disabled="disabled" selected>Year of BLS</option>
             <option value="2019-20">2019-20</option>
             <option value="2020-21">2020-21</option>
