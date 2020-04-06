@@ -14,7 +14,7 @@
 
 
 </p>
-<div id="chartContainer"></div>
+<!-- <div id="chartContainer"></div> -->
 <?php
 $dataPoints1=array();
 $dataPoints2=array();
