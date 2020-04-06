@@ -46,6 +46,9 @@
                 $query_crop_area = "SELECT * FROM crop_cultivation WHERE name='$crop_name'";
             }
         }
+        else{
+            $query_crop_area = "SELECT * FROM crop_cultivation";
+        }
         $res_crop_area = mysqli_query($link, $query_crop_area);
         $crop_sum=0;
         while($row_crop_area=mysqli_fetch_assoc($res_crop_area)){
