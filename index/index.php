@@ -14,7 +14,7 @@
 
 
 </p>
-<!-- <div id="chartContainer"></div> -->
+<div id="chartContainer"></div>
 <?php
 $dataPoints1=array();
 $dataPoints2=array();
@@ -24,7 +24,6 @@ $year_string = array("2019-20", "2020-21", "2021-22", "2022-23", "2023-24");
 $ben_count_arr = array();
 for($i=0; $i<5;$i++){
     $query_year = "SELECT * FROM family WHERE year_of_BLS='$year_string[$i]'";
-    echo $query_year;
     $res_year = mysqli_query($link, $query_year);
     $count_year_wise = mysqli_num_rows($res_year);
     $ben_count_arr[$i] = $count_year_wise;
