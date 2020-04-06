@@ -1,9 +1,9 @@
 <?php include '../header.php'; ?>
 <?php include '../sidebar.php'; ?>
 <?php include '../content.php'; ?>
-<h1>Stacked Column Chart</h1>
+<?php include '../dbconnection.php'; ?>
+<h1>Stacked Column Chart</h1>>
 <div id="chartContainer"></div>
-
 <?php
     $dataPoints1 = array(
 	array("y" => 111338, "label" => "USA"),
@@ -12,18 +12,6 @@
 	array("y" => 90085, "label" => "India"),
 	array("y" => 38600, "label" => "Australia"),
 	array("y" => 48750, "label" => "SA"),
-    array("y" => 111338, "label" => "USA"),
-    array("y" => 49088, "label" => "Russia"),
-    array("y" => 62200, "label" => "China"),
-    array("y" => 90085, "label" => "India"),
-    array("y" => 38600, "label" => "Australia"),
-    array("y" => 48750, "label" => "SA"),
-    array("y" => 111338, "label" => "USA"),
-    array("y" => 49088, "label" => "Russia"),
-    array("y" => 62200, "label" => "China"),
-    array("y" => 90085, "label" => "India"),
-    array("y" => 38600, "label" => "Australia"),
-    array("y" => 48750, "label" => "SA")
 );
 
 
@@ -34,18 +22,6 @@
 	array("y" => 3360, "label" => "India"),
 	array("y" => 39900, "label" => "Australia"),
 	array("y" => 0, "label" => "SA"),
-    array("y" => 135305, "label" => "USA"),
-    array("y" => 107922, "label" => "Russia"),
-    array("y" => 52300, "label" => "China"),
-    array("y" => 3360, "label" => "India"),
-    array("y" => 39900, "label" => "Australia"),
-    array("y" => 0, "label" => "SA"),
-    array("y" => 135305, "label" => "USA"),
-    array("y" => 107922, "label" => "Russia"),
-    array("y" => 52300, "label" => "China"),
-    array("y" => 3360, "label" => "India"),
-    array("y" => 39900, "label" => "Australia"),
-    array("y" => 0, "label" => "SA")
     );
 ?>
 
