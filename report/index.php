@@ -114,9 +114,6 @@ else{
         <?php echo $row_fetch_family['village'] ?>
       </td>
 
-      <td>
-      	<a href="feed/intv_2/?res_id=<?php echo $family_id ?>"> <button>Details</button> </a>
-      </td>
 
 
         <?php
@@ -237,6 +234,10 @@ else{
         }
 
         ?>
+      </td>
+
+        <td>
+      	<a href="feed/intv_2/?res_id=<?php echo $family_id ?>"> <button>Details</button> </a>
       </td>
 
 
