@@ -86,6 +86,7 @@ else{
        <th align="center"> Base Line Income </th>
        <th align="center"> Current Year Income (<?php echo date("Y",strtotime("-1 year")); ?>) </th>
        <th align="center"> Percentage Progress </th>
+       <th align="center"> Intervention </th>
     </tr>
     <?php 
     $query_fetch_family = "SELECT * FROM `family` WHERE `$region`='$name'";
@@ -113,6 +114,9 @@ else{
         <?php echo $row_fetch_family['village'] ?>
       </td>
 
+      <td>
+      	<a href="feed/intv_2/?res_id=<?php echo $family_id ?>"> <button>Details</button> </a>
+      </td>
 
 
         <?php
