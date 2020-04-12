@@ -237,7 +237,7 @@ else{
       </td>
 
         <td>
-      	<a href="../feed/intv_2/?res_id=<?php echo $row_respondents['res_id'] ?>"> <button>Details</button> </a>
+      	<a target="_blank"> href="../feed/intv_2/?res_id=<?php echo $row_respondents['res_id'] ?>"> <button>Details</button> </a>
       </td>
 
 
