@@ -1,8 +1,19 @@
+<?php session_start(); ?>
 <?php include '../header.php'; ?>
 <?php include '../sidebar.php'; ?>
 <?php include '../content.php'; ?>
 <?php include '../dbconnection.php'; ?>
 <!-- <h1>Stacked Column Chart</h1> -->
+
+<!-- VERIFY LOGIN START -->
+<?php 
+    $_SESSION['role'] = "CRP";
+    $_SESSION['userid'] = $row_login['entry_id'];
+    $_SESSION['name'] = $row_login['name'];
+    $_SESSION['op_area'] = $row_login['op_area'];
+    ?>
+<!-- VERIFY LOGIN END -->
+
 <br><br><br><br><br>
 <p>
     <?php 
