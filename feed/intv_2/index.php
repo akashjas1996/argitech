@@ -870,7 +870,7 @@ $res_enterprise = mysqli_query($link, $query_enterprise);
                 else{
                   echo '<table class="table">';
                   echo '<tr>';
-                  echo '<th> Crop </th>  <th> Yield (Qtl/acre) </th> <th> Interv. </th> <th> Qty <th> Value(₹) </th> </th> <th>Net Income</th> <th>  <i class="fas fa-trash-alt"></i> </th> ';
+                  echo '<th> Crop </th>  <th> Yield (Qtl/acre) </th> <th> Interv. </th> <th> Qty <th> Value(₹) </th> </th> <th>Net Income</th>';
                   echo '</tr>';
                   while($row_Cult_fetch = mysqli_fetch_assoc($res_fetch_cult)){
                     echo '<tr>';
@@ -900,18 +900,6 @@ $res_enterprise = mysqli_query($link, $query_enterprise);
                       echo $row_Cult_fetch['net_income'];
                     echo '</td>';
 
-
-
-                    echo '<td>';
-                    $entry_id_crop = $row_Cult_fetch['entry_id'];
-                    ?>
-
-                    <button onclick="del_obj('<?php echo $row_Cult_fetch['entry_id']; ?>', 'crop')">
-                      <i style="color:red" class="fas fa-times"> </i> 
-                    </button>
-
-                    <?php
-                    echo '</td>';
                     echo '</tr>';
                   }
                   echo '</table>';
@@ -933,7 +921,7 @@ $res_enterprise = mysqli_query($link, $query_enterprise);
                 else{
                   echo '<table class="table">';
                   echo '<tr>';
-                  echo '<th> Activity </th> <th> Area<br> (in acre) </th> <th> Prod. </th> <th>Intv.</th> <th>Qty</th> <th>Value</th> <th> Net Annual<br> Income (₹) </th> <th> <i class="fas fa-trash-alt"></i> </th>';
+                  echo '<th> Activity </th> <th> Area<br> (in acre) </th> <th> Prod. </th> <th>Intv.</th> <th>Qty</th> <th>Value</th> <th> Net Annual<br> Income (₹) </th>';
                   echo '</tr>';
                   while($row_allied_fetch = mysqli_fetch_assoc($res_fetch_allied)){
                     echo '<tr>';
@@ -967,15 +955,7 @@ $res_enterprise = mysqli_query($link, $query_enterprise);
                       echo $row_allied_fetch['net_annual'];
                     echo '</td>';
 
-                    echo '<td>';
-                    ?>
-
-                    <button onclick="del_obj('<?php echo $row_allied_fetch['entry_id']; ?>', 'allied')">
-                      <i style="color:red" class="fas fa-times"> </i> 
-                    </button>
-
-                    <?php
-                    echo '</td>';
+                    
                     echo '</tr>';
                   }
                   echo '</table>';
@@ -1000,7 +980,7 @@ $res_enterprise = mysqli_query($link, $query_enterprise);
                 else{
                   echo '<table class="table">';
                   echo '<tr>';
-                  echo '<th> Livestock </th> <th> Count </th> <th> Annual Income(₹) </th> <th> Net Income(₹) </th> <th> <i class="fas fa-trash-alt"></i> </th>';
+                  echo '<th> Livestock </th> <th> Count </th> <th> Annual Income(₹) </th> <th> Net Income(₹) </th> <th> </th>';
                   echo '</tr>';
                   while($row_livestock_fetch = mysqli_fetch_assoc($res_fetch_livestock)){
                     echo '<tr>';
@@ -1018,17 +998,6 @@ $res_enterprise = mysqli_query($link, $query_enterprise);
 
                       echo '<td>';
                       echo $row_livestock_fetch['net_income'];
-                    echo '</td>';
-
-                    echo '<td>';
-                    ?>
-
-                      <button onclick="del_obj('<?php echo $row_livestock_fetch['entry_id']; ?>', 'livestock')">
-                      <i style="color:red" class="fas fa-times"> </i> 
-                    </button>
-
-
-                    <?php
                     echo '</td>';
 
                     echo '</tr>';
@@ -1054,7 +1023,7 @@ $res_enterprise = mysqli_query($link, $query_enterprise);
                 else{
                   echo '<table class="table">';
                   echo '<tr>';
-                  echo '<th> Members Involved </th> <th> Days Involved </th> <th> Place </th> <th> Wage(₹) </th> <th> Annual Income(₹) </th> <th> <i class="fas fa-trash-alt"></i> </th>';
+                  echo '<th> Members Involved </th> <th> Days Involved </th> <th> Place </th> <th> Wage(₹) </th> <th> Annual Income(₹) </th>';
                   echo '</tr>';
                   while($row_dailywage_fetch = mysqli_fetch_assoc($res_fetch_dailywage)){
                     echo '<tr>';
@@ -1078,15 +1047,6 @@ $res_enterprise = mysqli_query($link, $query_enterprise);
                       echo $row_dailywage_fetch['annual_income'];
                     echo '</td>';
 
-                    echo '<td>';
-                      ?>
-
-                    <button onclick="del_obj('<?php echo $row_dailywage_fetch['entry_id']; ?>', 'dailywage')">
-                      <i style="color:red" class="fas fa-times"> </i> 
-                    </button>
-
-                      <?php
-                    echo '</td>';
                     echo '</tr>';
                   }
                   echo '</table>';
@@ -1107,7 +1067,7 @@ $res_enterprise = mysqli_query($link, $query_enterprise);
                 else{
                   echo '<table class="table">';
                   echo '<tr>';
-                  echo '<th> Enterprise </th> <th> Enterpreneur </th> <th> Net Income(₹) </th> <th> <i class="fas fa-trash-alt"></i> </th>';
+                  echo '<th> Enterprise </th> <th> Enterpreneur </th> <th> Net Income(₹) </th>';
                   echo '</tr>';
                   while($row_ent_fetch = mysqli_fetch_assoc($res_fetch_ent)){
                     echo '<tr>';
@@ -1123,13 +1083,7 @@ $res_enterprise = mysqli_query($link, $query_enterprise);
                       echo $row_ent_fetch['net_income'];
                     echo '</td>';
 
-                    echo '<td>';
-                    ?>
-                      <button onclick="del_obj('<?php echo $row_ent_fetch['entry_id']; ?>', 'enterprise')">
-                      <i style="color:red" class="fas fa-times"> </i> 
-                    </button>
-                    <?php
-                    echo '</td>';
+                  
                     echo '</tr>';
                   }
                   echo '</table>';
