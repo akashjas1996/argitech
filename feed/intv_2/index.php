@@ -1,10 +1,6 @@
 <?php 
 session_start();
-
-include '../inc/dbconnection.php';
-include '../inc/header.php';
-
-?>
+include '../inc/dbconnection.php';?>
 
 
 <!DOCTYPE html>
@@ -306,9 +302,7 @@ $res_enterprise = mysqli_query($link, $query_enterprise);
   <div style="height: 100vh">
     <div class="container">
       <div class="row">
-        <div class="col-lg-1">
-        </div>
-        <div class="col-lg-10">
+        <div class="col-lg-12">
           <br><br><br>
             <center> <h1> 
               <?php 
@@ -676,8 +670,6 @@ $res_enterprise = mysqli_query($link, $query_enterprise);
       </div>
       <hr>
         </div>
-        <div class="col-lg-1">
-        </div>  
       </div>
     </div>
   </div>
