@@ -235,25 +235,19 @@ else{
 
         ?>
       </td>
-
         <td>
       	<a target="_blank" href="../feed/intv_2/?res_id=<?php echo $row_respondents['res_id'] ?>"> <button>Details</button> </a>
       </td>
 
-
     </tr>
       <?php
     }
-    
-
     ?>
     </tr>
   </tbody>
 </table>
 <br>
 <hr>
-
-
 <br>
 <style type="text/css">
   .btn{
