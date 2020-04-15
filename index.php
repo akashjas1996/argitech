@@ -1,5 +1,5 @@
 <?php 
 
-    header('https://theagriculture.tech');
+    header('location:index/');
 
 ?>
