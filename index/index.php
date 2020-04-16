@@ -260,14 +260,14 @@ for($i=0; $i<5;$i++){
                 name: "Baseline",
                 color: "gold",
                 dataPoints: <?php echo json_encode($datapoints_BSLIncome, JSON_NUMERIC_CHECK); ?>
-            },
-            {
-                type: "bar",
-                showInLegend: true,
-                name: "Current Year",
-                color: "silver",
-                dataPoints: <?php echo json_encode($dataPoints_2019_20, JSON_NUMERIC_CHECK); ?>
             }
+            // {
+            //     type: "bar",
+            //     showInLegend: true,
+            //     name: "Current Year",
+            //     color: "silver",
+            //     dataPoints: <?php echo json_encode($dataPoints_2019_20, JSON_NUMERIC_CHECK); ?>
+            // }
 
             ]
         });
