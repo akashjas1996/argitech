@@ -142,6 +142,14 @@ for($i=0; $i<5;$i++){
         while($row_inc_enterprise = mysqli_fetch_assoc($res_inc_enterprise)){
             $sum_enterprise+=$row_inc_enterprise['net_income'];
         }
+
+        echo $sum_crop;
+        echo $sum_livestock;
+        echo $sum_allied;
+        echo $sum_daliywage;
+        echo $sum_enterprise;
+
+
         $sumbaseline = $sum_crop+$sum_livestock+$sum_allied+$sum_daliywage+$sum_enterprise;
         $dataPoints_2019_20 = array();
         array_push($dataPoints_2019_20, array("y" => "$sumbaseline", "label" => "$unit_name[$j]"));
