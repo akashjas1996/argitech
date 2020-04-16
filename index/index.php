@@ -101,6 +101,56 @@ for($i=0; $i<5;$i++){
     // echo $query_BSLincome;
  }
 
+ for($j=0;$j<10;$j++){
+    $query_BSLincome = "SELECT * FROM family WHERE TSRDS_op_area='$unit_name[$j]'";
+    $res_BSLincome = mysqli_query($link, $query_BSLincome);
+    while($row_BSLincome = mysqli_fetch_assoc($res_BSLincome)){
+        $sum_crop=0;
+        $sum_livestock=0;
+        $sum_allied=0;
+        $sum_daliywage=0;
+        $sum_enterprise=0;
+        $temp_family_id = $row_BSLincome['family_id'];
+        
+        $query_inc_crop = "SELECT * FROM crop_cultivation WHERE family_id='$temp_family_id' AND bsl_crop='1' AND intv_year='2019-20'";
+        $query_inc_livestock = "SELECT * FROM livestock WHERE family_id='$temp_family_id' AND bsl_livestock='1' AND intv_year='2019-20'";
+        $query_inc_allied = "SELECT * FROM allied WHERE family_id='$temp_family_id' AND bsl_allied='1' AND intv_year='2019-20'";
+        $query_inc_dailywage = "SELECT * FROM daily_wage WHERE family_id='$temp_family_id' AND bsl_dailywage='1' AND intv_year='2019-20'";
+        $query_inc_enterprise = "SELECT * FROM enterprise WHERE family_id='$temp_family_id' AND bsl_ent='1' AND intv_year='2019-20'";
+
+
+        $res_inc_crop = mysqli_query($link, $query_inc_crop);
+        $res_inc_livestock = mysqli_query($link, $query_inc_livestock);
+        $res_inc_allied = mysqli_query($link, $query_inc_allied);
+        $res_inc_dailywage = mysqli_query($link, $query_inc_dailywage);
+        $res_inc_enterprise = mysqli_query($link, $query_inc_enterprise);
+
+
+        while($row_inc_crop = mysqli_fetch_assoc($res_inc_crop)){
+            $sum_crop+=$row_inc_crop['net_income'];
+        }
+        while($row_inc_livestock = mysqli_fetch_assoc($res_inc_livestock)){
+            $sum_livestock+=$row_inc_livestock['annual_income'];
+        }
+        while($row_inc_allied = mysqli_fetch_assoc($res_inc_allied)){
+            $sum_allied+=$row_inc_allied['net_annual'];
+        }
+        while($row_inc_dailywage = mysqli_fetch_assoc($res_inc_dailywage)){
+            $sum_daliywage+=$row_inc_dailywage['annual_income'];
+        }
+        while($row_inc_enterprise = mysqli_fetch_assoc($res_inc_enterprise)){
+            $sum_enterprise+=$row_inc_enterprise['net_income'];
+        }
+        $sumbaseline = $sum_crop+$sum_livestock+$sum_allied+$sum_daliywage+$sum_enterprise;
+        $dataPoints_2019_20 = array();
+        array_push($dataPoints_2019_20, array("y" => "$sumbaseline", "label" => "$unit_name[$j]"));
+
+
+    }
+    echo '<br>';
+    // echo $query_BSLincome;
+ }
+
 
  // $datapoints_BSLIncome = array(
  //    array("y" => 243, "label" => "France"),
@@ -109,12 +159,12 @@ for($i=0; $i<5;$i++){
  //    array("y" => 1118, "label" => "USA")
  //    );
     
-    $dataPoints_2019_20 = array(
-    array("y" => 272, "label" => "France"),
-    array("y" => 299, "label" => "Great Britain"),
-    array("y" => 419, "label" => "Soviet Union"),
-    array("y" => 896, "label" => "USA")
-    );
+    // $dataPoints_2019_20 = array(
+    // array("y" => 272, "label" => "France"),
+    // array("y" => 299, "label" => "Great Britain"),
+    // array("y" => 419, "label" => "Soviet Union"),
+    // array("y" => 896, "label" => "USA")
+    // );
     // ADD NEXT YEAR INCOME DATA HERE 
 ?>
 <!-- FETCH INCOME FOR DATA ANALYSIS ENDS -->
