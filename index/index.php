@@ -143,11 +143,11 @@ for($i=0; $i<5;$i++){
             $sum_enterprise+=$row_inc_enterprise['net_income'];
         }
 
-        echo $sum_crop;
-        echo $sum_livestock;
-        echo $sum_allied;
-        echo $sum_daliywage;
-        echo $sum_enterprise;
+        echo $sum_crop.'<br>';
+        echo $sum_livestock.'<br>';
+        echo $sum_allied.'<br>';
+        echo $sum_daliywage.'<br>';
+        echo $sum_enterprise.'<br>';
 
 
         $sumbaseline = $sum_crop+$sum_livestock+$sum_allied+$sum_daliywage+$sum_enterprise;
