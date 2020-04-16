@@ -678,7 +678,7 @@ if(isset($_POST['location_submit'])){
             <option value="West Bokaro">West Bokaro</option>
             <option value="Jamadoba">Jamadoba</option>
             <option value="Kaling Nagar">Kalinga Nagar</option>
-            <option value="Kaling Nagar">Gomardih</option>
+            <option value="Gomardih">Gomardih</option>
             <option value="Sukinda">Sukinda</option>
             <option value="Bamnipal">Bamnipal</option>
             <option value="Joda">Joda</option>
