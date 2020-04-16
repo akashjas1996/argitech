@@ -52,14 +52,15 @@ for($i=0; $i<5;$i++){
 <?php
  $unit_name = array('Jamshedpur', 'Noamundi', 'West Bokaro', 'Jamadoba', 'Kaling Nagar', 'Gomardih', 'Sukinda', 'Bamnipal', 'Joda', 'Gopalpur');
  for($j=0;$j<10;$j++){
-    $query_BSLincome = "SELECT * FROM family WHERE TSRDS_op_area='$unit_name[$j]'";
-    $res_BSLincome = mysqli_query($link, $query_BSLincome);
-    while($row_BSLincome = mysqli_fetch_assoc($res_BSLincome)){
         $sum_crop=0;
         $sum_livestock=0;
         $sum_allied=0;
         $sum_daliywage=0;
         $sum_enterprise=0;
+    $query_BSLincome = "SELECT * FROM family WHERE TSRDS_op_area='$unit_name[$j]'";
+    $res_BSLincome = mysqli_query($link, $query_BSLincome);
+    while($row_BSLincome = mysqli_fetch_assoc($res_BSLincome)){
+
         $temp_family_id = $row_BSLincome['family_id'];
         
         $query_inc_crop = "SELECT * FROM crop_cultivation WHERE family_id='$temp_family_id' AND bsl_crop='0' AND intv_year='2019-20'";
@@ -102,14 +103,14 @@ for($i=0; $i<5;$i++){
  }
 
  for($j=0;$j<10;$j++){
-    $query_BSLincome = "SELECT * FROM family WHERE TSRDS_op_area='$unit_name[$j]'";
-    $res_BSLincome = mysqli_query($link, $query_BSLincome);
-    while($row_BSLincome = mysqli_fetch_assoc($res_BSLincome)){
-        $sum_crop=0;
+     $sum_crop=0;
         $sum_livestock=0;
         $sum_allied=0;
         $sum_daliywage=0;
         $sum_enterprise=0;
+    $query_BSLincome = "SELECT * FROM family WHERE TSRDS_op_area='$unit_name[$j]'";
+    $res_BSLincome = mysqli_query($link, $query_BSLincome);
+    while($row_BSLincome = mysqli_fetch_assoc($res_BSLincome)){
         $temp_family_id = $row_BSLincome['family_id'];
         
         $query_inc_crop = "SELECT * FROM crop_cultivation WHERE family_id='$temp_family_id' AND bsl_crop='1' AND intv_year='2019-20'";
