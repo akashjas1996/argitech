@@ -160,6 +160,7 @@ $dataPoints_2019_20 = array();
 
 
         $sumbaseline = $sum_crop+$sum_livestock+$sum_allied+$sum_daliywage+$sum_enterprise;
+        echo $sumbaseline;
 
     }
     // echo '2019-20 <br>'.$sumbaseline;
