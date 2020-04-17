@@ -117,6 +117,7 @@ $dataPoints_2019_20 = array();
         $query_inc_enterprise = "SELECT * FROM enterprise WHERE family_id='$temp_family_id' AND bsl_ent='1' AND intv_year='2019-20'";
 
         echo $query_inc_crop;
+        echo '<br>';
 
 
         $res_inc_crop = mysqli_query($link, $query_inc_crop);
@@ -152,7 +153,7 @@ $dataPoints_2019_20 = array();
         $sumbaseline = $sum_crop+$sum_livestock+$sum_allied+$sum_daliywage+$sum_enterprise;
 
     }
-    echo '2019-20 <br>'.$sumbaseline;
+    // echo '2019-20 <br>'.$sumbaseline;
     array_push($dataPoints_2019_20, array("y" => "$sumbaseline", "label" => "$unit_name[$j]"));
 
     $sum_crop=0;
