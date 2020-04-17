@@ -75,42 +75,42 @@ $datapoints_BSLIncome = array();
 
 
         while($row_inc_crop = mysqli_fetch_assoc($res_inc_crop)){
-            echo 'crop - '.$row_inc_crop['net_income'];
+            // echo 'crop - '.$row_inc_crop['net_income'];
             $sum_crop+=$row_inc_crop['net_income'];
         }
         while($row_inc_livestock = mysqli_fetch_assoc($res_inc_livestock)){
-            echo 'livestock - '.$row_inc_livestock['net_income'];
+            // echo 'livestock - '.$row_inc_livestock['net_income'];
             $sum_livestock+=$row_inc_livestock['net_income'];
         }
         while($row_inc_allied = mysqli_fetch_assoc($res_inc_allied)){
-            echo 'allied - '.$row_inc_allied['net_annual'];
+            // echo 'allied - '.$row_inc_allied['net_annual'];
             $sum_allied+=$row_inc_allied['net_annual'];
         }
         while($row_inc_dailywage = mysqli_fetch_assoc($res_inc_dailywage)){
-            echo 'Dailywage - '.$row_inc_dailywage['annual_income'];
+            // echo 'Dailywage - '.$row_inc_dailywage['annual_income'];
             $sum_daliywage+=$row_inc_dailywage['annual_income'];
         }
         while($row_inc_enterprise = mysqli_fetch_assoc($res_inc_enterprise)){
-            echo 'Enterprise'.$row_inc_enterprise['net_income'];
+            // echo 'Enterprise'.$row_inc_enterprise['net_income'];
             $sum_enterprise+=$row_inc_enterprise['net_income'];
         }
         $sumbaseline = $sum_crop+$sum_livestock+$sum_allied+$sum_daliywage+$sum_enterprise;
         $final_sum+=$sumbaseline;
 
-        echo 'sum_crop'.$sum_crop;
-        echo '<br>';
-        echo 'sum_livestock'.$sum_livestock;
-        echo '<br>';
-        echo 'Allied'.$sum_allied;
-        echo '<br>';
-        echo 'dailywage'.$sum_daliywage;
-        echo '<br>';
-        echo 'ent'.$sum_enterprise;
-        echo '<br>';
+        // echo 'sum_crop'.$sum_crop;
+        // echo '<br>';
+        // echo 'sum_livestock'.$sum_livestock;
+        // echo '<br>';
+        // echo 'Allied'.$sum_allied;
+        // echo '<br>';
+        // echo 'dailywage'.$sum_daliywage;
+        // echo '<br>';
+        // echo 'ent'.$sum_enterprise;
+        // echo '<br>';
     }
-    echo 'Baseline'.$final_sum;
+    // echo 'Baseline'.$final_sum;
     array_push($datapoints_BSLIncome, array("y" => "$final_sum", "label" => "$unit_name[$j]"));
-    echo '<br>';
+    // echo '<br>';
        $sum_crop=0;
         $sum_livestock=0;
         $sum_allied=0;
@@ -121,8 +121,8 @@ $datapoints_BSLIncome = array();
 $dataPoints_2019_20 = array();
  for($j=0;$j<10;$j++){
     $query_BSLincome = "SELECT * FROM family WHERE TSRDS_op_area='$unit_name[$j]'";
-    echo $query_BSLincome;
-    echo '<br>';
+    // echo $query_BSLincome;
+    // echo '<br>';
     $final_sum=0;
     $res_BSLincome = mysqli_query($link, $query_BSLincome);
     while($row_BSLincome = mysqli_fetch_assoc($res_BSLincome)){
@@ -134,16 +134,16 @@ $dataPoints_2019_20 = array();
         $query_inc_dailywage = "SELECT * FROM daily_wage WHERE family_id='$temp_family_id' AND bsl_dailywage='1' AND intv_year='2019-20'";
         $query_inc_enterprise = "SELECT * FROM enterprise WHERE family_id='$temp_family_id' AND bsl_ent='1' AND intv_year='2019-20'";
 
-        echo $query_inc_crop;
-        echo '<br>';
-        echo $query_inc_livestock;
-        echo '<br>';
-        echo $query_inc_allied;
-        echo '<br>';
-        echo $query_inc_dailywage;
-        echo '<br>';
-        echo $query_inc_enterprise;
-        echo '<br>';
+        // echo $query_inc_crop;
+        // echo '<br>';
+        // echo $query_inc_livestock;
+        // echo '<br>';
+        // echo $query_inc_allied;
+        // echo '<br>';
+        // echo $query_inc_dailywage;
+        // echo '<br>';
+        // echo $query_inc_enterprise;
+        // echo '<br>';
 
 
         $res_inc_crop = mysqli_query($link, $query_inc_crop);
@@ -180,7 +180,7 @@ $dataPoints_2019_20 = array();
         $final_sum+=$sumbaseline;
 
     }
-     echo '2019-20 <br>'.$final_sum;
+     // echo '2019-20 <br>'.$final_sum;
     array_push($dataPoints_2019_20, array("y" => "$final_sum", "label" => "$unit_name[$j]"));
 
     $sum_crop=0;
