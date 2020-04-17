@@ -92,15 +92,15 @@ $datapoints_BSLIncome = array();
         $sumbaseline = $sum_crop+$sum_livestock+$sum_allied+$sum_daliywage+$sum_enterprise;
         $final_sum+=$sumbaseline;
 
-        echo $sum_crop;
+        echo 'sum_crop'.$sum_crop;
         echo '<br>';
-        echo $sum_livestock;
+        echo 'sum_livestock'.$sum_livestock;
         echo '<br>';
-        echo $sum_allied;
+        echo 'Allied'.$sum_allied;
         echo '<br>';
-        echo $sum_daliywage;
+        echo 'dailywage'.$sum_daliywage;
         echo '<br>';
-        echo $sum_enterprise;
+        echo 'ent'.$sum_enterprise;
         echo '<br>';
     }
     echo 'Baseline'.$final_sum;
