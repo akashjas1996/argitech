@@ -119,6 +119,14 @@ $dataPoints_2019_20 = array();
 
         echo $query_inc_crop;
         echo '<br>';
+        echo $query_inc_livestock;
+        echo '<br>';
+        echo $query_inc_allied;
+        echo '<br>';
+        echo $query_inc_dailywage;
+        echo '<br>';
+        echo $query_inc_enterprise;
+        echo '<br>';
 
 
         $res_inc_crop = mysqli_query($link, $query_inc_crop);
