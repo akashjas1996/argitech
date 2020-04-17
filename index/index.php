@@ -53,11 +53,7 @@ for($i=0; $i<5;$i++){
 $datapoints_BSLIncome = array();
  $unit_name = array('Jamshedpur', 'Noamundi', 'West Bokaro', 'Jamadoba', 'Kaling Nagar', 'Gomardih', 'Sukinda', 'Bamnipal', 'Joda', 'Gopalpur');
  for($j=0;$j<10;$j++){
-        $sum_crop=0;
-        $sum_livestock=0;
-        $sum_allied=0;
-        $sum_daliywage=0;
-        $sum_enterprise=0;
+     
     $query_BSLincome = "SELECT * FROM family WHERE TSRDS_op_area='$unit_name[$j]'";
     $res_BSLincome = mysqli_query($link, $query_BSLincome);
     while($row_BSLincome = mysqli_fetch_assoc($res_BSLincome)){
@@ -99,15 +95,16 @@ $datapoints_BSLIncome = array();
     }
     array_push($datapoints_BSLIncome, array("y" => "$sumbaseline", "label" => "$unit_name[$j]"));
     echo '<br>';
-    // echo $query_BSLincome;
- }
-$dataPoints_2019_20 = array();
- for($j=0;$j<10;$j++){
-     $sum_crop=0;
+       $sum_crop=0;
         $sum_livestock=0;
         $sum_allied=0;
         $sum_daliywage=0;
         $sum_enterprise=0;
+    // echo $query_BSLincome;
+ }
+$dataPoints_2019_20 = array();
+ for($j=0;$j<10;$j++){
+     
     $query_BSLincome = "SELECT * FROM family WHERE TSRDS_op_area='$unit_name[$j]'";
     $res_BSLincome = mysqli_query($link, $query_BSLincome);
     while($row_BSLincome = mysqli_fetch_assoc($res_BSLincome)){
@@ -155,6 +152,12 @@ $dataPoints_2019_20 = array();
     }
     echo '<br>';
     array_push($dataPoints_2019_20, array("y" => "$sumbaseline", "label" => "$unit_name[$j]"));
+
+    $sum_crop=0;
+        $sum_livestock=0;
+        $sum_allied=0;
+        $sum_daliywage=0;
+        $sum_enterprise=0;
     // echo $query_BSLincome;
  }
 
