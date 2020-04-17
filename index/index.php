@@ -140,17 +140,17 @@ $dataPoints_2019_20 = array();
             $sum_enterprise+=$row_inc_enterprise['net_income'];
         }
 
-        echo $sum_crop.'<br>';
-        echo $sum_livestock.'<br>';
-        echo $sum_allied.'<br>';
-        echo $sum_daliywage.'<br>';
-        echo $sum_enterprise.'<br>';
+        // echo $sum_crop.'<br>';
+        // echo $sum_livestock.'<br>';
+        // echo $sum_allied.'<br>';
+        // echo $sum_daliywage.'<br>';
+        // echo $sum_enterprise.'<br>';
 
 
         $sumbaseline = $sum_crop+$sum_livestock+$sum_allied+$sum_daliywage+$sum_enterprise;
 
     }
-    echo '<br>';
+    echo '2019-20 <br>'.$sumbaseline;
     array_push($dataPoints_2019_20, array("y" => "$sumbaseline", "label" => "$unit_name[$j]"));
 
     $sum_crop=0;
