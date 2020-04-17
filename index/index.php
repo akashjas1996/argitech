@@ -107,6 +107,7 @@ $dataPoints_2019_20 = array();
     $query_BSLincome = "SELECT * FROM family WHERE TSRDS_op_area='$unit_name[$j]'";
     echo $query_BSLincome;
     echo '<br>';
+    $final_sum=0;
     $res_BSLincome = mysqli_query($link, $query_BSLincome);
     while($row_BSLincome = mysqli_fetch_assoc($res_BSLincome)){
         $temp_family_id = $row_BSLincome['family_id'];
