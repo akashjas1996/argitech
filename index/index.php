@@ -91,9 +91,8 @@ $datapoints_BSLIncome = array();
         }
         $sumbaseline = $sum_crop+$sum_livestock+$sum_allied+$sum_daliywage+$sum_enterprise;
         $final_sum+=$sumbaseline;
-        
-
     }
+    echo 'Baseline'.$final_sum;
     array_push($datapoints_BSLIncome, array("y" => "$final_sum", "label" => "$unit_name[$j]"));
     echo '<br>';
        $sum_crop=0;
@@ -163,11 +162,9 @@ $dataPoints_2019_20 = array();
 
         $sumbaseline = $sum_crop+$sum_livestock+$sum_allied+$sum_daliywage+$sum_enterprise;
         $final_sum+=$sumbaseline;
-        echo $final_sum;
-        echo '<br>';
 
     }
-    // echo '2019-20 <br>'.$sumbaseline;
+     echo '2019-20 <br>'.$final_sum;
     array_push($dataPoints_2019_20, array("y" => "$final_sum", "label" => "$unit_name[$j]"));
 
     $sum_crop=0;
