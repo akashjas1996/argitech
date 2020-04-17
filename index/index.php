@@ -79,8 +79,8 @@ $datapoints_BSLIncome = array();
             $sum_crop+=$row_inc_crop['net_income'];
         }
         while($row_inc_livestock = mysqli_fetch_assoc($res_inc_livestock)){
-            echo 'livestock - '.$row_inc_livestock['annual_income'];
-            $sum_livestock+=$row_inc_livestock['annual_income'];
+            echo 'livestock - '.$row_inc_livestock['net_income'];
+            $sum_livestock+=$row_inc_livestock['net_income'];
         }
         while($row_inc_allied = mysqli_fetch_assoc($res_inc_allied)){
             echo 'allied - '.$row_inc_allied['net_annual'];
@@ -157,7 +157,7 @@ $dataPoints_2019_20 = array();
             $sum_crop+=$row_inc_crop['net_income'];
         }
         while($row_inc_livestock = mysqli_fetch_assoc($res_inc_livestock)){
-            $sum_livestock+=$row_inc_livestock['annual_income'];
+            $sum_livestock+=$row_inc_livestock['net_income'];
         }
         while($row_inc_allied = mysqli_fetch_assoc($res_inc_allied)){
             $sum_allied+=$row_inc_allied['net_annual'];
