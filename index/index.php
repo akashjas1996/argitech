@@ -116,6 +116,8 @@ $dataPoints_2019_20 = array();
         $query_inc_dailywage = "SELECT * FROM daily_wage WHERE family_id='$temp_family_id' AND bsl_dailywage='1' AND intv_year='2019-20'";
         $query_inc_enterprise = "SELECT * FROM enterprise WHERE family_id='$temp_family_id' AND bsl_ent='1' AND intv_year='2019-20'";
 
+        echo $query_inc_crop;
+
 
         $res_inc_crop = mysqli_query($link, $query_inc_crop);
         $res_inc_livestock = mysqli_query($link, $query_inc_livestock);
