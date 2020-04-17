@@ -167,7 +167,7 @@ $dataPoints_2019_20 = array();
 
     }
     // echo '2019-20 <br>'.$sumbaseline;
-    array_push($dataPoints_2019_20, array("y" => "$sumbaseline", "label" => "$unit_name[$j]"));
+    array_push($dataPoints_2019_20, array("y" => "$final_sum", "label" => "$unit_name[$j]"));
 
     $sum_crop=0;
         $sum_livestock=0;
