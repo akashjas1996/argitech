@@ -75,18 +75,23 @@ $datapoints_BSLIncome = array();
 
 
         while($row_inc_crop = mysqli_fetch_assoc($res_inc_crop)){
+            echo 'crop - '.$row_inc_crop['net_income'];
             $sum_crop+=$row_inc_crop['net_income'];
         }
         while($row_inc_livestock = mysqli_fetch_assoc($res_inc_livestock)){
+            echo 'livestock - '.$row_inc_livestock['annual_income'];
             $sum_livestock+=$row_inc_livestock['annual_income'];
         }
         while($row_inc_allied = mysqli_fetch_assoc($res_inc_allied)){
+            echo 'allied - '.$row_inc_allied['net_annual'];
             $sum_allied+=$row_inc_allied['net_annual'];
         }
         while($row_inc_dailywage = mysqli_fetch_assoc($res_inc_dailywage)){
+            echo 'Dailywage - '.$row_inc_dailywage['annual_income'];
             $sum_daliywage+=$row_inc_dailywage['annual_income'];
         }
         while($row_inc_enterprise = mysqli_fetch_assoc($res_inc_enterprise)){
+            echo 'Enterprise'.$row_inc_enterprise['net_income'];
             $sum_enterprise+=$row_inc_enterprise['net_income'];
         }
         $sumbaseline = $sum_crop+$sum_livestock+$sum_allied+$sum_daliywage+$sum_enterprise;
