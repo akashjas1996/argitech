@@ -50,6 +50,7 @@ for($i=0; $i<5;$i++){
 ?>
 <!-- FETCH DATA FOR INCOME ANALYSIS STARTS -->
 <?php
+$datapoints_BSLIncome = array();
  $unit_name = array('Jamshedpur', 'Noamundi', 'West Bokaro', 'Jamadoba', 'Kaling Nagar', 'Gomardih', 'Sukinda', 'Bamnipal', 'Joda', 'Gopalpur');
  for($j=0;$j<10;$j++){
         $sum_crop=0;
@@ -93,15 +94,14 @@ for($i=0; $i<5;$i++){
             $sum_enterprise+=$row_inc_enterprise['net_income'];
         }
         $sumbaseline = $sum_crop+$sum_livestock+$sum_allied+$sum_daliywage+$sum_enterprise;
-        $datapoints_BSLIncome = array();
-        array_push($datapoints_BSLIncome, array("y" => "$sumbaseline", "label" => "$unit_name[$j]"));
-
+        
 
     }
+    array_push($datapoints_BSLIncome, array("y" => "$sumbaseline", "label" => "$unit_name[$j]"));
     echo '<br>';
     // echo $query_BSLincome;
  }
-
+$dataPoints_2019_20 = array();
  for($j=0;$j<10;$j++){
      $sum_crop=0;
         $sum_livestock=0;
@@ -151,12 +151,10 @@ for($i=0; $i<5;$i++){
 
 
         $sumbaseline = $sum_crop+$sum_livestock+$sum_allied+$sum_daliywage+$sum_enterprise;
-        $dataPoints_2019_20 = array();
-        array_push($dataPoints_2019_20, array("y" => "$sumbaseline", "label" => "$unit_name[$j]"));
-
 
     }
     echo '<br>';
+    array_push($dataPoints_2019_20, array("y" => "$sumbaseline", "label" => "$unit_name[$j]"));
     // echo $query_BSLincome;
  }
 
