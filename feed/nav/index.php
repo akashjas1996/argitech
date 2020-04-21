@@ -414,17 +414,17 @@ if(isset($_POST['location_submit'])){
         </div>
 
         <div class="md-form mb-4">
-          <input name="net_inc_allied" type="text" id="orangeForm-netannual_allied" class="form-control">
+          <input name="net_inc_allied" type="text" class="form-control">
           <label for="orangeForm-netannual_allied">Name of Intervention</label>
         </div>
 
         <div class="md-form mb-4">
-          <input readonly="readonly" name="net_inc_allied" type="number" id="orangeForm-netannual_allied" class="form-control">
+          <input name="net_inc_allied" type="number" id="orangeForm-netannual_allied" class="form-control">
           <label for="orangeForm-netannual_allied">Qty. of Intervention</label>
         </div>
 
         <div class="md-form mb-4">
-          <input readonly="readonly" name="net_inc_allied" type="number" id="orangeForm-netannual_allied" class="form-control">
+          <input name="net_inc_allied" id="orangeForm-netannual_allied" class="form-control">
           <label for="orangeForm-netannual_allied">Unit of Measurement</label>
         </div>
 
