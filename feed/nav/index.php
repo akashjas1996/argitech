@@ -1311,13 +1311,15 @@ if(isset($_POST['location_submit'])){
                 echo "</tr>";
               }
               echo '<tr>';
+
               echo '<td colspan="2">';
                 echo '<b> Estimated Income: '.$total_income;
               echo '</b> </td>';
-               echo '<td colspan="2">';
 
+               echo '<td colspan="2">';
                echo '<b> Calculated Income: '.$base_linesum;
               echo '</b> </td></tr>';
+
               echo '<tr>';
               echo '<td>';
                 if($total_income!=$base_linesum){
