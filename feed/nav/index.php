@@ -1319,9 +1319,8 @@ if(isset($_POST['location_submit'])){
                echo '<b> Calculated Income: '.$base_linesum;
               echo '</b> </td>';
               echo '<tr>';
-              echo '<tr>';
                 if($total_income!=$base_linesum){
-                  echo '<p style="color:red"><b> The Estimated income doesn;t match with the Calculated Income. </b></p>';
+                  echo '<p style="color:red"><b> The Estimated income does not match with the Calculated Income. </b></p>';
                 }
               echo '</tr>';
               echo '</table>';
