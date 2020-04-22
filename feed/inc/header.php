@@ -1,5 +1,18 @@
 <!--Navbar -->
 
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-164297977-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-164297977-2');
+</script>
+
+</head>
+
 <?php 
 if(isset($_SESSION['name'])){
   $name_tag = $_SESSION['name'];
@@ -38,4 +51,6 @@ if(isset($_SESSION['name'])){
     </ul>
   </div>
 </nav>
+
+
 <!--/.Navbar -->

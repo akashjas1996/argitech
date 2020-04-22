@@ -72,6 +72,18 @@
 			})
 		</script>
 		<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-164297977-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-164297977-2');
+</script>
+
 		
 	</head>
 	
