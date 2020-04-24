@@ -53,8 +53,7 @@ include '../inc/header.php';
     }
             else{
               $search_data = "";
-              // $query_ben = "SELECT * FROM respondent INNER JOIN family on respondent.family_id=family.family_id WHERE family.TSRDS_op_area='$op_area'";
-              $query_ben = "SELECT * FROM respondent";
+              $query_ben = "SELECT * FROM respondent INNER JOIN family on respondent.family_id=family.family_id WHERE family.TSRDS_op_area='$op_area'";
             }
   ?>
   <div style="height: 100vh">
