@@ -368,6 +368,7 @@ echo '<a href="../report/?village='.$row_gp1["village"].'">';
 <a href="../report/?op=Jamshedpur"> <button class="btn btn-default">Jamshedpur</i></button> </a>
 <a href="../report/?op=Joda"> <button class="btn btn-default">Joda</i></button> </a>
 <a href="../report/?op=Kalinga Nagar"> <button class="btn btn-default">Kalinga Nagar</i></button> </a>
+<a href="../report/?op=Dhenkanal"> <button class="btn btn-default">Dhenkanal</i></button> </a>
 <a href="../report/?op=Noamundi"> <button class="btn btn-default">Noamundi</i></button> </a>
 <a href="../report/?op=Sukinda"> <button class="btn btn-default">Sukinda</i></button> </a>
 <a href="../report/?op=West Bokaro"> <button class="btn btn-default">West Bokaro</i></button> </a>
