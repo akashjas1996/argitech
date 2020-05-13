@@ -678,7 +678,7 @@ if(isset($_POST['location_submit'])){
             <option value="West Bokaro">West Bokaro</option>
             <option value="Jamadoba">Jamadoba</option>
             <option value="Kaling Nagar">Kalinga Nagar</option>
-            <option value="Dhenkanal">Dhenkanal</option>
+            
             <option value="Gomardih">Gomardih</option>
             <option value="Sukinda">Sukinda</option>
             <option value="Bamnipal">Bamnipal</option>
@@ -699,6 +699,7 @@ if(isset($_POST['location_submit'])){
          <select name="district" class="browser-default custom-select">
             <option disabled="disabled" selected>District</option>
             <option value="Dhanbad">Dhanbad</option>
+            <option value="Dhenkanal">Dhenkanal</option>
             <option value="Ramgarh">Ramgarh</option>
             <option value="Bokaro">Bokaro</option>
             <option value="East Singhbhum">East Singhbhum</option>
